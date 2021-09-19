@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120px" height="124px" viewBox="0 0 120 124" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61 (89581) - https://sketch.com -->
+    <title>ic_upload</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="49.9990129%" y1="100%" x2="49.9990129%" y2="0%" id="linearGradient-1">
+            <stop stop-color="#808080" stop-opacity="0.25" offset="1%"></stop>
+            <stop stop-color="#808080" stop-opacity="0.12" offset="54%"></stop>
+            <stop stop-color="#808080" stop-opacity="0.1" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="49.9938748%" y1="100%" x2="49.9938748%" y2="0%" id="linearGradient-2">
+            <stop stop-color="#B3B3B3" stop-opacity="0.25" offset="0%"></stop>
+            <stop stop-color="#B3B3B3" stop-opacity="0.1" offset="54%"></stop>
+            <stop stop-color="#B3B3B3" stop-opacity="0.05" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-640.000000, -128.000000)">
+            <g id="Group" transform="translate(640.000000, 128.000000)">
+                <g id="undraw_files1_9ool" fill-rule="nonzero">
+                    <rect id="Rectangle" fill="#F5F5F5" x="8.98904696" y="30.7951386" width="14.9179571" height="6.75958078"></rect>
+                    <rect id="Rectangle" fill="#F5F5F5" x="8.98904696" y="41.3115348" width="14.9179571" height="6.75958078"></rect>
+                    <rect id="Rectangle" fill="#F5F5F5" x="35.078266" y="21.4072984" width="14.9179571" height="6.75958078"></rect>
+                    <rect id="Rectangle" fill="#F5F5F5" x="35.078266" y="31.9220153" width="14.9179571" height="6.75958078"></rect>
+                    <polygon id="Path" fill="url(#linearGradient-1)" points="85.106383 113.043702 0.0822527173 113.043702 0.0822527173 14.2530589 12.9271056 0 85.106383 0"></polygon>
+                    <polygon id="Path" fill="#FFFFFF" points="83.7920181 110.039258 1.58294515 110.039258 1.58294515 15.0222236 14.0047841 1.31496938 83.7920181 1.31496938"></polygon>
+                    <rect id="Rectangle" fill="#E0E0E0" x="9.61013891" y="13.0506093" width="40.0503588" height="6.75958078"></rect>
+                    <rect id="Rectangle" fill="#E0E0E0" x="9.690713" y="31.5475093" width="29.3491124" height="6.75958078"></rect>
+                    <rect id="Rectangle" fill="#BFBFBF" x="9.690713" y="59.3382032" width="65.8323891" height="24.7862491"></rect>
+                    <rect id="Rectangle" fill="#E0E0E0" x="60.605145" y="13.1446556" width="14.9179571" height="6.75958078"></rect>
+                    <rect id="Rectangle" fill="#E0E0E0" x="60.605145" y="23.6593724" width="14.9179571" height="6.75958078"></rect>
+                    <rect id="Rectangle" fill="#E0E0E0" x="60.605145" y="34.1757687" width="14.9179571" height="6.75958078"></rect>
+                    <polygon id="Path" fill="url(#linearGradient-2)" points="15.2855764 1.31496938 15.2855764 16.337193 1.58294515 16.337193 1.58294515 15.0222236 13.9712115 1.31496938"></polygon>
+                    <polygon id="Path" fill="#EEEEEE" points="1.54937261 15.0222236 13.9712115 1.31496938 13.9712115 15.0222236"></polygon>
+                </g>
+                <path d="M109.609516,102.617107 C108.334475,96.1966624 103.141055,91.2831974 96.6598733,90.3655249 C90.1786915,89.4478525 83.8253604,92.7264094 80.8180265,98.5405114 C74.2914199,99.2290433 69.4494408,104.911706 69.8056889,111.464855 C70.1619369,118.018003 75.5914124,123.14228 82.1541967,123.119312 L108.894622,123.119312 C114.583357,123.10515 119.184886,118.484575 119.175564,112.795831 C119.198072,107.400077 114.996287,102.929139 109.609516,102.617107 Z M97.7882393,108.685192 L97.7882393,116.497958 L91.2010053,116.497958 L91.2010053,108.685192 L84.2137712,108.685192 L94.4946223,98.3958306 L104.775473,108.685192 L97.7882393,108.685192 Z" id="Shape" fill="#DADADA" fill-rule="nonzero"></path>
+                <text id="XLS" font-family="Poppins-SemiBold, Poppins" font-size="13.6170213" font-weight="500" letter-spacing="3.40425532" fill="#FFFFFF">
+                    <tspan x="27.2340426" y="75.2765957">XLS</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61 (89581) - https://sketch.com -->
+    <title>ic_diagram</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-552.000000, -24.000000)" stroke="#FF7A01" stroke-width="1.09090909">
+            <g id="Group-5" transform="translate(556.000000, 30.000000)">
+                <polygon id="Path-3" stroke-linejoin="round" points="1.71428571 3.42857143 10.2857143 1.14285714 14.5714286 10.2857143 1.71428571 10.8571429"></polygon>
+                <circle id="Oval" fill="#FFFFFF" cx="14.8571429" cy="10.2857143" r="1.14285714"></circle>
+                <circle id="Oval" fill="#FFFFFF" cx="10.2857143" cy="1.14285714" r="1.14285714"></circle>
+                <circle id="Oval" fill="#FFFFFF" cx="1.43376623" cy="3.11932773" r="1.14285714"></circle>
+                <circle id="Oval" fill="#FFFFFF" cx="1.71428571" cy="10.8571429" r="1.14285714"></circle>
+            </g>
+        </g>
+    </g>
+</svg>

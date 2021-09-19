@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="102px" height="102px" viewBox="0 0 102 102" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61 (89581) - https://sketch.com -->
+    <title>ic_next_big</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="39" cy="39" r="39"></circle>
+        <filter x="-24.4%" y="-21.8%" width="148.7%" height="148.7%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="6" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.11 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-356.000000, -146.000000)">
+            <g id="Group-5-Copy" transform="translate(368.000000, 156.000000)">
+                <g id="Oval">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                </g>
+                <g id="Group-4" transform="translate(26.553191, 30.702128)" stroke="#0E0E0E" stroke-linecap="round" stroke-width="1.65957447">
+                    <polyline id="Path" stroke-linejoin="round" transform="translate(16.512347, 8.214475) rotate(-135.000000) translate(-16.512347, -8.214475) " points="22.3208575 14.0229852 10.7038362 14.0229852 10.7038362 2.40596388"></polyline>
+                    <line x1="0" y1="8.29787234" x2="22.9893201" y2="8.29787234" id="Line-2"></line>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

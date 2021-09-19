@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61 (89581) - https://sketch.com -->
+    <title>ic_add</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+        <g id="Artboard" transform="translate(-628.000000, -4.000000)" stroke="#606060" stroke-width="1.5">
+            <g id="Group-3" transform="translate(631.000000, 8.000000)">
+                <line x1="5" y1="0" x2="5" y2="9" id="Line-16"></line>
+                <line x1="5" y1="-0.205882353" x2="5" y2="9.20588235" id="Line-16-Copy" transform="translate(5.000000, 4.500000) rotate(-270.000000) translate(-5.000000, -4.500000) "></line>
+            </g>
+        </g>
+    </g>
+</svg>
