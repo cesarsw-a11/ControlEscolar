@@ -13,9 +13,10 @@ class Alumnos extends CI_Controller {
 	{
         #Solo los usuarios de tipo Admin podran acceder a esta vista.
         if($this->session->userdata("rol") == "1"){
-            $this->load->view('administrador/crearAlumno');
+            $data['alumnos'] = $this->obtenerAlumnos();
+            $this->load->view('administrador/crearAlumno',$data);
         }else{
-            echo "sin acceso a esta vista";
+            echo "<h2>sin acceso a esta vista</h2><a href=".base_url("/").">Volver a la pagina principal</a>";
         }
 	}
 
@@ -44,12 +45,18 @@ class Alumnos extends CI_Controller {
         
         $insert = $this->alumnos_m->guardarAlumno($datosInsertar);
         if($insert){
-            echo json_encode(['insertado' => 1 , 'mensaje' => 'El alumno se a guardado exitosamente.']);
+            echo json_encode(['insertado' => 1 , 'mensaje' => 'El alumno se a guardado exitosamente.',"alumno" => $datosInsertar]);
         }else{
             echo json_encode(['insertado' => 0 , 'mensaje' => 'El alumno no se ha guardado correctamente.']);
         }
        
-	}
+    }
+    
+    public function obtenerAlumnos(){
+        $query = "select * from alumno";
+        $query = $this->db->query($query)->result_array();
+        return $query;
+    }
 	public function acceder(){
 		$msg = ["msg" => "todo bien"];
 		echo json_encode($msg);

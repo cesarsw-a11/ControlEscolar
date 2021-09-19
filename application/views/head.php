@@ -25,7 +25,9 @@
     <!-- Sweet Alert -->
     <link rel="stylesheet" href="<?= base_url('assets/sweet-alert/css/sweet-alert.css') ?>">
     <script src="<?= base_url('assets/sweet-alert/js/sweet-alert.min.js') ?>"></script>
-
+    <!-- Data Tables -->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>/assets/data-tables/css/jquery.dataTables.min.css">
+    <script type="text/javascript" charset="utf8" src="<?php echo base_url(); ?>/assets/data-tables/js/jquery.dataTables.min.js"></script>
 
     <!-- Selectize -->
     <script src="<?php echo base_url('assets/selectize/selectize.min.js'); ?>" type="text/javascript"></script>
