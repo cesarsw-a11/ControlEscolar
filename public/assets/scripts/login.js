@@ -51,16 +51,35 @@ $(document).ready(function() {
     });
   });
   function guardarAlumnos(){
- var form = $("#guardarAlumno");
-        $.ajax({
-            url: 'Alumnos/guardarAlumno',
-            type: 'POST',
-            data: form.serialize(),
-            async: true,
-            success: function (data) {
+      //Validamos los datos del formulario para que esten correctos
+    $("#guardarAlumnoForm").validate({
+        //En caso de que los datos sean llenados y esten correctos del lado del cliente se mandaran al backend para validarlos
+        submitHandler : () =>{
+            var form = $("#guardarAlumnoForm");
+            $.ajax({
+                url: 'Alumnos/guardarAlumno',
+                type: 'POST',
+                data: form.serialize(),
+                async: true,
+                success: function (data) {
+                  data = JSON.parse(data)
+    
+                  if(data.insertado){
+                    swal(
+                        "Exito",
+                         data.mensaje,
+                        "success"
+                    );
+                  }else{
+                    swal(
+                        "Error",
+                        data.mensaje,
+                        "error"
+                    );
+                  }
+                }
+            });
+        }
+    });
 
-              alert(data)
-              debugger
-            }
-        });
       }

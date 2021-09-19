@@ -18,21 +18,19 @@ class Login extends CI_Controller {
 	  $this->load->view('login',$data);
 	}
 
-	public function guardarAlumno(){
-		$alumno = $this->input->post();
-		$contraseñaEncriptada = hash('sha256',$alumno['nombre']);
-		echo $contraseñaEncriptada;
-	}
 	public function acceder(){
 		$response = ["respuesta" => "0"];
 		$datos = $this->input->post();
 		$nombre = $datos['nombre'];
 		$pass = $datos['password'];
 		$rol = $datos['rol'];
+
 		if(!empty($nombre) && !empty($pass)){
+
 			$obtenerDatos = "select * from usuarios where email = '".$nombre."' ";
 			$obtenerDatos = $this->db->query($obtenerDatos)->row();
 			if(isset($obtenerDatos)){
+				
 			if($obtenerDatos->password == $pass && $obtenerDatos->id_rol == $rol ){
 				$datosSesion = ["rol" => $obtenerDatos->id_rol];
 				$this->session->set_userdata($datosSesion);

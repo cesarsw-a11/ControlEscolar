@@ -6,11 +6,12 @@ class Alumnos extends CI_Controller {
     function __construct()
     {
         parent::__construct();
-        $this->load->database();
+        $this->load->model("alumnos_m");
     }
 	
 	public function index()
 	{
+        #Solo los usuarios de tipo Admin podran acceder a esta vista.
         if($this->session->userdata("rol") == "1"){
             $this->load->view('administrador/crearAlumno');
         }else{
@@ -18,9 +19,15 @@ class Alumnos extends CI_Controller {
         }
 	}
 
+/**
+ * Funcion para guardar un alumno
+ *
+ * @return Object
+ */
 	public function guardarAlumno(){
         $alumnoData = $this->input->post();
-        $datos = array(
+
+        $datosInsertar = array(
             "numcontrol" => $alumnoData['numcontrol'],
             "nombre" => $alumnoData['nombre'],
             "appaterno" => $alumnoData['appaterno'],
@@ -33,24 +40,15 @@ class Alumnos extends CI_Controller {
             "contraseña" => $alumnoData['contraseña'],
             "foto" => $alumnoData['foto'],
             "estado" => $alumnoData['estado'],
-            "cursando" => $alumnoData['cursando']       );
+            "cursando" => $alumnoData['cursando']       );   
         
-        foreach($datos as $dato => $value){
-            if(empty($value)){;
-            echo json_encode(['insertado' => "No se agrego correctamente."]);
-            }
-        break;
-        return false;
-        }       
-        
-        //$registroAgregado = $this->db->insert_id();
-        if($this->db->insert('alumno', $datos)){
-            echo json_encode(['insertado' => "Registro agregado correctaemnte."]);
+        $insert = $this->alumnos_m->guardarAlumno($datosInsertar);
+        if($insert){
+            echo json_encode(['insertado' => 1 , 'mensaje' => 'El alumno se a guardado exitosamente.']);
         }else{
-            echo json_encode(['insertado' => "No se agrego correctamente."]);
+            echo json_encode(['insertado' => 0 , 'mensaje' => 'El alumno no se ha guardado correctamente.']);
         }
-		/* $contraseñaEncriptada = hash('sha256',$alumno['nombre']);
-		echo $contraseñaEncriptada; */
+       
 	}
 	public function acceder(){
 		$msg = ["msg" => "todo bien"];
