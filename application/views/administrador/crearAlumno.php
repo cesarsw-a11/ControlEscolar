@@ -91,12 +91,17 @@
         </div>
     </div>
 </div>
-<div class="container">
+<div class="container mt-4">
     <h2>Alumnos</h2>
     <!-- Button to Open the Modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarAlumno">
-    Agregar alumno
-</button>
+
+    <div class="d-flex flex-row-reverse">
+        <div class="p-2">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarAlumno">
+               + Agregar alumno
+            </button>
+        </div>
+    </div>
 
 
     <table id="example" class="table table-striped table-bordered" style="width:100%">
