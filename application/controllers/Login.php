@@ -26,12 +26,17 @@ class Login extends CI_Controller {
 		$rol = $datos['rol'];
 
 		if(!empty($nombre) && !empty($pass)){
-
-			$obtenerDatos = "select * from usuarios where email = '".$nombre."' ";
+            $contraseñaEncriptada = hash("sha256",$pass);
+			$obtenerDatos = "select * from usuarios where email = '".$nombre."' and password = '".$contraseñaEncriptada."' ";
 			$obtenerDatos = $this->db->query($obtenerDatos)->row();
 			if(isset($obtenerDatos)){
+				if($obtenerDatos->id_rol != $rol){
+					$response['respuesta'] = "2";
+					echo json_encode($response);
+					return;
+				}
 				
-			if($obtenerDatos->password == $pass && $obtenerDatos->id_rol == $rol ){
+			if($obtenerDatos->password == $contraseñaEncriptada && $obtenerDatos->id_rol == $rol ){
 				$datosSesion = ["rol" => $obtenerDatos->id_rol];
 				$this->session->set_userdata($datosSesion);
 				$response['respuesta'] = "1";

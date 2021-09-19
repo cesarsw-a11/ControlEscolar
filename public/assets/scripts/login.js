@@ -36,6 +36,12 @@ $(document).ready(function () {
                             "Favor de revisar sus datos de acceso.",
                             "error"
                         );
+                    }else if(respuesta.respuesta == 2){
+                        swal(
+                            "Error",
+                            "Favor de seleccionar el rol correspondiente.",
+                            "error"
+                        );
                     }
                 },
                 error: function (error, xhr, status) {
