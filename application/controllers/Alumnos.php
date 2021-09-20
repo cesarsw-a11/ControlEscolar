@@ -47,7 +47,7 @@ class Alumnos extends CI_Controller {
         if($insert){
             echo json_encode(['insertado' => 1 , 'mensaje' => 'El alumno se a guardado exitosamente.',"alumno" => $datosInsertar]);
         }else{
-            echo json_encode(['insertado' => 0 , 'mensaje' => 'El alumno no se ha guardado correctamente.']);
+            echo json_encode(['insertado' => 0 , 'mensaje' => 'El correo ingresado ya existe.']);
         }
        
     }

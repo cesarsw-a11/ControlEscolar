@@ -15,11 +15,17 @@ class Alumnos_m extends CI_Model {
         //$registroAgregado = $this->db->insert_id();
         $contraseñaEncriptada = hash('sha256',$dataInsertar['contraseña']);
         $dataInsertar['contraseña'] = $contraseñaEncriptada;
+        $this->db->db_debug = false;
 
-        if($this->db->insert('alumno', $dataInsertar)){
-            return true;
+        if(!$this->db->insert('alumno', $dataInsertar)){
+            $error = $this->db->error();
+            if($error['code'] == 1062){
+                $msg = 'Registro duplicado';
+                $this->db->db_debug = true;
+                return false;
+            }
         }else{
-            return false;
+            return true;
         }
 
     }
