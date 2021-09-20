@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Alumnos_m extends CI_Model {
+class Administrador_m extends CI_Model {
 
     //Funcion que se ejecuta al cargar el archivo
     function __construct()
@@ -13,11 +13,11 @@ class Alumnos_m extends CI_Model {
 #Funcion que inserta los datos del alumno en la tabla
     public function guardarAlumno($dataInsertar){
         //$registroAgregado = $this->db->insert_id();
-        $contraseñaEncriptada = hash('sha256',$dataInsertar['contraseña']);
-        $dataInsertar['contraseña'] = $contraseñaEncriptada;
+        $contraseñaEncriptada = hash('sha256',$dataInsertar['password']);
+        $dataInsertar['password'] = $contraseñaEncriptada;
         $this->db->db_debug = false;
 
-        if(!$this->db->insert('alumno', $dataInsertar)){
+        if(!$this->db->insert('alumnos', $dataInsertar)){
             $error = $this->db->error();
             if($error['code'] == 1062){
                 $msg = 'Registro duplicado';

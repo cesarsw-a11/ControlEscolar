@@ -26,20 +26,46 @@ class Login extends CI_Controller {
 		$rol = $datos['rol'];
 
 		if(!empty($nombre) && !empty($pass)){
-            $contraseñaEncriptada = hash("sha256",$pass);
-			$obtenerDatos = "select * from usuarios where email = '".$nombre."' and password = '".$contraseñaEncriptada."' ";
+			$contraseñaEncriptada = hash("sha256",$pass);
+			switch($rol){
+				case 1 : 
+				 $tabla = "usuarios";
+				 $tipoRol = "ADM";
+				 $rol = 1;
+			break;
+				case 2 : 
+				 $tabla = "docentes";
+				 $tipoRol = "DOCENTE";
+				 $rol = 2;
+			break;
+				case 3 : 
+				 $tabla = "alumnos";
+				 $tipoRol = "ALUMNO";
+				 $rol = 3;
+			break;
+				die("Revise con su administrador para ver si tiene rol asignado");
+			}
+			$obtenerDatos = "select * from ".$tabla." where email = '".$nombre."' and password = '".$contraseñaEncriptada."' ";
 			$obtenerDatos = $this->db->query($obtenerDatos)->row();
 			if(isset($obtenerDatos)){
-				if($obtenerDatos->id_rol != $rol){
-					$response['respuesta'] = "2";
-					echo json_encode($response);
-					return;
-				}
-				
+
 			if($obtenerDatos->password == $contraseñaEncriptada && $obtenerDatos->id_rol == $rol ){
-				$datosSesion = ["rol" => $obtenerDatos->id_rol];
+				$datosSesion = ["rol" => $obtenerDatos->id_rol,
+				"logged" => true ,"id" => (isset($obtenerDatos->idalumno) ? $obtenerDatos->idalumno : '' ) ];
 				$this->session->set_userdata($datosSesion);
-				$response['respuesta'] = "1";
+
+				switch($rol){
+					case 1 : 
+						$response['respuesta'] = "1";
+				break;
+					case 2 : 
+						$response['respuesta'] = "2";
+				break;
+					case 3 : 
+						$response['respuesta'] = "3";
+				break;
+					die("Revise con su administrador para ver si tiene rol asignado");
+				}
 				echo json_encode($response);
 				return;
 			}

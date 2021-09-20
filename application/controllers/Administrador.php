@@ -1,12 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Alumnos extends CI_Controller {
+class Administrador extends CI_Controller {
 	//Funcion que se ejecuta al cargar el archivo
     function __construct()
     {
         parent::__construct();
-        $this->load->model("alumnos_m");
+        $this->load->model("administrador_m");
     }
 	
 	public function index()
@@ -36,14 +36,38 @@ class Alumnos extends CI_Controller {
             "genero" => $alumnoData['genero'],
             "curp" => $alumnoData['curp'],
             "numcel" => $alumnoData['numcel'],
-            "correo" => $alumnoData['correo'],
+            "email" => $alumnoData['correo'],
             "localidad" => $alumnoData['localidad'],
-            "contraseña" => $alumnoData['contraseña'],
-            "foto" => $alumnoData['foto'],
+            "password" => $alumnoData['contraseña'],
+            "foto" => "",
             "estado" => $alumnoData['estado'],
-            "cursando" => $alumnoData['cursando']       );   
+            "cursando" => $alumnoData['cursando']       );
+            
+            if(isset($_FILES['file']['name'])){
+
+                /* Obtenemos el nombre del archivo, en este caso una imagen */
+                $filename = $_FILES['file']['name'];
+             
+                /* Ruta */
+                $ruta = "imagenes/".$filename;
+                $datosInsertar['foto'] = $ruta;
+                $imageFileType = pathinfo($ruta,PATHINFO_EXTENSION);
+                $imageFileType = strtolower($imageFileType);
+             
+                /* Valid extensions */
+                $valid_extensions = array("jpg","jpeg","png");
+             
+                $response = 0;
+                /* Check file extension */
+                if(in_array(strtolower($imageFileType), $valid_extensions)) {
+                   /* Upload file */
+                   if(move_uploaded_file($_FILES['file']['tmp_name'],$ruta)){
+                      $response = $ruta;
+                   }
+                }
+             }
         
-        $insert = $this->alumnos_m->guardarAlumno($datosInsertar);
+        $insert = $this->administrador_m->guardarAlumno($datosInsertar);
         if($insert){
             echo json_encode(['insertado' => 1 , 'mensaje' => 'El alumno se a guardado exitosamente.',"alumno" => $datosInsertar]);
         }else{
@@ -53,12 +77,12 @@ class Alumnos extends CI_Controller {
     }
     
     public function obtenerAlumnos(){
-        $query = "select * from alumno";
+        $query = "select * from alumnos";
         $query = $this->db->query($query)->result_array();
         return $query;
     }
 	public function acceder(){
 		$msg = ["msg" => "todo bien"];
 		echo json_encode($msg);
-	}
+    }
 }

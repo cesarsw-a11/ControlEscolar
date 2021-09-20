@@ -14,7 +14,7 @@
 
             <!-- Modal body -->
             <div class="modal-body">
-                <form action="#" id="guardarAlumnoForm">
+                <form action="#" id="guardarAlumnoForm" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col">
                             <input type="number" class="form-control" id="num_control" placeholder="Numero de control"
@@ -69,8 +69,7 @@
                                 name="contraseña" required>
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="foto" placeholder="Foto perfil" name="foto"
-                                required>
+                        <input type="file" id="file" name="file" />
                         </div>
                         <div class="col">
                             <input type="estado" class="form-control" id="estado" placeholder="Estado" name="estado"
@@ -84,7 +83,7 @@
                     <!-- Modal footer -->
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" onclick="guardarAlumnos()">Guardar</button>
+                        <button type="submit" class="btn btn-primary" >Guardar</button>
                     </div>
                 </form>
             </div>
@@ -131,4 +130,4 @@
         </tbody>
     </table>
 </div>
-<script src="<?= base_url('assets/scripts/alumnos.js') ?>"></script>
+<script src="<?= base_url('assets/scripts/admin.js') ?>"></script>

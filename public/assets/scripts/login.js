@@ -28,17 +28,15 @@ $(document).ready(function () {
                 success: function (response) {
                     respuesta = JSON.parse(response)
                     if (respuesta.respuesta == 1) {
-                        window.location.href = "alumnos"
-                    } else if (respuesta.respuesta == 0) {
+                        window.location.href = "administrador"
+                    } else if (respuesta.respuesta == 2) {
+                        window.location.href = "docente"
+                    }else if (respuesta.respuesta == 3) {
+                        window.location.href = "alumno"
+                    }else if (respuesta.respuesta == 0) {
                         swal(
                             "Error",
                             "Favor de revisar sus datos de acceso.",
-                            "error"
-                        );
-                    }else if(respuesta.respuesta == 2){
-                        swal(
-                            "Error",
-                            "Favor de seleccionar el rol correspondiente.",
                             "error"
                         );
                     }
