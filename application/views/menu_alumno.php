@@ -20,18 +20,21 @@
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="firstName">Num. Control:</label>
-                        <input type="text" class="form-control" id="firstName" placeholder="" value="<?= $alumno->numcontrol?>" disabled>
+                        <input type="text" class="form-control" id="firstName" placeholder=""
+                            value="<?= $alumno->numcontrol?>" disabled>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="lastName">Genero</label>
-                        <input type="text" class="form-control" id="lastName" placeholder="" value="<?= $alumno->genero?>" disabled>
+                        <input type="text" class="form-control" id="lastName" placeholder=""
+                            value="<?= $alumno->genero?>" disabled>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="firstName">Plantel:</label>
-                        <input type="text" class="form-control" id="firstName" placeholder="" value="Secundaria Técnica 22." disabled>
+                        <input type="text" class="form-control" id="firstName" placeholder=""
+                            value="Secundaria Técnica 22." disabled>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="lastName">Año cursado:</label>
@@ -41,17 +44,20 @@
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="firstName">Nombre:</label>
-                        <input type="text" class="form-control" id="firstName" placeholder="" value="<?= $alumno->nombre?>" disabled>
+                        <input type="text" class="form-control" id="firstName" placeholder=""
+                            value="<?= $alumno->nombre?>" disabled>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="lastName">Apellido Paterno:</label>
-                        <input type="text" class="form-control" id="lastName" placeholder="" value="<?= $alumno->appaterno?>" disabled>
+                        <input type="text" class="form-control" id="lastName" placeholder=""
+                            value="<?= $alumno->appaterno?>" disabled>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="firstName">Apellido Materno:</label>
-                        <input type="text" class="form-control" id="firstName" placeholder="" value="<?= $alumno->apmaterno?>" disabled>
+                        <input type="text" class="form-control" id="firstName" placeholder=""
+                            value="<?= $alumno->apmaterno?>" disabled>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="lastName">Seguro:</label>
@@ -61,7 +67,8 @@
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="firstName">CURP:</label>
-                        <input type="text" class="form-control" id="firstName" placeholder="" value="<?= $alumno->curp?>" disabled>
+                        <input type="text" class="form-control" id="firstName" placeholder=""
+                            value="<?= $alumno->curp?>" disabled>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="lastName">Adeudos:</label>
@@ -71,7 +78,8 @@
                 <div class="row">
                     <div class="col-md-12 mb-3">
                         <label for="firstName">Estado:</label>
-                        <input type="text" class="form-control" id="firstName" placeholder="" value="<?= $alumno->estado?>" disabled>
+                        <input type="text" class="form-control" id="firstName" placeholder=""
+                            value="<?= $alumno->estado?>" disabled>
                     </div>
                 </div>
                 <hr class="mb-4">
