@@ -12,36 +12,90 @@ class Administrador extends CI_Controller {
 	public function index()
 	{
         #Solo los usuarios de tipo Admin podran acceder a esta vista.
+        if($this->validarAcceso()){
+            $data['redirect'] = "administrador";
+            $this->load->view('administrador/menuPrincipal',$data);
+        }
+    }
+
+    public function alumnos(){
+        $tabla = "alumnos";
+        if($this->validarAcceso()){
+        $data['alumnos'] = $this->administrador_m->obtener($tabla);
+        $this->load->view('administrador/registroAlumnos',$data);
+        }
+    }
+
+    public function docentes(){
+        $tabla = "docentes";
+        if($this->validarAcceso()){
+        $data['docentes'] = $this->administrador_m->obtener($tabla);
+        $this->load->view('administrador/registroDocentes',$data);
+        }
+    }
+
+    public function materias(){
+        $tabla = "materias";
+        if($this->validarAcceso()){
+        $data['materias'] = $this->administrador_m->obtener($tabla);
+        $this->load->view('administrador/registroMaterias',$data);
+        }
+    }
+    public function validarAcceso(){
         if($this->session->userdata("rol") == "1"){
-            $data['alumnos'] = $this->obtenerAlumnos();
-            $this->load->view('administrador/crearAlumno',$data);
+            return true;
         }else{
             echo "<h2>sin acceso a esta vista</h2><a href=".base_url("/").">Volver a la pagina principal</a>";
         }
-	}
+        
+    }
 
 /**
  * Funcion para guardar un alumno
  *
  * @return Object
  */
-	public function guardarAlumno(){
-        $alumnoData = $this->input->post();
+	public function guardar(){
+        $data = $this->input->post();
 
-        $datosInsertar = array(
-            "numcontrol" => $alumnoData['numcontrol'],
-            "nombre" => $alumnoData['nombre'],
-            "appaterno" => $alumnoData['appaterno'],
-            "apmaterno" => $alumnoData['apmaterno'],
-            "genero" => $alumnoData['genero'],
-            "curp" => $alumnoData['curp'],
-            "numcel" => $alumnoData['numcel'],
-            "email" => $alumnoData['correo'],
-            "localidad" => $alumnoData['localidad'],
-            "password" => $alumnoData['contraseña'],
-            "foto" => "",
-            "estado" => $alumnoData['estado'],
-            "cursando" => $alumnoData['cursando']       );
+        switch($data['formulario']){
+            case 'alumnos':
+                $datosInsertar = array(
+                    "numcontrol" => $data['numcontrol'],
+                    "nombre" => $data['nombre'],
+                    "appaterno" => $data['appaterno'],
+                    "apmaterno" => $data['apmaterno'],
+                    "genero" => $data['genero'],
+                    "curp" => $data['curp'],
+                    "numcel" => $data['numcel'],
+                    "email" => $data['correo'],
+                    "localidad" => $data['localidad'],
+                    "password" => $data['contraseña'],
+                    "foto" => "",
+                    "estado" => $data['estado'],
+                    "cursando" => $data['cursando']       );
+            break;
+            case 'docentes':
+                $datosInsertar = array(
+                    "nombre" => $data['nombre'],
+                    "appaterno" => $data['appaterno'],
+                    "apmaterno" => $data['apmaterno'],
+                    "genero" => $data['genero'],
+                    "email" => $data['email'],
+                    "password" => $data['password'],
+                    "foto" => "",
+                    "estado" => $data['estado']       );
+            break;
+            case 'materias':
+                $datosInsertar = array(
+                    "clave" => $data['clave'],
+                    "nombre" => $data['nombre'],
+                    "grado" => $data['grado'],
+                    "estado" => $data['estado']   );
+            break;
+            
+        }
+       
             
             if(isset($_FILES['file']['name'])){
 
@@ -67,22 +121,14 @@ class Administrador extends CI_Controller {
                 }
              }
         
-        $insert = $this->administrador_m->guardarAlumno($datosInsertar);
+        $insert = $this->administrador_m->guardar($datosInsertar,$data['formulario']);
         if($insert){
-            echo json_encode(['insertado' => 1 , 'mensaje' => 'El alumno se a guardado exitosamente.',"alumno" => $datosInsertar]);
+            echo json_encode(['insertado' => 1 , 'mensaje' => 'Insertado exitosamente.',"data" => $datosInsertar
+            ,"tipoFormulario" => $data['formulario']]);
         }else{
             echo json_encode(['insertado' => 0 , 'mensaje' => 'El correo ingresado ya existe.']);
         }
        
     }
-    
-    public function obtenerAlumnos(){
-        $query = "select * from alumnos";
-        $query = $this->db->query($query)->result_array();
-        return $query;
-    }
-	public function acceder(){
-		$msg = ["msg" => "todo bien"];
-		echo json_encode($msg);
-    }
+
 }

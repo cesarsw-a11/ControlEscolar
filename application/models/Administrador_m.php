@@ -11,13 +11,15 @@ class Administrador_m extends CI_Model {
     }
 
 #Funcion que inserta los datos del alumno en la tabla
-    public function guardarAlumno($dataInsertar){
+    public function guardar($dataInsertar,$tabla){
         //$registroAgregado = $this->db->insert_id();
-        $contraseñaEncriptada = hash('sha256',$dataInsertar['password']);
-        $dataInsertar['password'] = $contraseñaEncriptada;
+        if($tabla != 'materias'){
+            $contraseñaEncriptada = hash('sha256',$dataInsertar['password']);
+            $dataInsertar['password'] = $contraseñaEncriptada;
+        }
         $this->db->db_debug = false;
 
-        if(!$this->db->insert('alumnos', $dataInsertar)){
+        if(!$this->db->insert($tabla, $dataInsertar)){
             $error = $this->db->error();
             if($error['code'] == 1062){
                 $msg = 'Registro duplicado';
@@ -28,6 +30,12 @@ class Administrador_m extends CI_Model {
             return true;
         }
 
+    }
+
+    public function obtener($tabla){
+        $query = "select * from ".$tabla." ";
+        $query = $this->db->query($query)->result_array();
+        return $query;
     }
 
 }

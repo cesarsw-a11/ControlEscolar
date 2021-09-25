@@ -69,21 +69,29 @@
                                 name="contraseña" required>
                         </div>
                         <div class="col">
-                        <input type="file" id="file" name="file" />
+                            <input type="file" id="file" name="file" />
                         </div>
+                    </div><br>
+                    <div class="row">
                         <div class="col">
-                            <input type="estado" class="form-control" id="estado" placeholder="Estado" name="estado"
+                            <label for="cursando">Grado cursando:</label>
+                            <input type="text" class="form-control" id="cursando" placeholder="Cursando" name="cursando"
                                 required>
                         </div>
                         <div class="col">
-                            <input type="cursando" class="form-control" id="cursando" placeholder="Cursando"
-                                name="cursando" required>
+                            <label for="estado">Estado:</label>
+                            <select id="estado" name="estado" class="form-control">
+                                <option value="1">ACTIVO</option>
+                                <option value="0">INACTIVO</option>
+                            </select>
+                            <input type="text" class="form-control" id="formulario" name="formulario" value="alumnos"
+                                hidden>
                         </div>
-                    </div>
+                    </div class="row">
                     <!-- Modal footer -->
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" >Guardar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
                     </div>
                 </form>
             </div>
@@ -97,7 +105,7 @@
     <div class="d-flex flex-row-reverse">
         <div class="p-2">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarAlumno">
-               + Agregar alumno
+                + Agregar alumno
             </button>
         </div>
     </div>
@@ -123,11 +131,15 @@
                 <td><?= $alumno['appaterno']?></td>
                 <td><?= $alumno['genero']?></td>
                 <td><?= $alumno['curp']?></td>
-                <td><?= $alumno['estado']?></td>
+                <?php if($alumno['estado'] == 1){ ?>
+                <td>Activo</td>
+                <?php }else{ ?>
+                <td>Inactivo</td>
+                <?php } ?>
             </tr>
             <?php }
         } ?>
         </tbody>
     </table>
 </div>
-<script src="<?= base_url('assets/scripts/admin.js') ?>"></script>
+<script src="<?= base_url('assets/scripts/adminAlumnos.js') ?>"></script>

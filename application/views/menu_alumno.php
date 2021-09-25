@@ -78,8 +78,14 @@
                 <div class="row">
                     <div class="col-md-12 mb-3">
                         <label for="firstName">Estado:</label>
+                        <?php if($alumno->estado == 1){ ?>
+                            <input type="text" class="form-control" id="firstName" placeholder=""
+                            value="ACTIVO" disabled>
+                       <?php }else{ ?>
                         <input type="text" class="form-control" id="firstName" placeholder=""
-                            value="<?= $alumno->estado?>" disabled>
+                            value="INACTIVO" disabled>
+                       <?php } ?>
+                        
                     </div>
                 </div>
                 <hr class="mb-4">
