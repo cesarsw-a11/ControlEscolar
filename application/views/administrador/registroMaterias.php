@@ -8,7 +8,7 @@
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Agregar nueva materia</h4>
+                <h4 class="modal-title"></h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
@@ -17,6 +17,7 @@
                 <form action="#" id="guardarMateriaForm" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col">
+                            <input type="number" id="idmateria" name="idmateria" hidden>
                             <input type="number" class="form-control" id="clave" placeholder="Clave" name="clave"
                                 required>
                         </div>
@@ -44,8 +45,7 @@
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
+
                     </div>
                 </form>
             </div>
@@ -58,7 +58,7 @@
 
     <div class="d-flex flex-row-reverse">
         <div class="p-2">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarMateria">
+            <button type="button" class="btn btn-primary" onclick="ui_modalNuevaMateria()">
                 + Agregar materia
             </button>
         </div>
@@ -72,23 +72,10 @@
                 <th>Nombre</th>
                 <th>Grado</th>
                 <th>Estado</th>
+                <th>Editar</th>
             </tr>
         </thead>
         <tbody>
-            <?php if (isset($materias)){ 
-           foreach($materias as $materia){ ?>
-            <tr>
-                <td><?= $materia['clave']?></td>
-                <td><?= $materia['nombre']?></td>
-                <td><?= $materia['grado']?></td>
-                <?php if($materia['estado'] == 1){ ?>
-                <td>Activo</td>
-                <?php }else{ ?>
-                <td>Inactivo</td>
-                <?php } ?>
-            </tr>
-            <?php }
-        } ?>
         </tbody>
     </table>
 </div>

@@ -27,7 +27,7 @@ class Administrador_m extends CI_Model {
                 return false;
             }
         }else{
-            return true;
+            return $this->db->insert_id();
         }
 
     }

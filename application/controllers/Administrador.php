@@ -35,11 +35,49 @@ class Administrador extends CI_Controller {
     }
 
     public function materias(){
-        $tabla = "materias";
         if($this->validarAcceso()){
-        $data['materias'] = $this->administrador_m->obtener($tabla);
-        $this->load->view('administrador/registroMaterias',$data);
+        $this->load->view('administrador/registroMaterias');
         }
+    }
+
+    public function obtenerMaterias(){
+        $tabla = "materias";
+        $data = $this->administrador_m->obtener($tabla);
+        echo json_encode($data);
+    }
+    public function obtenerMateriaPorId(){
+        $id = $this->input->post("id");
+        $query = "select * from materias where idmateria = ".$id." ";
+        $query = $this->db->query($query)->row();
+        echo json_encode(['datos' => $query]);
+
+    }
+    public function editarMateria(){
+        $idmateria = $_POST['idmateria'];
+        $clavemateria = $_POST['clave'];
+        $nombremateria = $_POST['nombre'];
+        $gradomateria = $_POST['grado'];
+        $estadomateria = $_POST['estado'];
+
+        $this->db->where('idmateria', $idmateria);
+        $this->db->set('clave', $clavemateria);
+        $this->db->set('nombre', $nombremateria);
+        $this->db->set('grado', $gradomateria);
+        $this->db->set('estado', $estadomateria);
+        $this->db->update('materias');
+        $this->db->trans_complete();
+        if ($this->db->trans_status() === false) {
+            $return = array(
+                'error' => true,
+                'mensaje' => 'No se pudo editar este registro',
+                );
+        } else {
+            $return = array(
+                'error' => false,
+                'mensaje' => 'Registro editado correctamente',
+                );
+        }
+        echo json_encode($return);
     }
     public function validarAcceso(){
         if($this->session->userdata("rol") == "1"){
@@ -122,6 +160,18 @@ class Administrador extends CI_Controller {
              }
         
         $insert = $this->administrador_m->guardar($datosInsertar,$data['formulario']);
+        switch($data['formulario']){
+            case 'alumnos':
+              $datosInsertar['idalumno'] = $insert;
+            break;
+            case 'docentes':
+                $datosInsertar['iddocente'] = $insert;
+            break;
+            case 'materias':
+                $datosInsertar['idmateria'] = $insert;
+            break;
+            
+        }
         if($insert){
             echo json_encode(['insertado' => 1 , 'mensaje' => 'Insertado exitosamente.',"data" => $datosInsertar
             ,"tipoFormulario" => $data['formulario']]);
