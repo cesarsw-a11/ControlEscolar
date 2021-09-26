@@ -79,7 +79,8 @@ var table = $('#tabla_materias').DataTable({
         "dataSrc": function (json) {
             for (var i = 0, ien = json.length; i < ien; i++) {
                 json[i]['estado'] = json[i].estado == 1 ? 'Activo' : 'Inactivo'
-                json[i]['botonEditar'] = `<button class="btn btn-info" onclick="ui_modalEditarMateria(${json[i].idmateria})">Editar</button>` 
+                json[i]['botonEditar'] = `<button class="btn btn-info" onclick="ui_modalEditarMateria(${json[i].idmateria})">Editar</button>
+                <button class="btn btn-danger" onclick="ui_modalEliminarMateria(${json[i].idmateria})">Eliminar</button>` 
             }
            return json;
         }
@@ -165,6 +166,58 @@ function guardarCambiosEditar() {
             );
         }
     });
+}
+
+function ui_modalEliminarMateria(id_materia){
+    var table = $('#tabla_materias').DataTable();
+    swal({
+        title: "Estas seguro?",
+        text: "Aun puedes eliminar esta acción.",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Si, estoy seguro",
+        cancelButtonText: "No, cancelar",
+        closeOnConfirm: false,
+        closeOnCancel: false
+      },
+      function(isConfirm){
+        if (isConfirm) {
+            $.ajax({
+                url: 'eliminarMateria',
+                type: 'POST',
+                data: {"idmateria":id_materia},
+                success: function (response) {
+                    var data = JSON.parse(response)
+                    if (data.error == false) {
+                        swal(
+                            "Exito",
+                            data.mensaje,
+                            "success"
+                        );
+                        table.ajax.reload();
+                    } else {
+                        swal(
+                            "Error",
+                            "No fue posible eliminar sus datos, revise su conexión.",
+                            "error"
+                        );
+                    }
+        
+                },
+                error: function (error, xhr, status) {
+        
+                    swal(
+                        "Error",
+                        "No fue posible guardar sus datos, revise su conexión.",
+                        "error"
+                    );
+                }
+            });
+        } else {
+          swal("Cancelado", "Acción cancelada :)", "error");
+        }
+      });
 }
 
 function llenarTabla(response) {

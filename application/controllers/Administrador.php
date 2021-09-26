@@ -79,6 +79,25 @@ class Administrador extends CI_Controller {
         }
         echo json_encode($return);
     }
+    
+    public function eliminarMateria(){
+        $idmateria = $_POST['idmateria'];
+        $this->db->where('idmateria', $idmateria);
+        $this->db->delete('materias');
+        if ($this->db->trans_status() === false) {
+            $return = array(
+                'error' => true,
+                'mensaje' => 'No se pudo eliminar este registro',
+                );
+        } else {
+            $return = array(
+                'error' => false,
+                'mensaje' => 'Registro eliminado correctamente',
+                );
+        }
+        echo json_encode($return);
+
+    }
     public function validarAcceso(){
         if($this->session->userdata("rol") == "1"){
             return true;
