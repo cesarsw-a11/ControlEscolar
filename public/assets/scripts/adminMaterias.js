@@ -1,9 +1,9 @@
 'use strict'
 //Cargamos todo el javascript una vez que el DOM esta cargado
-var botonGuardarNuevaMateria = `<button type="submit" class="btn btn-primary">Guardar</button>`
-var botonGuardarCambios = `<button type="button" class="btn btn-primary" onclick="guardarCambiosEditar()">Guardar</button>`
-var botonCerrarModal = `<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>`
-var nombreFormulario = $("form").attr("id");
+const botonGuardarNuevaMateria = `<button type="submit" class="btn btn-primary">Guardar</button>`
+const botonGuardarCambios = `<button type="button" class="btn btn-primary" onclick="guardarCambiosEditar()">Guardar</button>`
+const botonCerrarModal = `<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>`
+const nombreFormulario = $("form").attr("id");
 
 $(document).ready(() => {
     //Inicializamos el datatable
