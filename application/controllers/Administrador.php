@@ -18,19 +18,21 @@ class Administrador extends CI_Controller {
         }
     }
 
+/**
+ * Funciones para mostrar las vistas principales para el administrador:
+ * Alumnos
+ * Docentes
+ * Materias
+ */
     public function alumnos(){
-        $tabla = "alumnos";
         if($this->validarAcceso()){
-        $data['alumnos'] = $this->administrador_m->obtener($tabla);
-        $this->load->view('administrador/registroAlumnos',$data);
+        $this->load->view('administrador/registroAlumnos');
         }
     }
 
     public function docentes(){
-        $tabla = "docentes";
         if($this->validarAcceso()){
-        $data['docentes'] = $this->administrador_m->obtener($tabla);
-        $this->load->view('administrador/registroDocentes',$data);
+        $this->load->view('administrador/registroDocentes');
         }
     }
 
@@ -40,11 +42,30 @@ class Administrador extends CI_Controller {
         }
     }
 
+/**
+ * Funciones para listar todos los registros de las tablas solicitadas
+ */
     public function obtenerMaterias(){
         $tabla = "materias";
         $data = $this->administrador_m->obtener($tabla);
         echo json_encode($data);
     }
+    
+    public function obtenerAlumnos(){
+        $tabla = "alumnos";
+        $data = $this->administrador_m->obtener($tabla);
+        echo json_encode($data);
+    }
+
+    public function obtenerDocentes(){
+        $tabla = "docentes";
+        $data = $this->administrador_m->obtener($tabla);
+        echo json_encode($data);
+    }
+
+/**Funciones para obtener registros por id 
+ * 
+*/
     public function obtenerMateriaPorId(){
         $id = $this->input->post("id");
         $query = "select * from materias where idmateria = ".$id." ";
@@ -52,18 +73,31 @@ class Administrador extends CI_Controller {
         echo json_encode(['datos' => $query]);
 
     }
+    public function obtenerAlumnoPorId(){
+        $id = $this->input->post("id");
+        $query = "select * from alumnos where idalumno = ".$id." ";
+        $query = $this->db->query($query)->row();
+        echo json_encode(['datos' => $query]);
+
+    }
+    public function obtenerDocentePorId(){
+        $id = $this->input->post("id");
+        $query = "select * from docentes where iddocente = ".$id." ";
+        $query = $this->db->query($query)->row();
+        echo json_encode(['datos' => $query]);
+
+    }
+
+/**
+ * Funciones para editar un registro por id
+ *
+ */
     public function editarMateria(){
         $idmateria = $_POST['idmateria'];
-        $clavemateria = $_POST['clave'];
-        $nombremateria = $_POST['nombre'];
-        $gradomateria = $_POST['grado'];
-        $estadomateria = $_POST['estado'];
-
+        $datos = $this->input->post();
+       
         $this->db->where('idmateria', $idmateria);
-        $this->db->set('clave', $clavemateria);
-        $this->db->set('nombre', $nombremateria);
-        $this->db->set('grado', $gradomateria);
-        $this->db->set('estado', $estadomateria);
+        $this->db->set($datos);
         $this->db->update('materias');
         $this->db->trans_complete();
         if ($this->db->trans_status() === false) {
@@ -79,7 +113,54 @@ class Administrador extends CI_Controller {
         }
         echo json_encode($return);
     }
-    
+
+    public function editarAlumno(){
+        $idalumno = $_POST['idalumno'];
+        $datos = $this->input->post();
+
+        $this->db->where('idalumno', $idalumno);
+        $this->db->set($datos);
+        $this->db->update('alumnos');
+        $this->db->trans_complete();
+        if ($this->db->trans_status() === false) {
+            $return = array(
+                'error' => true,
+                'mensaje' => 'No se pudo editar este registro',
+                );
+        } else {
+            $return = array(
+                'error' => false,
+                'mensaje' => 'Registro editado correctamente',
+                );
+        }
+        echo json_encode($return);
+    }
+    public function editarDocente(){
+        $iddocente = $_POST['iddocente'];
+        $datos = $this->input->post();
+
+        $this->db->where('iddocente', $iddocente);
+        $this->db->set($datos);
+        $this->db->update('docentes');
+        $this->db->trans_complete();
+        if ($this->db->trans_status() === false) {
+            $return = array(
+                'error' => true,
+                'mensaje' => 'No se pudo editar este registro',
+                );
+        } else {
+            $return = array(
+                'error' => false,
+                'mensaje' => 'Registro editado correctamente',
+                );
+        }
+        echo json_encode($return);
+    }
+
+/**
+ * Funcioes para eliminar un registro de la base de datos
+ *
+ */
     public function eliminarMateria(){
         $idmateria = $_POST['idmateria'];
         $this->db->where('idmateria', $idmateria);
@@ -98,17 +179,45 @@ class Administrador extends CI_Controller {
         echo json_encode($return);
 
     }
-    public function validarAcceso(){
-        if($this->session->userdata("rol") == "1"){
-            return true;
-        }else{
-            echo "<h2>sin acceso a esta vista</h2><a href=".base_url("/").">Volver a la pagina principal</a>";
+    public function eliminarAlumno(){
+        $idalumno = $_POST['idalumno'];
+        $this->db->where('idalumno', $idalumno);
+        $this->db->delete('alumnos');
+        if ($this->db->trans_status() === false) {
+            $return = array(
+                'error' => true,
+                'mensaje' => 'No se pudo eliminar este registro',
+                );
+        } else {
+            $return = array(
+                'error' => false,
+                'mensaje' => 'Registro eliminado correctamente',
+                );
         }
-        
+        echo json_encode($return);
+
+    }
+    public function eliminarDocente(){
+        $iddocente = $_POST['iddocente'];
+        $this->db->where('iddocente', $iddocente);
+        $this->db->delete('docentes');
+        if ($this->db->trans_status() === false) {
+            $return = array(
+                'error' => true,
+                'mensaje' => 'No se pudo eliminar este registro',
+                );
+        } else {
+            $return = array(
+                'error' => false,
+                'mensaje' => 'Registro eliminado correctamente',
+                );
+        }
+        echo json_encode($return);
+
     }
 
 /**
- * Funcion para guardar un alumno
+ * Funcion de guardado general
  *
  * @return Object
  */
@@ -198,6 +307,18 @@ class Administrador extends CI_Controller {
             echo json_encode(['insertado' => 0 , 'mensaje' => 'El correo ingresado ya existe.']);
         }
        
+    }
+
+    /**
+     * Función para validar el acceso a los modulos del administrador
+     */
+    public function validarAcceso(){
+        if($this->session->userdata("rol") == "1"){
+            return true;
+        }else{
+            echo "<h2>sin acceso a esta vista</h2><a href=".base_url("/").">Volver a la pagina principal</a>";
+        }
+        
     }
 
 }
