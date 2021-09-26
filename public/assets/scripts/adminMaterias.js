@@ -225,7 +225,8 @@ function llenarTabla(response) {
     let data = response.data
     let estatusMateria = data.estado == 1 ? 'Activo' : 'Inactivo'
     console.log(data)
-    let boton_editar = `<button class="btn btn-info" onclick="ui_modalEditarMateria(${data.idmateria})">Editar</button>`;
+    let boton_editar = `<button class="btn btn-info" onclick="ui_modalEditarMateria(${data.idmateria})">Editar</button>
+    <button class="btn btn-danger" onclick="ui_modalEliminarMateria(${data.idmateria})">Eliminar</button>`;
     let rowNode;
     //Agregamos la fila a la tabla
     rowNode = table.row.add({
