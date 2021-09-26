@@ -224,7 +224,6 @@ function llenarTabla(response) {
     let table = $('#tabla_materias').DataTable();
     let data = response.data
     let estatusMateria = data.estado == 1 ? 'Activo' : 'Inactivo'
-    console.log(data)
     let boton_editar = `<button class="btn btn-info" onclick="ui_modalEditarMateria(${data.idmateria})">Editar</button>
     <button class="btn btn-danger" onclick="ui_modalEliminarMateria(${data.idmateria})">Eliminar</button>`;
     let rowNode;
