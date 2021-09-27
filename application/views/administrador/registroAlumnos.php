@@ -8,7 +8,7 @@
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Agregar nuevo alumno</h4>
+                <h4 class="modal-title"></h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
@@ -17,6 +17,7 @@
                 <form action="#" id="guardarAlumnoForm" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col">
+                            <input type="number" id="idalumno" name="idalumno" hidden>
                             <input type="number" class="form-control" id="num_control" placeholder="Numero de control"
                                 name="numcontrol" required>
                         </div>
@@ -31,8 +32,8 @@
                                 name="appaterno" required>
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="Apellido materno" name="apmaterno"
-                                required>
+                            <input type="text" class="form-control" placeholder="Apellido materno" id="apmaterno"
+                                name="apmaterno" required>
                         </div>
                     </div><br>
                     <div class="row">
@@ -90,8 +91,6 @@
                     </div class="row">
                     <!-- Modal footer -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
                     </div>
                 </form>
             </div>
@@ -104,7 +103,7 @@
 
     <div class="d-flex flex-row-reverse">
         <div class="p-2">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarAlumno">
+            <button type="button" class="btn btn-primary" onclick="ui_modalNuevoAlumno()">
                 + Agregar alumno
             </button>
         </div>
@@ -120,25 +119,10 @@
                 <th>Genero</th>
                 <th>Curp</th>
                 <th>Estado</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
-            <?php if (isset($alumnos)){ 
-           foreach($alumnos as $alumno){ ?>
-            <tr>
-                <td><?= $alumno['numcontrol']?></td>
-                <td><?= $alumno['nombre']?></td>
-                <td><?= $alumno['appaterno']?></td>
-                <td><?= $alumno['genero']?></td>
-                <td><?= $alumno['curp']?></td>
-                <?php if($alumno['estado'] == 1){ ?>
-                <td>Activo</td>
-                <?php }else{ ?>
-                <td>Inactivo</td>
-                <?php } ?>
-            </tr>
-            <?php }
-        } ?>
         </tbody>
     </table>
 </div>
