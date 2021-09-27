@@ -8,7 +8,7 @@
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Agregar nuevo docente</h4>
+                <h4 class="modal-title"></h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
@@ -17,6 +17,7 @@
                 <form action="#" id="guardarDocenteForm" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col">
+                        <input type="number" id="iddocente" name="iddocente" hidden>
                             <input type="text" class="form-control" id="nombre" placeholder="Nombre" name="nombre"
                                 required>
                         </div>
@@ -66,8 +67,6 @@
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
                     </div>
                 </form>
             </div>
@@ -80,7 +79,7 @@
 
     <div class="d-flex flex-row-reverse">
         <div class="p-2">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarDocente">
+            <button type="button" class="btn btn-primary" onclick="ui_modalNuevoDocente()">
                 + Agregar Docente
             </button>
         </div>
@@ -93,22 +92,10 @@
                 <th>Nombre</th>
                 <th>Email</th>
                 <th>Estado</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
-            <?php if (isset($docentes)){ 
-           foreach($docentes as $docente){ ?>
-            <tr>
-                <td><?= $docente['nombre']?></td>
-                <td><?= $docente['email']?></td>
-                <?php if($docente['estado'] == 1){ ?>
-                <td>Activo</td>
-                <?php }else{ ?>
-                <td>Inactivo</td>
-                <?php } ?>
-            </tr>
-            <?php }
-        } ?>
         </tbody>
     </table>
 </div>

@@ -176,13 +176,46 @@ class Administrador extends CI_Controller {
         $ruta = "imagenes/dd.png";
         unlink($ruta);
     }
-    
+
     public function editarDocente(){
         $iddocente = $_POST['iddocente'];
         $datos = $this->input->post();
+        $datosActualizar = array(
+            "nombre" => $datos['nombre'],
+            "appaterno" => $datos['appaterno'],
+            "apmaterno" => $datos['apmaterno'],
+            "genero" => $datos['genero'],
+            "email" => $datos['email'],
+            "password" => $datos['password'],
+            "estado" => $datos['estado'],
+        );
+
+        if(!empty($_FILES['file']['name'])){
+
+                /* Obtenemos el nombre del archivo, en este caso una imagen */
+                $filename = $_FILES['file']['name'];
+             
+                /* Ruta */
+                $ruta = "imagenes/".$filename;
+                $datosActualizar['foto'] = $ruta;
+                $imageFileType = pathinfo($ruta,PATHINFO_EXTENSION);
+                $imageFileType = strtolower($imageFileType);
+             
+                /* Valid extensions */
+                $valid_extensions = array("jpg","jpeg","png");
+             
+                $response = 0;
+                /* Check file extension */
+                if(in_array(strtolower($imageFileType), $valid_extensions)) {
+                   /* Upload file */
+                   if(move_uploaded_file($_FILES['file']['tmp_name'],$ruta)){
+                      $response = $ruta;
+                   }
+                }
+        }
 
         $this->db->where('iddocente', $iddocente);
-        $this->db->set($datos);
+        $this->db->set($datosActualizar);
         $this->db->update('docentes');
         $this->db->trans_complete();
         if ($this->db->trans_status() === false) {
