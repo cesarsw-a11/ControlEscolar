@@ -12,9 +12,10 @@ class Docente extends CI_Controller {
 	public function index()
 	{
         #Solo los usuarios de tipo Admin podran acceder a esta vista.
-        if($this->session->userdata("rol") == "1"){
-            $data['alumnos'] = $this->obtenerAlumnos();
-            $this->load->view('administrador/crearAlumno',$data);
+        if($this->session->userdata("rol") == "2"){
+            echo "todo bien";
+           /*  $data['alumnos'] = $this->obtenerAlumnos();
+            $this->load->view('administrador/crearAlumno',$data); */
         }else{
             echo "<h2>sin acceso a esta vista</h2><a href=".base_url("/").">Volver a la pagina principal</a>";
         }
