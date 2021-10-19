@@ -23,17 +23,17 @@
                         </div>
                         <div class="col">
                             <input type="text" class="form-control" placeholder="Nombre" name="nombre" id="nombre"
-                                required>
+                            onkeyup="mayus(this);" required>
                         </div>
                     </div><br>
                     <div class="row">
                         <div class="col">
                             <input type="text" class="form-control" id="app_paterno" placeholder="Apellido paterno"
-                                name="appaterno" required>
+                                name="appaterno" onkeyup="mayus(this);" required>
                         </div>
                         <div class="col">
                             <input type="text" class="form-control" placeholder="Apellido materno" id="apmaterno"
-                                name="apmaterno" required>
+                                name="apmaterno" onkeyup="mayus(this);" required>
                         </div>
                     </div><br>
                     <div class="row">
@@ -76,8 +76,12 @@
                     <div class="row">
                         <div class="col">
                             <label for="cursando">Grado cursando:</label>
-                            <input type="text" class="form-control" id="cursando" placeholder="Cursando" name="cursando"
-                                required>
+                            <select class="form-control" id="cursando" placeholder="Cursando" name="cursando">
+                                <option value="-1">CURSANDO</option>
+                                <?php for ($i=1; $i <= 9; $i++) {  ?>
+                                <option value="<?= $i ?>"><?=$i?></option>
+                                <?php } ?>
+                            </select>
                         </div>
                         <div class="col">
                             <label for="estado">Estado:</label>

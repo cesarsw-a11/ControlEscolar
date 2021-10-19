@@ -20,6 +20,14 @@ $(document).ready(() => {
 
 function mandarFormularioConFoto(formData) {
     var files = $('#file')[0].files;
+    //Validaciones de los selectores a la hora de llenar el formulario
+    if ($("#cursando").val() === "-1") {
+        swal("Error", "Debe seleccionar un grado", "error")
+        return false
+    } else if ($("#genero").val() === "-1") {
+        swal("Error", "Debe seleccionar un genero", "error")
+        return false
+    }
     //En caso de que los datos sean llenados y esten correctos del lado del cliente se mandaran al backend para validarlos
     if (files.length > 0) {
         formData.append('file', files[0]);
@@ -191,7 +199,7 @@ function guardarCambiosEditar() {
             } else {
                 swal(
                     "Error",
-                    "No fue posible guardar sus datos, revise su conexión.",
+                    data.mensaje,
                     "error"
                 );
             }

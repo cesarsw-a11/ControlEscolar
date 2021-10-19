@@ -6,3 +6,7 @@ function limpiarCampos(nombreFormulario) {
     $("#" + nombreFormulario).find($('input')).val('')
     $("#formulario").val(tipoFormulario)
 }
+
+function mayus(e) {
+    e.value = e.value.toUpperCase();
+}

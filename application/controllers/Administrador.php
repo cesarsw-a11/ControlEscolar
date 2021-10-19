@@ -95,6 +95,7 @@ class Administrador extends CI_Controller {
     public function editarMateria(){
         $idmateria = $_POST['idmateria'];
         $datos = $this->input->post();
+        unset($datos['formulario']);
        
         $this->db->where('idmateria', $idmateria);
         $this->db->set($datos);
@@ -154,10 +155,34 @@ class Administrador extends CI_Controller {
                    }
                 }
         }
+        $this->db->db_debug = false;
         $this->db->where('idalumno', $idalumno);
         $this->db->set($datosActualizar);
-        $this->db->update('alumnos');
-        $this->db->trans_complete();
+        if(!$this->db->update('alumnos')){
+            
+            $error = $this->db->error();
+            var_dump($error);
+            die;
+            if($error['code'] == 1062){
+                $return = array(
+                    'error' => true,
+                    'mensaje' => 'Numero de control o email duplicado',
+                    );
+                $this->db->db_debug = true;
+            }elseif(isset($error)){
+                $return = array(
+                    'error' => true,
+                    'mensaje' => 'No se pudo editar este registro',
+                    );
+            }
+        }else{
+            $return = array(
+                'error' => false,
+                'mensaje' => 'Registro editado correctamente',
+                );
+        }
+        
+        /* $this->db->trans_complete();
         if ($this->db->trans_status() === false) {
             $return = array(
                 'error' => true,
@@ -168,7 +193,7 @@ class Administrador extends CI_Controller {
                 'error' => false,
                 'mensaje' => 'Registro editado correctamente',
                 );
-        }
+        } */
         echo json_encode($return);
     }
 
