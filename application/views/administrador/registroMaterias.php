@@ -26,12 +26,13 @@
                                 id="nombre" required>
                         </div>
                     </div><br>
-                    <div class="row">
-                        <div class="col">
-                            <input type="number" class="form-control" id="grado" placeholder="Grado" name="grado"
-                                required>
-                        </div>
-                    </div><br>
+                    <select class="form-control" id="grado" placeholder="Grado" name="grado">
+                                <option value="-1">GRADO</option>
+                                <?php for ($i=1; $i <= 9; $i++) {  ?>
+                                <option value="<?= $i ?>"><?=$i?></option>
+                                <?php } ?>
+                            </select>
+                    <br>
                     <div class="row">
                         <div class="col">
                             <label for="estado">Estado:</label>

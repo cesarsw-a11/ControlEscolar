@@ -13,7 +13,7 @@ class Administrador_m extends CI_Model {
 #Funcion que inserta los datos del alumno en la tabla
     public function guardar($dataInsertar,$tabla){
         //$registroAgregado = $this->db->insert_id();
-        if($tabla != 'materias'){
+        if($tabla != 'materias' && $tabla != "materiasDocentes"){
             $contraseñaEncriptada = hash('sha256',$dataInsertar['password']);
             $dataInsertar['password'] = $contraseñaEncriptada;
         }

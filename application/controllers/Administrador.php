@@ -41,6 +41,25 @@ class Administrador extends CI_Controller {
         $this->load->view('administrador/registroMaterias');
         }
     }
+    public function asignarMaterias(){
+        if($this->validarAcceso()){
+            $docentes = "select * from docentes where estado = 1";
+            $docentes = $this->db->query($docentes)->result_array();
+            $materias = "select * from materias where estado = 1";
+            $materias = $this->db->query($materias)->result_array();
+            $data['docentes'] = $docentes;
+            $data['materias'] = $materias;
+            $this->load->view('administrador/asignarMaterias',$data);
+        }
+    }
+
+    function obtenerRelacionMateriasDocentes(){
+        $query = "select *,materias.nombre as nombreMateria,docentes.nombre as nombreDocente from materiasDocentes
+        left join materias on materiasDocentes.id_materia = materias.idmateria
+        left join docentes on materiasDocentes.id_docente = docentes.iddocente";
+        $query = $this->db->query($query)->result_array();
+        echo json_encode($query);
+    }
 
 /**
  * Funciones para listar todos los registros de las tablas solicitadas
@@ -68,10 +87,19 @@ class Administrador extends CI_Controller {
 */
     public function obtenerMateriaPorId(){
         $id = $this->input->post("id");
-        $query = "select * from materias where idmateria = ".$id." ";
+        $query = "select *,materias.nombre as nombreMateria,docentes.nombre as nombreDocente from materiasDocentes
+        left join materias on materiasDocentes.id_materia = materias.idmateria
+        left join docentes on materiasDocentes.id_docente = docentes.iddocente";
         $query = $this->db->query($query)->row();
         echo json_encode(['datos' => $query]);
 
+    }
+
+    public function obtenerMateriaDocentePorId(){
+        $id = $this->input->post("id");
+        $query = "select * from materiasDocentes where id = ".$id." ";
+        $query = $this->db->query($query)->row();
+        echo json_encode(['datos' => $query]);
     }
     public function obtenerAlumnoPorId(){
         $id = $this->input->post("id");
@@ -100,6 +128,33 @@ class Administrador extends CI_Controller {
         $this->db->where('idmateria', $idmateria);
         $this->db->set($datos);
         $this->db->update('materias');
+        $this->db->trans_complete();
+        if ($this->db->trans_status() === false) {
+            $return = array(
+                'error' => true,
+                'mensaje' => 'No se pudo editar este registro',
+                );
+        } else {
+            $return = array(
+                'error' => false,
+                'mensaje' => 'Registro editado correctamente',
+                );
+        }
+        echo json_encode($return);
+    }
+
+    public function editarMateriaDocente(){
+        $idmateria = $_POST['id'];
+        $datos = $this->input->post();
+        $datosActualizar = array(
+            'id_docente' => $datos['docente'],
+            'id_materia' => $datos['materia']
+        );
+        unset($datos['formulario']);
+       
+        $this->db->where('id', $idmateria);
+        $this->db->set($datosActualizar);
+        $this->db->update('materiasDocentes');
         $this->db->trans_complete();
         if ($this->db->trans_status() === false) {
             $return = array(
@@ -281,6 +336,24 @@ class Administrador extends CI_Controller {
         echo json_encode($return);
 
     }
+    public function eliminarRelacionMateriaDocente(){
+        $idmateria = $_POST['idmateria'];
+        $this->db->where('id', $idmateria);
+        $this->db->delete('materiasDocentes');
+        if ($this->db->trans_status() === false) {
+            $return = array(
+                'error' => true,
+                'mensaje' => 'No se pudo eliminar este registro',
+                );
+        } else {
+            $return = array(
+                'error' => false,
+                'mensaje' => 'Registro eliminado correctamente',
+                );
+        }
+        echo json_encode($return);
+
+    }
     public function eliminarAlumno(){
         $idalumno = $_POST['idalumno'];
         $this->db->where('idalumno', $idalumno);
@@ -361,6 +434,12 @@ class Administrador extends CI_Controller {
                     "grado" => $data['grado'],
                     "estado" => $data['estado']   );
             break;
+            case 'materiasDocentes':
+                $datosInsertar = array(
+                    "id_materia" => $data['materia'],
+                    "id_docente" => $data['docente']
+                );
+            break;
             
         }
        
@@ -399,6 +478,14 @@ class Administrador extends CI_Controller {
             break;
             case 'materias':
                 $datosInsertar['idmateria'] = $insert;
+            break;
+            case 'materiasDocentes':
+                $query = "select *,materias.nombre as nombreMateria,docentes.nombre as nombreDocente from materiasDocentes
+                left join materias on materiasDocentes.id_materia = materias.idmateria
+                left join docentes on materiasDocentes.id_docente = docentes.iddocente where id = ".$insert." ";
+                $query = $this->db->query($query)->result_array();
+                $datosInsertar['idAsignacionMateria'] = $insert;
+                $datosInsertar['datosJoin'] = $query;
             break;
             
         }
