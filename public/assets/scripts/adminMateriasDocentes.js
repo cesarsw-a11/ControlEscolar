@@ -1,6 +1,6 @@
 'use strict'
 //Cargamos todo el javascript una vez que el DOM esta cargado
-const botonGuardarNuevaMateria = `<button type="submit" class="btn btn-primary">Asignar</button>`
+const botonGuardarNuevaMateria = `<button type="submit" class="btn btn-primary" id="btnGuardar">Asignar</button>`
 const botonGuardarCambios = `<button type="button" class="btn btn-primary" onclick="guardarCambiosEditar()">Guardar</button>`
 const botonCerrarModal = `<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>`
 const nombreFormulario = $("form").attr("id");

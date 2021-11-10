@@ -3,7 +3,7 @@
 
 <div class="container">
     <div class="py-5 text-center">
-        <img class="d-block mx-auto mb-4 rounded-circle" src="<?= $alumno->foto ;?>" alt="" width="150" height="150">
+        <img class="d-block mx-auto mb-4 rounded-circle" src="<?= base_url().$alumno->foto ;?>" alt="" width="150" height="150">
         <h2>Alumno : <?= $alumno->nombre." ".$alumno->appaterno." ".$alumno->apmaterno?></h2>
     </div>
 
@@ -38,7 +38,7 @@
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="lastName">Año cursado:</label>
-                        <input type="text" class="form-control" id="lastName" placeholder="" value="4" disabled>
+                        <input type="text" class="form-control" id="lastName" placeholder="" value="<?= $alumno->cursando?>" disabled>
                     </div>
                 </div>
                 <div class="row">

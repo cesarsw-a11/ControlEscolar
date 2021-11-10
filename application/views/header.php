@@ -19,14 +19,29 @@
                 <a class="dropdown-item" href="<?= base_url("administrador/alumnos")?>">Alumnos</a>
                 <a class="dropdown-item" href="<?= base_url("administrador/docentes")?>">Docentes</a>
                 <a class="dropdown-item" href="<?= base_url("administrador/materias")?>">Materias</a>
-                <a class="dropdown-item" href="<?= base_url("administrador/asignarMaterias")?>">Asignar materia al docente</a>
+                <a class="dropdown-item" href="<?= base_url("administrador/asignarMaterias")?>">Asignar materia al
+                    docente</a>
             </div>
         </div><?php } ?>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto">
+                <?php if($this->session->userdata("rol") == 3){?>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/alumno">Home</a>
+                </li>
+                <?php }else{ ?>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/">Home</a>
                 </li>
+                <?php } ?>
+                <?php if($this->session->userdata("rol") == 3){?>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/alumno/organigrama">Organigrama</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/alumno/kardex">Kardex</a>
+                </li>
+                <?php } ?>
                 <!-- <li class="nav-item">
                     <a class="nav-link" href="#">Link</a>
                 </li> -->

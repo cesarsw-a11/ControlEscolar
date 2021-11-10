@@ -14,7 +14,7 @@ class Alumno extends CI_Controller {
         #Solo los usuarios de tipo Admin podran acceder a esta vista.
         if($this->session->userdata("rol") == "3"){
             $data['alumno'] = $this->obtenerAlumno();
-            $this->load->view('menu_alumno',$data);
+            $this->load->view('alumnos/menu_alumno',$data);
         }else{
             echo "<h2>sin acceso a esta vista</h2><a href=".base_url("/").">Volver a la pagina principal</a>";
         }
@@ -25,5 +25,24 @@ class Alumno extends CI_Controller {
         $query = $this->db->query($query)->row();
         return $query;
 
+    }
+
+    public function organigrama(){
+        if($this->session->userdata("rol") == "3"){
+            echo "Organigrama";
+           /*  $data['alumno'] = $this->obtenerAlumno();
+            $this->load->view('menu_alumno',$data); */
+        }else{
+            echo "<h2>sin acceso a esta vista</h2><a href=".base_url("/").">Volver a la pagina principal</a>";
+        }
+    }
+
+    public function kardex(){
+        if($this->session->userdata("rol") == "3"){
+            $data['alumno'] = $this->obtenerAlumno();
+            $this->load->view('alumnos/kardex',$data); 
+        }else{
+            echo "<h2>sin acceso a esta vista</h2><a href=".base_url("/").">Volver a la pagina principal</a>";
+        }
     }
 }
