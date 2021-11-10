@@ -20,7 +20,7 @@
     <div class="py-5">
         <h2>Captura de calificaciones</h2>
         <h5>Nombre de la materia : <?= $nombre_materia; ?></h5>
-        <input type="text" id = "id_materia" value="<?= $id_materia; ?>">
+        <input type="text" id = "id_materia" value="<?= $id_materia; ?>" hidden>
     </div>
     <table id="tabla_materias" class="table table-striped table-bordered" style="width:100%">
         <thead>

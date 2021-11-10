@@ -57,7 +57,7 @@ function listarMaterias() {
                 for (var i = 0, ien = json.infoMateria.length; i < ien; i++) {
                     var altaMateria = 0
                     var disabled = ""
-                    if(json.dadaAlta == "1"){
+                    if(json.infoMateria[i].dadaDeAlta == "1"){
                         altaMateria = "checked";
                         disabled = "disabled"
                     }

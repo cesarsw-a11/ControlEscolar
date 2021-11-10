@@ -48,7 +48,7 @@ public function obtenerData(){
     public function obtenerAlumnosmaterias(){
         $id_materia = $this->session->userdata("id_materia");
         $query = "select * from capturaCalificaciones 
-        left join alumnos on capturaCalificaciones.idAlumno = alumnos.idalumno where idMateria = ".$id_materia." ";
+        left join alumnos on capturaCalificaciones.idAlumno = alumnos.idalumno where idMateria = ".$id_materia." and dadaDeAlta = 1 ";
         //$query = "select * from alumnos where cursando = '".$this->session->userdata("grado")."' ";
         $query  =$this->db->query($query)->result_array();
         echo json_encode($query);

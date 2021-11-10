@@ -55,7 +55,8 @@ class Alumno extends CI_Controller {
         }
     }
     public function obtenerMateriasAlumno($grado = ""){
-        $query = "select * from materias where grado = ".$grado." and estado = 1 ";
+        $query = "select * from materias
+        left join capturaCalificaciones on materias.idmateria = capturaCalificaciones.idMateria  where grado = ".$grado." and estado = 1 ";
         $alta = "select dadaDeAlta from capturaCalificaciones where idAlumno='".$this->session->userdata("id")."' and idMateria = '".$this->session->userdata("materia")."' ";
         $dadaDeAlta = 0;
         if($this->db->query($alta)->row()){

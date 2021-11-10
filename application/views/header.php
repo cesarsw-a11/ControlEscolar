@@ -29,9 +29,9 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/alumno">Home</a>
                 </li>
-                <?php }else{ ?>
+                <?php }elseif($this->session->userdata("rol") == 2){ ?>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    <a class="nav-link active" aria-current="page" href="/docente">Home</a>
                 </li>
                 <?php } ?>
                 <?php if($this->session->userdata("rol") == 3){?>
