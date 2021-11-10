@@ -48,10 +48,15 @@ class Login extends CI_Controller {
 			$obtenerDatos = "select * from ".$tabla." where email = '".$nombre."' and password = '".$contraseñaEncriptada."' ";
 			$obtenerDatos = $this->db->query($obtenerDatos)->row();
 			if(isset($obtenerDatos)){
+				if($rol == 2){
+					$id = $obtenerDatos->iddocente;
+				}elseif($rol == 3){
+					$id = $obtenerDatos->idalumno;
+				}
 
 			if($obtenerDatos->password == $contraseñaEncriptada && $obtenerDatos->id_rol == $rol ){
 				$datosSesion = ["rol" => $obtenerDatos->id_rol,
-				"logged" => true ,"id" => (isset($obtenerDatos->idalumno) ? $obtenerDatos->idalumno : '' ) ];
+				"logged" => true ,"id" => (isset($id) ? $id : '' ) ];
 				$this->session->set_userdata($datosSesion);
 
 				switch($rol){

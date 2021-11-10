@@ -41,6 +41,9 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/alumno/kardex">Kardex</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/alumno/altaMateria">+Alta Materia</a>
+                </li>
                 <?php } ?>
                 <!-- <li class="nav-item">
                     <a class="nav-link" href="#">Link</a>

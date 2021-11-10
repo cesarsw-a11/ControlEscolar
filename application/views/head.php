@@ -33,3 +33,6 @@
     <script src="<?php echo base_url('assets/selectize/selectize.min.js'); ?>" type="text/javascript"></script>
     <!-- Script de funciones globales -->
     <script src="<?php echo base_url('assets/scripts/global.js'); ?>" type="text/javascript"></script>
+    <script>
+        base_url = "<?= base_url()?>"
+    </script>
