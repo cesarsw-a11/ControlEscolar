@@ -93,4 +93,31 @@ class Alumno extends CI_Controller {
     }
     echo json_encode($return);
     }
+
+    public function obtenerDataKardex(){
+        $alumno = $this->input->post("alumno");
+        $query = "select * from capturaCalificaciones 
+        left join materias on capturaCalificaciones.idMateria = materias.idmateria where idAlumno = '".$alumno."'";
+        $query = $this->db->query($query)->result_array();
+        foreach($query as $key=>$value){
+            $promedio = 0;
+            if($value['unidad1'] == "NC"){
+                $promedio += 0;
+            }else{
+                $promedio += $value['unidad1'];
+            }
+            if($value['unidad2'] == "NC"){
+                $promedio += 0;
+            }else{
+                $promedio += $value['unidad2'];
+            }
+            if($value['unidad3'] == "NC"){
+                $promedio += 0;
+            }else{
+                $promedio += $value['unidad3'];
+            }
+            $query[$key]['promedio'] = $promedio / 3;
+        }
+        echo json_encode($query);
+    }
 }

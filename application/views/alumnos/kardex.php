@@ -13,6 +13,7 @@
             <label for="firstName">Alumno:
                 <?=$alumno->numcontrol." - ". $alumno->nombre." ".$alumno->appaterno." ".$alumno->apmaterno?></label>
         </div>
+        <input type="text" id="id_alumno" value="<?=$alumno->idalumno?>" hidden>
         <div class="col-md-6">
             <label for="lastName">Año cursado: <?= $alumno->cursando ?></label>
         </div>
@@ -48,3 +49,51 @@
 
 </div>
 <?php $this->load->view("footer"); ?>
+<script>
+$(() => {
+    listarMaterias()
+})
+
+function listarMaterias() {
+    var columnas = [];
+    columnas.push({
+        "data": "clave"
+    });
+    columnas.push({
+        "data": "nombre"
+    });
+    columnas.push({
+        "data": "promedio"
+    });
+    columnas.push({
+        "data": "opc"
+    });
+    columnas.push({
+        "data": "inasistencias"
+    });
+
+    var table = $('#tabla_materias').DataTable({
+        'processing': true,
+        // 'serverSide': true,
+        'scrollY': "400px",
+        'paging': true,
+        'ajax': {
+            "url": "obtenerDataKardex",
+            "type": "POST",
+            "data": {
+                "alumno": $("#id_alumno").val()
+            },
+            "dataSrc": function(json) {
+                console.log(json.length)
+                for (var i = 0, ien = json.length; i < ien; i++) {
+                    json[i]['inasistencias'] = `0`
+                }
+                return json;
+            }
+        },
+        "columns": JSON.parse(JSON.stringify(columnas))
+
+    });
+
+}
+</script>
