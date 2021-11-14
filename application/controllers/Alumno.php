@@ -116,7 +116,7 @@ class Alumno extends CI_Controller {
             }else{
                 $promedio += $value['unidad3'];
             }
-            $query[$key]['promedio'] = $promedio / 3;
+            $query[$key]['promedio'] = number_format($promedio / 3,2);
         }
         echo json_encode($query);
     }
