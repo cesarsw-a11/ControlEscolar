@@ -65,7 +65,7 @@ $(document).ready(() => {
     columnas.push({"data" : "nombreMateria"});
     columnas.push({"data" : "Plan"});
     columnas.push({"data" : "Programa"});
-    columnas.push({"data" : "Listas"});
+    /* columnas.push({"data" : "Listas"}); */
     columnas.push({"data" : "Captura"});
 
 var table = $('#tabla_materias').DataTable({
@@ -80,7 +80,7 @@ var table = $('#tabla_materias').DataTable({
             for (var i = 0, ien = json.length; i < ien; i++) {
                 json[i]['Plan'] = `<h6>Técnica-20 10-224</h6>` 
                 json[i]['Programa'] = `<h6>Técnica 22</h6>` 
-                json[i]['Listas'] = `<i class="fa fa-file-pdf-o fa-lg" aria-hidden="true"></i>Listas` 
+                /* json[i]['Listas'] = `<i class="fa fa-file-pdf-o fa-lg" aria-hidden="true"></i>Listas`  */
                 json[i]['Captura'] = `<i class="fa fa-hand-pointer-o fa-lg" aria-hidden="true"></i><a href="${base_url}docente/capturaCalificaciones/${json[i].grado}/${json[i].id_materia}/${json[i].nombreMateria}">Captura</a>` 
             }
            return json;

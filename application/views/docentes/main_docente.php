@@ -14,7 +14,7 @@
                 <th>Asignatura</th>
                 <th>Plan</th>
                 <th>Programa</th>
-                <th></th>
+               <!--  <th></th> -->
                 <th></th>
             </tr>
         </thead>
