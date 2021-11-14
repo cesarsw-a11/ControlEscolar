@@ -30,6 +30,7 @@
     </table>
 
 </div>
+<?php $this->load->view("footer"); ?>
 <script>
 $(() => {
     listarMaterias()

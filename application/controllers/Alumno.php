@@ -29,7 +29,7 @@ class Alumno extends CI_Controller {
 
     public function organigrama(){
         if($this->session->userdata("rol") == "3"){
-            echo "Organigrama";
+            $this->load->view('alumnos/organigrama');
            /*  $data['alumno'] = $this->obtenerAlumno();
             $this->load->view('menu_alumno',$data); */
         }else{

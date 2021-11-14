@@ -130,4 +130,5 @@
         </tbody>
     </table>
 </div>
+<?php $this->load->view("footer"); ?>
 <script src="<?= base_url('assets/scripts/adminAlumnos.js') ?>"></script>

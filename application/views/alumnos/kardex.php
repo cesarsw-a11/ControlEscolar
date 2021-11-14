@@ -47,3 +47,4 @@
     </table>
 
 </div>
+<?php $this->load->view("footer"); ?>
