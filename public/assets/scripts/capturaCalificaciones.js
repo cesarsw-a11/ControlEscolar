@@ -55,24 +55,24 @@ $(document).on('keypress', '.divEditable', function(e){
         nombreColumna = $(this).attr('data-nombre-columna'),
         idCalificacion = $(this).attr('data-id-calificacion')
 
-        actualizarRegistroRango(idalumno,valorColumna,nombreColumna,idCalificacion);
+        actualizarRegistro(idalumno,valorColumna,nombreColumna,idCalificacion);
     }
 });
 
 function animarDescuento(idCelda, tipo = 'exito'){
-    let claseAgregar = (tipo == 'exito') ? 'PEL_descuentoActualizadoExito' : 'PEL_descuentoActualizadoError';
+    let claseAgregar = (tipo == 'exito') ? 'div_actualizadoExito' : 'div_actualizadoError';
     let celdaSelector = `#${idCelda}`;
 
-    $(celdaSelector).removeClass('PEL_descuentoActualizadoError PEL_descuentoActualizadoExito');
+    $(celdaSelector).removeClass('div_actualizadoError div_actualizadoExito');
     $(celdaSelector).addClass(claseAgregar);
 
     setTimeout(function() {
-        $(celdaSelector).removeClass('PEL_descuentoActualizadoError PEL_descuentoActualizadoExito');
+        $(celdaSelector).removeClass('div_actualizadoError div_actualizadoExito');
     }, 1000);
 }
 
 // Actualiza los datos de celdas de manera lineal
-function actualizarRegistroRango(idalumno, valorColumna,nombreColumna,idCalificacion) {
+function actualizarRegistro(idalumno, valorColumna,nombreColumna,idCalificacion) {
     ui_inicioPeticion();
 
     var tipoAnimacion = 'error';

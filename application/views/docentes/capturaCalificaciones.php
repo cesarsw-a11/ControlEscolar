@@ -9,7 +9,7 @@
     width: 100% !important;
     height: 100% !important;
 }
-.PEL_descuentoActualizadoExito {
+.div_actualizadoExito {
     transition: background-color 2s ease;
     transition: color 2s ease;
     background-color: #0fcbfa;
