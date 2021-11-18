@@ -42,6 +42,7 @@ $(document).ready(() => {
                         data.mensaje,
                         "success"
                     );
+                    $("#modalAgregarMateria").modal("hide");
                 } else {
                     swal(
                         "Error",

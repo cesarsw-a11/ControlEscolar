@@ -37,6 +37,7 @@ $(document).ready(() => {
                         data.mensaje,
                         "success"
                     );
+                    $("#modalAsignarMateria").modal("hide")
                 } else {
                     swal(
                         "Error",

@@ -30,7 +30,7 @@
                 <button type="submit" class="form-button button-l margin-b" id="btn-login">Iniciar Sesión</button>
 
             </form>
-            <p class="margin-t text-whitesmoke"><small> Ronaldo Isaías &copy; 2021</small> </p>
+            <p class="margin-t text-whitesmoke"><small>&copy; 2021</small> </p>
         </div>
     </div>
 </div>

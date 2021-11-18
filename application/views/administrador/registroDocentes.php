@@ -19,17 +19,17 @@
                         <div class="col">
                         <input type="number" id="iddocente" name="iddocente" hidden>
                             <input type="text" class="form-control" id="nombre" placeholder="Nombre" name="nombre"
-                                required>
+                            onkeyup="mayus(this);" required>
                         </div>
                         <div class="col">
                             <input type="text" class="form-control" placeholder="Apellido paterno" name="appaterno"
-                                id="appaterno" required>
+                                id="appaterno" onkeyup="mayus(this);" required>
                         </div>
                     </div><br>
                     <div class="row">
                         <div class="col">
                             <input type="text" class="form-control" id="apmaterno" placeholder="Apellido materno"
-                                name="apmaterno" required>
+                                name="apmaterno" onkeyup="mayus(this);" required>
                         </div>
                         <div class="col">
                             <select name="genero" name="genero" id="genero" class="form-control">

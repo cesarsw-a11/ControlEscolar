@@ -39,6 +39,7 @@ function mandarFormularioConFoto(formData) {
                         data.mensaje,
                         "success"
                     );
+                    $("#modalAgregarDocente").modal("hide");
                 } else {
                     swal(
                         "Error",
@@ -66,7 +67,7 @@ function mandarFormularioConFoto(formData) {
 
 function ui_modalNuevoDocente() {
     limpiarCampos(nombreFormulario);
-    $(".modal-title").html("Agregar nuevo alumno")
+    $(".modal-title").html("Agregar nuevo docente")
     $(".modal-footer").html(botonGuardarNuevaMateria + botonCerrarModal)
     $("#modalAgregarDocente").modal()
 

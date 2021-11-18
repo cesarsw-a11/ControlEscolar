@@ -1,5 +1,6 @@
 <?php $this->load->view("head"); ?>
 <?php $this->load->view("header"); ?>
+<script src="<?php echo base_url('assets/jquery/jquery.inputmask.min.js'); ?>" type="text/javascript"></script>
 
 <!-- The Modal -->
 <div class="modal fade" id="modalAgregarAlumno">
@@ -47,10 +48,10 @@
                     </div><br>
                     <div class="row">
                         <div class="col">
-                            <input type="text" class="form-control" id="curp" placeholder="CURP" name="curp" required>
+                            <input type="text" class="form-control" id="curp" placeholder="CURP" name="curp" onkeyup="mayus(this);" required>
                         </div>
                         <div class="col">
-                            <input type="number" class="form-control" id="cel" placeholder="Número celular"
+                            <input class="form-control" id="cel" placeholder="Número celular"
                                 name="numcel" required>
                         </div>
                     </div><br>
@@ -61,7 +62,7 @@
                         </div>
                         <div class="col">
                             <input type="text" class="form-control" id="localidad" placeholder="Localidad"
-                                name="localidad" required>
+                                name="localidad" onkeyup="mayus(this);" required>
                         </div>
                     </div><br>
                     <div class="row">
@@ -132,3 +133,8 @@
 </div>
 <?php $this->load->view("footer"); ?>
 <script src="<?= base_url('assets/scripts/adminAlumnos.js') ?>"></script>
+<script>
+$(()=>{
+    $("#cel").inputmask("999-999-9999");
+})
+</script>
