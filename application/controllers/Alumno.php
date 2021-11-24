@@ -97,7 +97,8 @@ class Alumno extends CI_Controller {
     public function obtenerDataKardex(){
         $alumno = $this->input->post("alumno");
         $query = "select * from capturaCalificaciones 
-        left join materias on capturaCalificaciones.idMateria = materias.idmateria where idAlumno = '".$alumno."'";
+        left join materias on capturaCalificaciones.idMateria = materias.idmateria 
+        left join alumnos on capturaCalificaciones.idAlumno = alumnos.idalumno where capturaCalificaciones.idAlumno = '".$alumno."'";
         $query = $this->db->query($query)->result_array();
         foreach($query as $key=>$value){
             $promedio = 0;

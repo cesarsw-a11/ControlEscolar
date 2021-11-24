@@ -86,7 +86,7 @@ function listarMaterias() {
             "dataSrc": function(json) {
                 console.log(json.length)
                 for (var i = 0, ien = json.length; i < ien; i++) {
-                    json[i]['inasistencias'] = `0`
+                   /*  json[i]['inasistencias'] = `0` */
                 }
                 return json;
             }

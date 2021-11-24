@@ -21,6 +21,7 @@
                 <a class="dropdown-item" href="<?= base_url("administrador/materias")?>">Materias</a>
                 <a class="dropdown-item" href="<?= base_url("administrador/asignarMaterias")?>">Asignar materia al
                     docente</a>
+                <a class="dropdown-item" href="<?= base_url("administrador/tomarInasistencias")?>">Inasistencias</a>
             </div>
         </div><?php } ?>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">

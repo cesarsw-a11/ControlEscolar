@@ -53,6 +53,36 @@ class Administrador extends CI_Controller {
         }
     }
 
+    public function tomarInasistencias(){
+        if($this->validarAcceso()){
+           $alumnos = "select * from alumnos";
+           $data['alumnos'] = $this->db->query($alumnos)->result_array(); 
+           $this->load->view("administrador/tomarInasistencias",$data);
+        }
+    }
+
+    public function actualizarInasistencias(){
+        $inasistencia = $this->input->post("inasistencia");
+        $idalumno = $this->input->post("idalumno");
+       
+        $this->db->where('idalumno', $idalumno);
+        $this->db->set(["inasistencias" => $inasistencia]);
+        $this->db->update('alumnos');
+        $this->db->trans_complete();
+        if ($this->db->trans_status() === false) {
+            $return = array(
+                'error' => true,
+                'mensaje' => 'No se pudo editar este registro',
+                );
+        } else {
+            $return = array(
+                'error' => false,
+                'mensaje' => 'Registro editado correctamente',
+                );
+        }
+        echo json_encode($return);
+    }
+
     function obtenerRelacionMateriasDocentes(){
         $query = "select *,materias.nombre as nombreMateria,docentes.nombre as nombreDocente from materiasDocentes
         left join materias on materiasDocentes.id_materia = materias.idmateria
