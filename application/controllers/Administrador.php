@@ -414,7 +414,8 @@ class Administrador extends CI_Controller {
                     "password" => $data['contraseña'],
                     "foto" => "",
                     "estado" => $data['estado'],
-                    "cursando" => $data['cursando']       );
+                    "cursando" => $data['cursando'],
+                    "adeudos" => $data['adeudos']       );
             break;
             case 'docentes':
                 $datosInsertar = array(
@@ -471,7 +472,33 @@ class Administrador extends CI_Controller {
         $insert = $this->administrador_m->guardar($datosInsertar,$data['formulario']);
         switch($data['formulario']){
             case 'alumnos':
+                $this->load->database();
               $datosInsertar['idalumno'] = $insert;
+              $id_alumno = $insert;
+              $dadaDeAlta = 1;
+              $queryMaterias = "select * from materias where grado = '".$data['cursando']."' ";
+              $queryMaterias = $this->db->query($queryMaterias)->result_array();
+              foreach($queryMaterias as $materia){
+                $datosCaptura = array(
+                    "idMateria" => $materia['idmateria'],
+                    "idAlumno" => $id_alumno,
+                    "dadaDeAlta" => $dadaDeAlta
+                );
+            
+            $this->db->insert('capturaCalificaciones', $datosCaptura);
+            if ($this->db->trans_status() === false) {
+                $return = array(
+                    'error' => true,
+                    'mensaje' => 'No se pudo editar este registro',
+                    );
+            } else {
+                $return = array(
+                    'error' => false,
+                    'mensaje' => 'Registro editado correctamente',
+                    );
+            }
+              }
+            
             break;
             case 'docentes':
                 $datosInsertar['iddocente'] = $insert;

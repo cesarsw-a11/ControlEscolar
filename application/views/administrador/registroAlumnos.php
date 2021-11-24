@@ -45,6 +45,10 @@
                                 <option value="Femenino">Femenino</option>
                             </select>
                         </div>
+                        <div class="col">
+                            <input class="form-control" id="adeudos" placeholder="Adeudos"
+                                name="adeudos" required>
+                        </div>
                     </div><br>
                     <div class="row">
                         <div class="col">

@@ -74,7 +74,7 @@
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="lastName">Adeudos:</label>
-                        <input type="text" class="form-control" id="lastName" placeholder="" value="" disabled>
+                        <input type="text" class="form-control" id="lastName" placeholder="" value="<?= $alumno->adeudos ?>" disabled>
                     </div>
                 </div>
                 <div class="row">
