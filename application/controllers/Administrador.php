@@ -292,13 +292,14 @@ class Administrador extends CI_Controller {
     public function editarDocente(){
         $iddocente = $_POST['iddocente'];
         $datos = $this->input->post();
+        $contraseñaEncriptada = hash('sha256',$datos['password']);
         $datosActualizar = array(
             "nombre" => $datos['nombre'],
             "appaterno" => $datos['appaterno'],
             "apmaterno" => $datos['apmaterno'],
             "genero" => $datos['genero'],
             "email" => $datos['email'],
-            "password" => $datos['password'],
+            "password" => $contraseñaEncriptada,
             "estado" => $datos['estado'],
         );
 
