@@ -40,6 +40,37 @@ class Alumno extends CI_Controller {
     public function kardex(){
         if($this->session->userdata("rol") == "3"){
             $data['alumno'] = $this->obtenerAlumno();
+            $alumno = $this->input->post("alumno");
+            $query = "select *,materias.nombre as nombreMateria from capturaCalificaciones 
+            left join materias on capturaCalificaciones.idMateria = materias.idmateria 
+            left join alumnos on capturaCalificaciones.idAlumno = alumnos.idalumno where capturaCalificaciones.idAlumno = '".$this->session->userdata('id')."'";
+            $query = $this->db->query($query)->result_array();
+            foreach($query as $key=>$value){
+                $promedio = 0;
+                if($value['unidad1'] == "NC"){
+                    $promedio += 0;
+                }else{
+                    $promedio += $value['unidad1'];
+                }
+                if($value['unidad2'] == "NC"){
+                    $promedio += 0;
+                }else{
+                    $promedio += $value['unidad2'];
+                }
+                if($value['unidad3'] == "NC"){
+                    $promedio += 0;
+                }else{
+                    $promedio += $value['unidad3'];
+                }
+                $query[$key]['promedio'] = number_format($promedio / 3,2);
+            }
+            $numeroMaterias = count($query);
+            $promedioFinal = 0;
+            foreach($query as $key=>$value){
+                $promedioFinal += $value['promedio'];
+            }
+            $promedioFinal = $promedioFinal/$numeroMaterias;
+            $data['promedioFinal'] = $promedioFinal;
             $this->load->view('alumnos/kardex',$data); 
         }else{
             echo "<h2>sin acceso a esta vista</h2><a href=".base_url("/").">Volver a la pagina principal</a>";

@@ -23,7 +23,7 @@
             <label for="firstName">Programa: Secundaria Técnica 22</label>
         </div>
         <div class="col-md-6">
-            <label for="lastName">Promedio:</label>
+            <label for="lastName">Promedio:<?= $promedioFinal ?></label>
         </div>
     </div>
     <div class="row mb-3">
