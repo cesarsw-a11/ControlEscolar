@@ -28,7 +28,7 @@
                     </div><br>
                     <select class="form-control" id="grado" placeholder="Grado" name="grado">
                                 <option value="-1">GRADO</option>
-                                <?php for ($i=1; $i <= 9; $i++) {  ?>
+                                <?php for ($i=1; $i <= 3; $i++) {  ?>
                                 <option value="<?= $i ?>"><?=$i?></option>
                                 <?php } ?>
                             </select>

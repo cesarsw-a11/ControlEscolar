@@ -149,7 +149,7 @@ function ui_obtenerMateria(id_alumno) {
             $("#apmaterno").val(data.apmaterno)
             $("#genero").val(data.genero)
             $("#curp").val(data.curp)
-            $("#cel").val(data.numcel)
+            $('#cel').inputmask('999-999-9999').val(data.numcel)
             $("#email").val(data.email)
             $("#localidad").val(data.localidad)
             $("#password").val(data.password)

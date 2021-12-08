@@ -9,6 +9,7 @@
         <thead>
             <tr>
                 <th>Alumno</th>
+                <th>Adeudos</th>
                 <th>Inasistencias</th>
                 <th>Inasistencias</th>
             </tr>
@@ -19,6 +20,7 @@
             $contador++?>
         <tr>
             <td><?= $alumno['nombre']." ".$alumno['appaterno']." ".$alumno['apmaterno'] ?></td>
+            <td><?= $alumno['adeudos']?></td>
             <td><input type ="text" data-idalumno="<?= $alumno['idalumno']?>" value="<?= $alumno['inasistencias']?>" name="inasistencias" id="inasistencias<?=$contador?>"/></td>
             <td><button class="btn btn-success" onclick="actualizarAsistencia(<?= $contador ?>)">Guardar</button></td>
             </tr>

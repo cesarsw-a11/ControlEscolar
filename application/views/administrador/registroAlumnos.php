@@ -83,7 +83,7 @@
                             <label for="cursando">Grado cursando:</label>
                             <select class="form-control" id="cursando" placeholder="Cursando" name="cursando">
                                 <option value="-1">CURSANDO</option>
-                                <?php for ($i=1; $i <= 9; $i++) {  ?>
+                                <?php for ($i=1; $i <= 3; $i++) {  ?>
                                 <option value="<?= $i ?>"><?=$i?></option>
                                 <?php } ?>
                             </select>
