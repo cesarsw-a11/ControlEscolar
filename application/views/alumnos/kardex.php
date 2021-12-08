@@ -60,7 +60,7 @@ function listarMaterias() {
         "data": "clave"
     });
     columnas.push({
-        "data": "nombre"
+        "data": "nombreMateria"
     });
     columnas.push({
         "data": "promedio"
