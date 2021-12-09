@@ -47,7 +47,7 @@ public function obtenerData(){
 
     public function obtenerAlumnosmaterias(){
         $id_materia = $this->session->userdata("id_materia");
-        $query = "select * from capturaCalificaciones 
+        $query = "select *,idCalificacion as calificacion from capturaCalificaciones 
         left join alumnos on capturaCalificaciones.idAlumno = alumnos.idalumno where idMateria = ".$id_materia." and dadaDeAlta = 1 ";
         //$query = "select * from alumnos where cursando = '".$this->session->userdata("grado")."' ";
         $query  =$this->db->query($query)->result_array();
@@ -67,6 +67,41 @@ public function obtenerData(){
     $this->db->where('idCalificacion', $datos['idCalificacion']);
     $this->db->set($datosActualizar);
     $this->db->update('capturaCalificaciones');
+    }
+
+    public function obtenerDataCalificacion(){
+        $idCalificacion = $this->input->post("idCalificacion");
+        $query = "select * from capturaCalificaciones where idCalificacion = '".$idCalificacion."' ";
+        $query = $this->db->query($query)->result();
+
+        echo json_encode($query);
+    }
+
+    public function editarCapturaCalificacion(){
+        $datos = $this->input->post();
+    $datosActualizar = array(
+            "unidad1" => $datos['unidad1'],
+            "unidad2" => $datos['unidad2'],
+            "unidad3" => $datos['unidad3']
+    );
+   
+    $this->db->where('idCalificacion', $datos['idCalificacion']);
+    $this->db->set($datosActualizar);
+    $this->db->update('capturaCalificaciones');
+
+    $this->db->trans_complete();
+    if ($this->db->trans_status() === false) {
+        $return = array(
+            'error' => true,
+            'mensaje' => 'No se pudo editar este registro',
+            );
+    } else {
+        $return = array(
+            'error' => false,
+            'mensaje' => 'Registro editado correctamente',
+            );
+    }
+    echo json_encode($return);
     }
 
 }

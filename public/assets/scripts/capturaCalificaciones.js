@@ -1,5 +1,4 @@
 'use strict'
-
 $(document).ready(() => {
     //Inicializamos el datatable
     listarMaterias()
@@ -16,6 +15,7 @@ console.log(base_url)
     columnas.push({"data" : "unidad2"});
     columnas.push({"data" : "unidad3"});
     columnas.push({"data" : "opc"});
+    columnas.push({"data" : "btnCapturar"});
 
 var table = $('#tabla_materias').DataTable({
     'processing': true,
@@ -27,10 +27,11 @@ var table = $('#tabla_materias').DataTable({
         "type": "POST",
         "dataSrc": function (json) {
             for (var i = 0, ien = json.length; i < ien; i++) {
-                json[i]['unidad1'] = `<div data-id-calificacion = ${json[i].idCalificacion} id = ${json[i].idalumno} data-nombre-columna = "unidad1" contenteditable class="divEditable" >${json[i].unidad1}</div>` 
-                json[i]['unidad2'] = `<div data-id-calificacion = ${json[i].idCalificacion} id = ${json[i].idalumno} data-nombre-columna = "unidad2" contenteditable class="divEditable" >${json[i].unidad2}</div>` 
-                json[i]['unidad3'] = `<div data-id-calificacion = ${json[i].idCalificacion} id = ${json[i].idalumno}  data-nombre-columna = "unidad3" contenteditable class="divEditable" >${json[i].unidad3}</div>` 
-                json[i]['opc'] = `<div data-id-calificacion = ${json[i].idCalificacion} id = ${json[i].idalumno} data-nombre-columna = "opc" contenteditable class="divEditable" >${json[i].opc}</div>` 
+                json[i]['unidad1'] = `<div data-id-calificacion = ${json[i].idCalificacion} id = ${json[i].idalumno} data-nombre-columna = "unidad1"  >${json[i].unidad1}</div>` 
+                json[i]['unidad2'] = `<div data-id-calificacion = ${json[i].idCalificacion} id = ${json[i].idalumno} data-nombre-columna = "unidad2"  >${json[i].unidad2}</div>` 
+                json[i]['unidad3'] = `<div data-id-calificacion = ${json[i].idCalificacion} id = ${json[i].idalumno}  data-nombre-columna = "unidad3"  >${json[i].unidad3}</div>` 
+                json[i]['opc'] = `<div data-id-calificacion = ${json[i].idCalificacion} id = ${json[i].idalumno} data-nombre-columna = "opc"  >${json[i].opc}</div>` 
+                json[i]['btnCapturar'] = `<div><button id="btnCapturar" onclick="mostrarModal(${json[i].calificacion},${json[i].idalumno})" class="btn btn-success">Capturar</button></div>`
             }
            return json;
         }
@@ -40,11 +41,80 @@ var table = $('#tabla_materias').DataTable({
 });
 }
 
+function mostrarModal(calificacion,idalumno){
+    $("#modalCapturaCalificacion").modal()
+    $(".modal-footer").html(`<button type="button" class="btn btn-primary" onclick="guardarCambiosEditar(${calificacion},${idalumno},${$("#id_materia").val()})">Guardar</button>`)
+    $(".modal-title").html("Capturar Materia")
+    $.ajax({
+        url: `${base_url}docente/obtenerDataCalificacion`,
+        method: 'POST',
+        data: { "idCalificacion" : calificacion },
+        success: function (data) {
+            data = JSON.parse(data)
+            console.log(data)
+            // Agregar clase a registro
+            $("#unidad1").val(data[0].unidad1)
+            $("#unidad2").val(data[0].unidad2)
+            $("#unidad3").val(data[0].unidad3)
+        },
+        complete: function(){
+            $('#tabla_materias').DataTable().ajax.reload();
+        }
+    });
+}
+
+function guardarCambiosEditar(idCalificacion,idalumno,idmateria) {
+    var table = $('#tabla_materias').DataTable();
+    var formData = new FormData($("#guardarMateriaForm")[0])
+    formData.append("idCalificacion",idCalificacion)
+    formData.append("idAlumno",idalumno)
+    formData.append("idMateria",idmateria)
+    $.ajax({
+        url: base_url+'docente/editarCapturaCalificacion',
+        type: 'POST',
+        data: formData,
+        success: function (response) {
+            var data = JSON.parse(response)
+            if (data.error == false) {
+                swal(
+                    "Exito",
+                    data.mensaje,
+                    "success"
+                );
+                $("#modalCapturaCalificacion").modal("hide")
+                $('#file').val("");
+                table.ajax.reload();
+            } else {
+                swal(
+                    "Error",
+                    "No fue posible guardar sus datos, revise su conexión.",
+                    "error"
+                );
+            }
+
+        },
+        error: function (error, xhr, status) {
+
+            swal(
+                "Error",
+                "No fue posible guardar sus datos, revise su conexión.",
+                "error"
+            );
+        },
+        cache: false,
+        contentType: false,
+        processData: false
+    });
+
+}
+
 $(document).on('focus', '.divEditable', function(e){
     requestAnimationFrame(() => document.execCommand('selectAll',false,null));
 });
 
-$(document).on('keypress', '.divEditable', function(e){
+/* $(document).on('click', '#btnCapturar', function(e){
+
+    $("#modalCapturaCalificacion").modal()
     const keycode = (event.keyCode ? event.keyCode : event.which);
     if(keycode == '13'){
         e.stopPropagation();
@@ -57,7 +127,7 @@ $(document).on('keypress', '.divEditable', function(e){
 
         actualizarRegistro(idalumno,valorColumna,nombreColumna,idCalificacion);
     }
-});
+}); */
 
 function animarDescuento(idCelda, tipo = 'exito'){
     let claseAgregar = (tipo == 'exito') ? 'div_actualizadoExito' : 'div_actualizadoError';
