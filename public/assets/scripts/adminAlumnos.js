@@ -320,6 +320,7 @@ function llenarTabla(response, tipoFormulario) {
         "numcontrol": data.numcontrol,
         "nombre": data.nombre,
         "appaterno": data.appaterno,
+        "email" : data.email,
         "genero": data.genero,
         "curp": data.curp,
         "estado": estatusAlumno,

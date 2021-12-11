@@ -69,7 +69,9 @@ class Alumno extends CI_Controller {
             foreach($query as $key=>$value){
                 $promedioFinal += $value['promedio'];
             }
+            if($numeroMaterias > 0){
             $promedioFinal = $promedioFinal/$numeroMaterias;
+            }
             $data['promedioFinal'] = $promedioFinal;
             $this->load->view('alumnos/kardex',$data); 
         }else{
