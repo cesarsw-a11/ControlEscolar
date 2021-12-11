@@ -63,6 +63,7 @@
                     </div><br>
                     <div class="row">
                         <div class="col">
+                            <div class="changePass"></div>
                             <input type="password" class="form-control" id="password" placeholder="Contraseña" name="contraseña" required>
                         </div>
                         <div class="col">

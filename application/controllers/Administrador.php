@@ -210,7 +210,7 @@ class Administrador extends CI_Controller {
     public function editarAlumno(){
         $idalumno = $_POST['idalumno'];
         $datos = $this->input->post();
-        $contraseñaEncriptada = hash('sha256',$datos['contraseña']);
+        //$contraseñaEncriptada = hash('sha256',$datos['contraseña']);
         $datosActualizar = array(
             "numcontrol" => $datos['numcontrol'],
             "nombre" => $datos['nombre'],
@@ -223,7 +223,7 @@ class Administrador extends CI_Controller {
             "localidad" => $datos['localidad'],
             "cursando" => $datos['cursando'],
             "estado" => $datos['estado'],
-            "password" => $contraseñaEncriptada
+            /* "password" => $contraseñaEncriptada */
         );
 
         if(!empty($_FILES['file']['name'])){

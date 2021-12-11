@@ -152,7 +152,7 @@ function ui_obtenerMateria(id_alumno) {
             $('#cel').inputmask('999-999-9999').val(data.numcel)
             $("#email").val(data.email)
             $("#localidad").val(data.localidad)
-            $("#password").val(data.password)
+            $("#password").hide()
             $("#cursando").val(data.cursando)
             $("#estado").val(data.estado)
 
@@ -224,6 +224,7 @@ function ui_modalEliminarAlumno(id_alumno) {
 function guardarCambiosEditar() {
     var table = $('#tabla_alumnos').DataTable();
     var formData = new FormData($("#" + nombreFormulario)[0])
+    formData.delete("contraseña")
     var files = $('#file')[0].files;
     if (!curpValida($("#curp").val())) {
         swal("Error", "La CURP tiene formato incorrecto", "error")
