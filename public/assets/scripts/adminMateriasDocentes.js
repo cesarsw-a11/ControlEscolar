@@ -98,7 +98,7 @@ function ui_modalAsignarMateria() {
 
 function ui_modalEditarMateria(id_materia) {
     $(".modal-footer").html(botonGuardarCambios + botonCerrarModal)
-    $(".modal-title").html("Editar materia")
+    $(".modal-title").html("Asignación de materia al docente")
     $("#idmateria").val(id_materia)
     $("#modalAsignarMateria").modal()
     ui_obtenerMateria(id_materia)
