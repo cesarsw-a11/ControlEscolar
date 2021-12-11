@@ -18,7 +18,8 @@
     <!-- Bootstrap v4.3.1-->
     <link rel="stylesheet" href="<?= base_url('assets/bootstrap4/css/bootstrap.min.css') ?>">
     <script src="<?= base_url('assets/bootstrap4/js/bootstrap.min.js') ?>"></script>
-
+    <!-- Estilos generales -->
+    <link rel="stylesheet" href="<?= base_url('estilos/general.css') ?>">
     <!-- FontAwesome v4.7.0-->
     <link rel="stylesheet" href="<?= base_url('assets/font-awesome/css/font-awesome.min.css') ?>">
 
@@ -34,5 +35,5 @@
     <!-- Script de funciones globales -->
     <script src="<?php echo base_url('assets/scripts/global.js'); ?>" type="text/javascript"></script>
     <script>
-        base_url = "<?= base_url()?>"
+        base_url = "<?= base_url() ?>"
     </script>

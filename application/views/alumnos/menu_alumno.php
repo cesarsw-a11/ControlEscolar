@@ -13,8 +13,16 @@
             <h4 class="d-flex justify-content-between align-items-center mb-3">
                 <span class="text-muted">Video informativo</span>
             </h4>
-            <!-- Aqui ira un video informativo -->
-        </div>
+            <iframe width="330" height="280" src="https://www.youtube.com/embed/fLkCsqgE1_g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <p class="text-justify">¿Qué nos definen?  
+Nuestra modalidad de la secundaria técnica nos permite ofrecer, en la presecialidad una educación diferente de calidad e integral.
+Horarios de 6:55 a.m. a 2:10 p.m. con tecnologías de 8 módulos a la semana con especialidades en informática, agricultura y ganadería.
+Equipadas con aire acondicionado, proyectores y equipos audiovisuales.
+Espacios deportivos para diferentes disciplinas: fútbol, básquetbol, voleibol, etc.
+Patio cívico techado.
+Promoción musical: canto, batucada, flauta guitarra
+Eventos deportivos, really, cinetec 22, posada navideña, semana cultural, desfiles cívicos etc</p>
+            </div>
         <div class="col-md-8 order-md-1">
             <h4 class="mb-3">Datos</h4>
             <form>

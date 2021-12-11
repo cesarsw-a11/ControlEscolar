@@ -171,7 +171,7 @@ function ui_obtenerMateria(id_alumno) {
 
 }
 function ui_mostrarCambiarContraseña(id_alumno){
-    $(".modal-title").html("Editar Contraseña")
+    $(".modal-title-contraseña").html("Editar Contraseña")
     $(".modal-footer").html(`<button class="btn btn-success" onclick="guardarNuevaContraseña(${id_alumno})">Guardar</button>`+botonCerrarModal)
     $("#modalCambiarContraseña").modal()
     $.ajax({
