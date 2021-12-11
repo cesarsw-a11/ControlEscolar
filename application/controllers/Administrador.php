@@ -60,6 +60,13 @@ class Administrador extends CI_Controller {
            $this->load->view("administrador/tomarInasistencias",$data);
         }
     }
+    public function obtenerDataInasistencias(){
+        $alumnos = "select * from alumnos";
+         $alumnos = $this->db->query($alumnos)->result_array();
+
+         echo json_encode($alumnos);
+
+    }
 
     public function actualizarInasistencias(){
         $inasistencia = $this->input->post("inasistencia");

@@ -8,10 +8,12 @@
     <table id="tabla_materias" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
+                <th>No. Control</th>
                 <th>Alumno</th>
+                <th>Correo</th>
                 <th>Adeudos</th>
                 <th>Inasistencias</th>
-                <th>Inasistencias</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -29,6 +31,39 @@
     </table>
 </div>
 <script>
+    $(()=>{
+        listarMaterias()
+    })
+    function listarMaterias(){
+    var columnas = [];
+    columnas.push({"data" : "numcontrol"});
+    columnas.push({"data" : "nombreCompleto"});
+    columnas.push({"data" : "email"});
+    columnas.push({"data" : "adeudos"});
+    columnas.push({"data" : "inasistenciasInput"});
+    columnas.push({"data" : "botonEditar"});
+
+var table = $('#tabla_materias').DataTable({
+    'processing': true,
+    // 'serverSide': true,
+    'scrollY': "400px",
+    'paging': true,
+    'ajax': {
+        "url": base_url+"administrador/obtenerDataInasistencias",
+        "type": "POST",
+        "dataSrc": function (json) {
+            for (var i = 0, ien = json.length; i < ien; i++) {
+                json[i]['inasistenciasInput'] = `<input type ="text" data-idalumno="${json[i].idalumno}" value="${json[i].inasistencias}" name="inasistencias" id="inasistencias${i}"/>`
+                json[i]['nombreCompleto'] = json[i].nombre+" "+json[i].appaterno+" "+json[i].apmaterno
+                json[i]['botonEditar'] = `<button class="btn btn-success" onclick="actualizarAsistencia(${i})">Guardar</button>` 
+            }
+           return json;
+        }
+    },
+    "columns": JSON.parse(JSON.stringify(columnas))
+    
+});
+}
 function actualizarAsistencia(row){
    var inputInasistencia = $("#inasistencias"+row).val();
    var idalumno = $("#inasistencias"+row).attr("data-idalumno");
