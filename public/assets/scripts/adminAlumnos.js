@@ -225,6 +225,14 @@ function guardarCambiosEditar() {
     var table = $('#tabla_alumnos').DataTable();
     var formData = new FormData($("#" + nombreFormulario)[0])
     var files = $('#file')[0].files;
+    if (!curpValida($("#curp").val())) {
+        swal("Error", "La CURP tiene formato incorrecto", "error")
+        return false
+    }
+    if (!validarTelefono($("#cel").val())) {
+        swal("Error", "Número de célular incorrecta", "error")
+        return false
+    }
     //En caso de que los datos sean llenados y esten correctos del lado del cliente se mandaran al backend para validarlos
     formData.append('file', files[0]);
     $.ajax({
@@ -271,6 +279,7 @@ function listarAlumnos() {
     columnas.push({ "data": "numcontrol" });
     columnas.push({ "data": "nombre" });
     columnas.push({ "data": "appaterno" });
+    columnas.push({ "data": "email" });
     columnas.push({ "data": "genero" });
     columnas.push({ "data": "curp" });
     columnas.push({ "data": "estado" });

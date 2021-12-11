@@ -125,6 +125,7 @@
                 <th>Num. control</th>
                 <th>Nombre</th>
                 <th>A. paterno</th>
+                <th>Email</th>
                 <th>Genero</th>
                 <th>Curp</th>
                 <th>Estado</th>
