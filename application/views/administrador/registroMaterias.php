@@ -18,7 +18,7 @@
                     <div class="row">
                         <div class="col">
                             <input type="number" id="idmateria" name="idmateria" hidden>
-                            <input type="number" class="form-control" id="clave" placeholder="Clave" name="clave"
+                            <input type="text" class="form-control" id="clave" placeholder="Clave" name="clave"
                                 required>
                         </div>
                         <div class="col">
