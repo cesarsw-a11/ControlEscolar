@@ -57,7 +57,7 @@
     </div>
 </div>
 <div class="container mt-4">
-    <h2>Materias</h2>
+    <h2>Asignar materias al docente</h2>
     <!-- Button to Open the Modal -->
 
     <div class="d-flex flex-row-reverse">

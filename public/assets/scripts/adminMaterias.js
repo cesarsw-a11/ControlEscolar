@@ -120,7 +120,7 @@ function ui_obtenerMateria(id_materia) {
             var data = JSON.parse(response)
             data = data.datos
             $("#clave").val(data.clave)
-            $("#nombre").val(data.nombre)
+            $("#nombre").val(data.nombreMateria)
             $("#grado").val(data.grado)
             $("#estado").val(data.estado)
         },

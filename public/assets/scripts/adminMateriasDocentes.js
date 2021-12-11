@@ -144,7 +144,7 @@ function guardarCambiosEditar() {
                     data.mensaje,
                     "success"
                 );
-                $("#modalAgregarMateria").modal("hide")
+                $("#modalAsignarMateria").modal("hide")
                 table.ajax.reload();
             } else {
                 swal(
