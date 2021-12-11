@@ -180,6 +180,31 @@ class Administrador extends CI_Controller {
         echo json_encode($return);
     }
 
+    public function cambiarContrasena(){
+        $datos = $this->input->post();
+        $id_alumno = $datos['id'];
+        $contraseñaEncriptada = hash('sha256',$datos['contraseña']);
+        $datosActualizar = array(
+            "password" => $contraseñaEncriptada
+        );
+        $this->db->where('idalumno', $id_alumno);
+        $this->db->set($datosActualizar);
+        $this->db->update('alumnos');
+        $this->db->trans_complete();
+        if ($this->db->trans_status() === false) {
+            $return = array(
+                'error' => true,
+                'mensaje' => 'No se pudo editar este registro',
+                );
+        } else {
+            $return = array(
+                'error' => false,
+                'mensaje' => 'Registro editado correctamente',
+                );
+        }
+        echo json_encode($return);
+    }
+
     public function editarMateriaDocente(){
         $idmateria = $_POST['id'];
         $datos = $this->input->post();

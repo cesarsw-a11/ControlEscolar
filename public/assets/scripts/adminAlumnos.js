@@ -128,6 +128,7 @@ function ui_modalNuevoAlumno() {
 
 function ui_modalEditarAlumno(id_alumno) {
     $(".modal-footer").html(botonGuardarCambios + botonCerrarModal)
+    $(".changePass").html(`<button class="btn btn-warning" onclick=ui_mostrarCambiarContraseña(${id_alumno})>Cambiar Contraseña</div>`)
     $(".modal-title").html("Editar alumno")
     $("#idalumno").val(id_alumno)
     $("#modalAgregarAlumno").modal()
@@ -154,6 +155,7 @@ function ui_obtenerMateria(id_alumno) {
             $("#localidad").val(data.localidad)
             $("#password").hide()
             $("#cursando").val(data.cursando)
+            $("#adeudos").val(data.adeudos)
             $("#estado").val(data.estado)
 
         },
@@ -168,7 +170,56 @@ function ui_obtenerMateria(id_alumno) {
     });
 
 }
+function ui_mostrarCambiarContraseña(id_alumno){
+    $(".modal-title").html("Editar Contraseña")
+    $(".modal-footer").html(`<button class="btn btn-success" onclick="guardarNuevaContraseña(${id_alumno})">Guardar</button>`+botonCerrarModal)
+    $("#modalCambiarContraseña").modal()
+    $.ajax({
+        url: 'obtenerAlumnoPorId',
+        type: 'POST',
+        data: { "id": id_alumno },
+        success: function (response) {
+            var data = JSON.parse(response)
+            data = data.datos
+            $("#cambiarContraseña").val(data.password)
 
+        },
+        error: function (error, xhr, status) {
+
+            swal(
+                "Error",
+                "No fue posible guardar sus datos, revise su conexión.",
+                "error"
+            );
+        }
+    });
+}
+
+function guardarNuevaContraseña(id_alumno){
+    $.ajax({
+        url: 'cambiarContrasena',
+        type: 'POST',
+        data: { "id": id_alumno,"contraseña" : $("#cambiarContraseña").val() },
+        success: function (response) {
+            swal(
+                "Éxito",
+                "La contraseña se ha cambiado con éxito..",
+                "success"
+            );
+            $("#modalCambiarContraseña").modal("hide")
+
+        },
+        error: function (error, xhr, status) {
+
+            swal(
+                "Error",
+                "No fue posible guardar sus datos, revise su conexión.",
+                "error"
+            );
+        }
+    });
+
+}
 function ui_modalEliminarAlumno(id_alumno) {
     var table = $('#tabla_alumnos').DataTable();
     swal({

@@ -63,7 +63,6 @@
                     </div><br>
                     <div class="row">
                         <div class="col">
-                            <div class="changePass"></div>
                             <input type="password" class="form-control" id="password" placeholder="Contraseña" name="contraseña" required>
                         </div>
                         <div class="col">
@@ -88,6 +87,37 @@
                             </select>
                             <input type="text" class="form-control" id="formulario" name="formulario" value="alumnos" hidden>
                         </div>
+                    </div class="row">
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                    </div>
+                </form>
+                <div class="changePass"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- The Modal -->
+<div class="modal fade" id="modalCambiarContraseña">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title"></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form action="#" id="formcambiarContraseña" >
+                    
+                    <div class="row">
+                        <div class="col">
+                            <input type="password" class="form-control" id="cambiarContraseña" placeholder="Contraseña" name="contraseña" required>
+                        </div>
+                    </div><br>
+                   
                     </div class="row">
                     <!-- Modal footer -->
                     <div class="modal-footer">
