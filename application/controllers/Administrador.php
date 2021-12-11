@@ -563,6 +563,35 @@ class Administrador extends CI_Controller {
        
     }
 
+    public function cronActualizarMaterias(){
+        $dadaDeAlta = 1;
+        $alumnos = "select idalumno,cursando from alumnos";
+        $alumnos = $this->db->query($alumnos)->result_array();
+        $contador = 0;
+        foreach($alumnos as $alumno){
+            $queryMaterias = "select * from materias where grado = '".$alumno['cursando']."' ";
+            $queryMaterias = $this->db->query($queryMaterias)->result_array();
+            
+            foreach($queryMaterias as $materia){
+                $datosCaptura = "select * from capturaCalificaciones where 
+                idMateria = '".$materia['idmateria']."' and idAlumno = '".$alumno["idalumno"]."' ";
+                $datosCaptura = $this->db->query($datosCaptura)->result_array();
+                if(count($datosCaptura) === 0){
+              $datosCaptura = array(
+                  "idMateria" => $materia['idmateria'],
+                  "idAlumno" => $alumno["idalumno"],
+                  "dadaDeAlta" => $dadaDeAlta
+              );
+          
+          $this->db->insert('capturaCalificaciones', $datosCaptura);
+          $contador++;
+            }
+        }
+            
+    }
+    echo "Cron ejecutado con ".$contador." registros actualizados";
+    }
+
     /**
      * Función para validar el acceso a los modulos del administrador
      */

@@ -19,22 +19,18 @@
                     <div class="row">
                         <div class="col">
                             <input type="number" id="idalumno" name="idalumno" hidden>
-                            <input type="number" class="form-control" id="num_control" placeholder="Numero de control"
-                                name="numcontrol" required>
+                            <input type="number" class="form-control" id="num_control" placeholder="Numero de control" name="numcontrol" required>
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="Nombre" name="nombre" id="nombre"
-                            onkeyup="mayus(this);" required>
+                            <input type="text" class="form-control" placeholder="Nombre" name="nombre" id="nombre" onkeyup="mayus(this);" required>
                         </div>
                     </div><br>
                     <div class="row">
                         <div class="col">
-                            <input type="text" class="form-control" id="app_paterno" placeholder="Apellido paterno"
-                                name="appaterno" onkeyup="mayus(this);" required>
+                            <input type="text" class="form-control" id="app_paterno" placeholder="Apellido paterno" name="appaterno" onkeyup="mayus(this);" required>
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="Apellido materno" id="apmaterno"
-                                name="apmaterno" onkeyup="mayus(this);" required>
+                            <input type="text" class="form-control" placeholder="Apellido materno" id="apmaterno" name="apmaterno" onkeyup="mayus(this);" required>
                         </div>
                     </div><br>
                     <div class="row">
@@ -46,8 +42,7 @@
                             </select>
                         </div>
                         <div class="col">
-                            <input class="form-control" id="adeudos" placeholder="Adeudos"
-                                name="adeudos" required>
+                            <input class="form-control" id="adeudos" placeholder="Adeudos" name="adeudos" required>
                         </div>
                     </div><br>
                     <div class="row">
@@ -55,24 +50,20 @@
                             <input type="text" class="form-control" id="curp" placeholder="CURP" name="curp" onkeyup="mayus(this);" required>
                         </div>
                         <div class="col">
-                            <input class="form-control" id="cel" placeholder="Número celular"
-                                name="numcel" required>
+                            <input class="form-control" id="cel" placeholder="Número celular" name="numcel" required>
                         </div>
                     </div><br>
                     <div class="row">
                         <div class="col">
-                            <input type="email" class="form-control" id="email" placeholder="Email" name="correo"
-                                required>
+                            <input type="email" class="form-control" id="email" placeholder="Email" name="correo" required>
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="localidad" placeholder="Localidad"
-                                name="localidad" onkeyup="mayus(this);" required>
+                            <input type="text" class="form-control" id="localidad" placeholder="Localidad" name="localidad" onkeyup="mayus(this);" required>
                         </div>
                     </div><br>
                     <div class="row">
                         <div class="col">
-                            <input type="password" class="form-control" id="password" placeholder="Contraseña"
-                                name="contraseña" required>
+                            <input type="password" class="form-control" id="password" placeholder="Contraseña" name="contraseña" required>
                         </div>
                         <div class="col">
                             <input type="file" id="file" name="file" />
@@ -83,8 +74,8 @@
                             <label for="cursando">Grado cursando:</label>
                             <select class="form-control" id="cursando" placeholder="Cursando" name="cursando">
                                 <option value="-1">CURSANDO</option>
-                                <?php for ($i=1; $i <= 3; $i++) {  ?>
-                                <option value="<?= $i ?>"><?=$i?></option>
+                                <?php for ($i = 1; $i <= 3; $i++) {  ?>
+                                    <option value="<?= $i ?>"><?= $i ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -94,8 +85,7 @@
                                 <option value="1">ACTIVO</option>
                                 <option value="0">INACTIVO</option>
                             </select>
-                            <input type="text" class="form-control" id="formulario" name="formulario" value="alumnos"
-                                hidden>
+                            <input type="text" class="form-control" id="formulario" name="formulario" value="alumnos" hidden>
                         </div>
                     </div class="row">
                     <!-- Modal footer -->
@@ -112,6 +102,9 @@
 
     <div class="d-flex flex-row-reverse">
         <div class="p-2">
+            <button type="button" class="btn btn-warning" onclick="sincronizarMateriasAlumnos()">
+                Sincronizar Materias
+            </button>
             <button type="button" class="btn btn-primary" onclick="ui_modalNuevoAlumno()">
                 + Agregar alumno
             </button>
@@ -139,7 +132,32 @@
 <?php $this->load->view("footer"); ?>
 <script src="<?= base_url('assets/scripts/adminAlumnos.js') ?>"></script>
 <script>
-$(()=>{
-    $("#cel").inputmask("999-999-9999");
-})
+    $(() => {
+        $("#cel").inputmask("999-999-9999");
+    })
+
+    function sincronizarMateriasAlumnos() {
+        $.ajax({
+            url: 'cronActualizarMaterias',
+            type: 'POST',
+            success: function(data) {
+
+
+                swal(
+                    "Exito",
+                    "Se han sincronizado correctamente las materias.",
+                    "success"
+                );
+
+            },
+            error: function(error, xhr, status) {
+
+                swal(
+                    "Error",
+                    "Error durante la sincronizacíon , intente nuevamente",
+                    "error"
+                );
+            }
+        });
+    }
 </script>
