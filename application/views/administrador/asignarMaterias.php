@@ -74,7 +74,7 @@
             <tr>
                 <th>Docente</th>
                 <th>Materia</th>
-                <th>Editar</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>

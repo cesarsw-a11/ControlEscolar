@@ -73,7 +73,7 @@
                 <th>Nombre</th>
                 <th>Grado</th>
                 <th>Estado</th>
-                <th>Editar</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
