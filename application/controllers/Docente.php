@@ -89,7 +89,8 @@ class Docente extends CI_Controller
         $datosActualizar = array(
             "unidad1" => $datos['unidad1'],
             "unidad2" => $datos['unidad2'],
-            "unidad3" => $datos['unidad3']
+            "unidad3" => $datos['unidad3'],
+            "opc" => $datos['observaciones']
         );
 
         $this->db->where('idCalificacion', $datos['idCalificacion']);

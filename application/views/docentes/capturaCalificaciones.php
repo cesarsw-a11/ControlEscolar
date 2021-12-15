@@ -57,19 +57,38 @@
                         <div class="row">
                             <div class="col">
                             <label for="estado">Unidad 1 :</label>
-                                <input type="text" class="form-control" id="unidad1" placeholder="Unidad 1"
-                                    name="unidad1" value="NC">
+                            <select class="form-control" name="unidad1" id="unidad1">
+                                <option value="NC">NC</option>
+                                <?php for($i=5;$i<=10; $i++){?>
+                                    <option value="<?= $i?>"><?= $i?></option>
+                                 <?php } ?>
+                                 </select>
                             </div>
                             <div class="col">
                             <label for="estado">Unidad 2 :</label>
-                                <input type="text" class="form-control" placeholder="unidad2" name="unidad2"
-                                    id="unidad2" value="NC">
+                            <select class="form-control" name="unidad2" id="unidad2">
+                                <option value="NC">NC</option>
+                                <?php for($i=5;$i<=10; $i++){?>
+                                    <option value="<?= $i?>"><?= $i?></option>
+                                <?php } ?>
+                                </select>
                             </div>
                         </div><br>
                         <div class="row">
                             <div class="col">
                                 <label for="estado">Unidad 3 :</label>
-                                <input type="text" class="form-control" id="unidad3" name="unidad3" value="NC">
+                                <select class="form-control" name="unidad3" id="unidad3">
+                                <option value="NC">NC</option>
+                                <?php for($i=5;$i<=10; $i++){?>
+                                    <option value="<?= $i?>"><?= $i?></option>
+                                 <?php } ?>
+                                 </select>
+                            </div>
+                        </div><br>
+                        <div class="row">
+                            <div class="col">
+                                <label for="estado">Observaciones :</label>
+                            <input class="form-control" type="text" name="observaciones" id="observaciones">
                             </div>
                         </div>
                         <!-- Modal footer -->
