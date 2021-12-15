@@ -17,19 +17,16 @@
                 <form action="#" id="guardarDocenteForm" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col">
-                        <input type="number" id="iddocente" name="iddocente" hidden>
-                            <input type="text" class="form-control" id="nombre" placeholder="Nombre" name="nombre"
-                            onkeyup="mayus(this);" required>
+                            <input type="number" id="iddocente" name="iddocente" hidden>
+                            <input type="text" class="form-control" id="nombre" placeholder="Nombre" name="nombre" onkeyup="mayus(this);" required>
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="Apellido paterno" name="appaterno"
-                                id="appaterno" onkeyup="mayus(this);" required>
+                            <input type="text" class="form-control" placeholder="Apellido paterno" name="appaterno" id="appaterno" onkeyup="mayus(this);" required>
                         </div>
                     </div><br>
                     <div class="row">
                         <div class="col">
-                            <input type="text" class="form-control" id="apmaterno" placeholder="Apellido materno"
-                                name="apmaterno" onkeyup="mayus(this);" required>
+                            <input type="text" class="form-control" id="apmaterno" placeholder="Apellido materno" name="apmaterno" onkeyup="mayus(this);" required>
                         </div>
                         <div class="col">
                             <select name="genero" name="genero" id="genero" class="form-control">
@@ -41,12 +38,10 @@
                     </div><br>
                     <div class="row">
                         <div class="col">
-                            <input type="email" class="form-control" id="email" placeholder="Email" name="email"
-                                required>
+                            <input type="email" class="form-control" id="email" placeholder="Email" name="email" required>
                         </div>
                         <div class="col">
-                            <input type="password" class="form-control" id="password" placeholder="Contraseña"
-                                name="password" required>
+                            <input type="password" class="form-control" id="password" placeholder="Contraseña" name="password" required>
                         </div>
                     </div><br>
                     <div class="row">
@@ -61,8 +56,7 @@
                                 <option value="1">ACTIVO</option>
                                 <option value="0">INACTIVO</option>
                             </select>
-                            <input type="text" class="form-control" id="formulario" name="formulario" value="docentes"
-                                hidden>
+                            <input type="text" class="form-control" id="formulario" name="formulario" value="docentes" hidden>
                         </div>
                     </div>
                     <!-- Modal footer -->

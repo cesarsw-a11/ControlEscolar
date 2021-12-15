@@ -18,20 +18,18 @@
                     <div class="row">
                         <div class="col">
                             <input type="number" id="idmateria" name="idmateria" hidden>
-                            <input type="text" class="form-control" id="clave" placeholder="Clave" name="clave"
-                                required>
+                            <input type="text" class="form-control" id="clave" placeholder="Clave" name="clave" required>
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="Nombre materia" name="nombre"
-                                id="nombre" required>
+                            <input type="text" class="form-control" placeholder="Nombre materia" name="nombre" id="nombre" required>
                         </div>
                     </div><br>
                     <select class="form-control" id="grado" placeholder="Grado" name="grado">
-                                <option value="-1">GRADO</option>
-                                <?php for ($i=1; $i <= 3; $i++) {  ?>
-                                <option value="<?= $i ?>"><?=$i?></option>
-                                <?php } ?>
-                            </select>
+                        <option value="-1">GRADO</option>
+                        <?php for ($i = 1; $i <= 3; $i++) {  ?>
+                            <option value="<?= $i ?>"><?= $i ?></option>
+                        <?php } ?>
+                    </select>
                     <br>
                     <div class="row">
                         <div class="col">
@@ -40,8 +38,7 @@
                                 <option value="1">ACTIVO</option>
                                 <option value="0">INACTIVO</option>
                             </select>
-                            <input type="text" class="form-control" id="formulario" name="formulario" value="materias"
-                                hidden>
+                            <input type="text" class="form-control" id="formulario" name="formulario" value="materias" hidden>
                         </div>
                     </div>
                     <!-- Modal footer -->

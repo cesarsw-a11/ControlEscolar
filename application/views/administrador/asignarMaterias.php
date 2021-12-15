@@ -19,13 +19,13 @@
                         <div class="col">
                             <label for="docente">Docente:</label>
                             <select id="docente" name="docente" class="form-control">
-                                <?php 
-                                if($docentes){
-                                foreach($docentes as $docente){ ?>
-                                    <option value="<?= $docente['iddocente']?>"><?= $docente['nombre']?></option>
-                                <?php }
-                                }else{?>
-                                <option value="-1">Aun no hay docentes creados</option>
+                                <?php
+                                if ($docentes) {
+                                    foreach ($docentes as $docente) { ?>
+                                        <option value="<?= $docente['iddocente'] ?>"><?= $docente['nombre'] ?></option>
+                                    <?php }
+                                } else { ?>
+                                    <option value="-1">Aun no hay docentes creados</option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -34,17 +34,17 @@
                         <div class="col">
                             <label for="materia">Materia:</label>
                             <select id="materia" name="materia" class="form-control">
-                            <?php 
-                                if($materias){
-                                foreach($materias as $materia){ ?>
-                                    <option value="<?= $materia['idmateria']?>"><?= $materia['nombre']?></option>
-                                <?php }
-                                }else{?>
-                                <option value="-1">Aun no hay materias creadas</option>
+                                <?php
+                                if ($materias) {
+                                    foreach ($materias as $materia) { ?>
+                                        <option value="<?= $materia['idmateria'] ?>"><?= $materia['nombre'] ?></option>
+                                    <?php }
+                                } else { ?>
+                                    <option value="-1">Aun no hay materias creadas</option>
                                 <?php } ?>
                             </select>
-                            <input type="text" class="form-control" id="formulario" name="formulario"  hidden>
-                            <input type="text" class="form-control" id="id" name="id"  hidden>
+                            <input type="text" class="form-control" id="formulario" name="formulario" hidden>
+                            <input type="text" class="form-control" id="id" name="id" hidden>
                         </div>
                     </div>
                     <!-- Modal footer -->

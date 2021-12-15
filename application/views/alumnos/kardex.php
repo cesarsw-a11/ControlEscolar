@@ -3,17 +3,16 @@
 
 <div class="container">
     <div class="py-5 text-center">
-        <img class="d-block mx-auto mb-4 rounded-circle" src="<?= base_url("imagenes/Logo.jpg") ;?>" alt="" width="150"
-            height="150">
+        <img class="d-block mx-auto mb-4 rounded-circle" src="<?= base_url("imagenes/Logo.jpg"); ?>" alt="" width="150" height="150">
         <h4>Escuela Secundaria Técnica 22,La Huerta</h4>
         <h4>Kardex</h4>
     </div>
     <div class="row">
         <div class="col-md-6">
             <label for="firstName">Alumno:
-                <?=$alumno->numcontrol." - ". $alumno->nombre." ".$alumno->appaterno." ".$alumno->apmaterno?></label>
+                <?= $alumno->numcontrol . " - " . $alumno->nombre . " " . $alumno->appaterno . " " . $alumno->apmaterno ?></label>
         </div>
-        <input type="text" id="id_alumno" value="<?=$alumno->idalumno?>" hidden>
+        <input type="text" id="id_alumno" value="<?= $alumno->idalumno ?>" hidden>
         <div class="col-md-6">
             <label for="lastName">Año cursado: <?= $alumno->cursando ?></label>
         </div>
@@ -50,50 +49,50 @@
 </div>
 <?php $this->load->view("footer"); ?>
 <script>
-$(() => {
-    listarMaterias()
-})
+    $(() => {
+        listarMaterias()
+    })
 
-function listarMaterias() {
-    var columnas = [];
-    columnas.push({
-        "data": "clave"
-    });
-    columnas.push({
-        "data": "nombreMateria"
-    });
-    columnas.push({
-        "data": "promedio"
-    });
-    columnas.push({
-        "data": "opc"
-    });
-    columnas.push({
-        "data": "inasistencias"
-    });
+    function listarMaterias() {
+        var columnas = [];
+        columnas.push({
+            "data": "clave"
+        });
+        columnas.push({
+            "data": "nombreMateria"
+        });
+        columnas.push({
+            "data": "promedio"
+        });
+        columnas.push({
+            "data": "opc"
+        });
+        columnas.push({
+            "data": "inasistencias"
+        });
 
-    var table = $('#tabla_materias').DataTable({
-        'processing': true,
-        // 'serverSide': true,
-        'scrollY': "400px",
-        'paging': true,
-        'ajax': {
-            "url": "obtenerDataKardex",
-            "type": "POST",
-            "data": {
-                "alumno": $("#id_alumno").val()
-            },
-            "dataSrc": function(json) {
-                console.log(json.length)
-                for (var i = 0, ien = json.length; i < ien; i++) {
-                   /*  json[i]['inasistencias'] = `0` */
+        var table = $('#tabla_materias').DataTable({
+            'processing': true,
+            // 'serverSide': true,
+            'scrollY': "400px",
+            'paging': true,
+            'ajax': {
+                "url": "obtenerDataKardex",
+                "type": "POST",
+                "data": {
+                    "alumno": $("#id_alumno").val()
+                },
+                "dataSrc": function(json) {
+                    console.log(json.length)
+                    for (var i = 0, ien = json.length; i < ien; i++) {
+                        /*  json[i]['inasistencias'] = `0` */
+                    }
+                    return json;
                 }
-                return json;
-            }
-        },
-        "columns": JSON.parse(JSON.stringify(columnas))
+            },
+            "columns": JSON.parse(JSON.stringify(columnas))
 
-    });
+        });
 
-}
+    }
 </script>

@@ -110,22 +110,22 @@
 
             <!-- Modal body -->
             <div class="modal-body">
-                <form action="#" id="formcambiarContraseña" >
-                    
+                <form action="#" id="formcambiarContraseña">
+
                     <div class="row">
                         <div class="col">
                             <input type="password" class="form-control" id="cambiarContraseña" placeholder="Contraseña" name="contraseña" required>
                         </div>
                     </div><br>
-                   
-                    </div class="row">
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                    </div>
-                </form>
+
+            </div class="row">
+            <!-- Modal footer -->
+            <div class="modal-footer">
             </div>
+            </form>
         </div>
     </div>
+</div>
 </div>
 <div class="container mt-4">
     <h2>Alumnos</h2>
