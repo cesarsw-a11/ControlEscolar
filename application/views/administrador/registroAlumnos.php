@@ -22,15 +22,15 @@
                             <input type="number" class="form-control" id="num_control" placeholder="Numero de control" name="numcontrol" required>
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="Nombre" name="nombre" id="nombre" onkeyup="mayus(this);" required>
+                            <input pattern="[A-Za-z0-9].{1,}" type="text" class="form-control" placeholder="Nombre" name="nombre" id="nombre" onkeypress="return /[a-z]/i.test(event.key)"  onkeyup="mayus(this);" required>
                         </div>
                     </div><br>
                     <div class="row">
                         <div class="col">
-                            <input type="text" class="form-control" id="app_paterno" placeholder="Apellido paterno" name="appaterno" onkeyup="mayus(this);" required>
+                            <input pattern="[a-zA-Z]+" type="text" class="form-control" id="app_paterno" placeholder="Apellido paterno" name="appaterno" onkeyup="mayus(this);" onkeypress="return /[a-z]/i.test(event.key)"  required>
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="Apellido materno" id="apmaterno" name="apmaterno" onkeyup="mayus(this);" required>
+                            <input pattern="[a-zA-Z]+" type="text" class="form-control" placeholder="Apellido materno" id="apmaterno" name="apmaterno" onkeyup="mayus(this);" onkeypress="return /[a-z]/i.test(event.key)"  required>
                         </div>
                     </div><br>
                     <div class="row">
@@ -58,7 +58,7 @@
                             <input type="email" class="form-control" id="email" placeholder="Email" name="correo" required>
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="localidad" placeholder="Localidad" name="localidad" onkeyup="mayus(this);" required>
+                            <input type="text" class="form-control" id="localidad" placeholder="Localidad" name="localidad" onkeyup="mayus(this);" onkeypress="return /[a-z]/i.test(event.key)"  required>
                         </div>
                     </div><br>
                     <div class="row">
