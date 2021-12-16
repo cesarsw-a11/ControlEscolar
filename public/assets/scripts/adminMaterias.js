@@ -67,6 +67,7 @@ $(document).ready(() => {
 
 function listarMaterias(){
     var columnas = [];
+    columnas.push({"data" : "grupo"});
     columnas.push({"data" : "clave"});
     columnas.push({"data" : "nombre"});
     columnas.push({"data" : "grado"});
@@ -234,6 +235,7 @@ function llenarTabla(response) {
     let rowNode;
     //Agregamos la fila a la tabla
     rowNode = table.row.add({
+        "grupo":data.grupo,
        "clave": data.clave,
        "nombre":data.nombre,
        "grado":data.grado,

@@ -14,8 +14,7 @@ class Administrador extends CI_Controller
     {
         #Solo los usuarios de tipo Admin podran acceder a esta vista.
         if ($this->validarAcceso()) {
-            $data['redirect'] = "administrador";
-            $this->load->view('administrador/menuPrincipal', $data);
+           $this->alumnos();
         }
     }
 
@@ -77,10 +76,11 @@ class Administrador extends CI_Controller
     public function actualizarInasistencias()
     {
         $inasistencia = $this->input->post("inasistencia");
+        $conducta = $this->input->post("conducta");
         $idalumno = $this->input->post("idalumno");
 
         $this->db->where('idalumno', $idalumno);
-        $this->db->set(["inasistencias" => $inasistencia]);
+        $this->db->set(["inasistencias" => $inasistencia, "conducta" => $conducta]);
         $this->db->update('alumnos');
         $this->db->trans_complete();
         if ($this->db->trans_status() === false) {
@@ -204,6 +204,31 @@ class Administrador extends CI_Controller
         $this->db->where('idalumno', $id_alumno);
         $this->db->set($datosActualizar);
         $this->db->update('alumnos');
+        $this->db->trans_complete();
+        if ($this->db->trans_status() === false) {
+            $return = array(
+                'error' => true,
+                'mensaje' => 'No se pudo editar este registro',
+            );
+        } else {
+            $return = array(
+                'error' => false,
+                'mensaje' => 'Registro editado correctamente',
+            );
+        }
+        echo json_encode($return);
+    }
+
+    public function cambiarContrasenaDocente(){
+        $datos = $this->input->post();
+        $id_docente = $datos['id'];
+        $contraseñaEncriptada = hash('sha256', $datos['contraseña']);
+        $datosActualizar = array(
+            "password" => $contraseñaEncriptada
+        );
+        $this->db->where('iddocente', $id_docente);
+        $this->db->set($datosActualizar);
+        $this->db->update('docentes');
         $this->db->trans_complete();
         if ($this->db->trans_status() === false) {
             $return = array(
@@ -517,7 +542,8 @@ class Administrador extends CI_Controller
                     "clave" => $data['clave'],
                     "nombre" => $data['nombre'],
                     "grado" => $data['grado'],
-                    "estado" => $data['estado']
+                    "estado" => $data['estado'],
+                    "grupo" => $data['grupo']
                 );
                 break;
             case 'materiasDocentes':

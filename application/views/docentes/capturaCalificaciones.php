@@ -33,7 +33,7 @@
                 <th>Unidad 1</th>
                 <th>Unidad 2</th>
                 <th>Unidad 3</th>
-                <th>Unidad OPC</th>
+                <th>Observaciones</th>
                 <th>Capturar</th>
             </tr>
         </thead>

@@ -152,6 +152,7 @@
                 <th>Email</th>
                 <th>Genero</th>
                 <th>Curp</th>
+                <th>Grado</th>
                 <th>Estado</th>
                 <th>Acciones</th>
             </tr>

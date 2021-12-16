@@ -62,8 +62,8 @@ $(document).ready(() => {
 
  function listarMaterias(){
     var columnas = [];
-    columnas.push({"data" : "nombreDocente"});
-    columnas.push({"data" : "nombreMateria"});
+    columnas.push({"data" : "nombre"});
+    columnas.push({"data" : "nombreMaterias"});
     columnas.push({"data" : "botonEditar"});
 
 var table = $('#tabla_materias').DataTable({
@@ -76,6 +76,8 @@ var table = $('#tabla_materias').DataTable({
         "type": "POST",
         "dataSrc": function (json) {
             for (var i = 0, ien = json.length; i < ien; i++) {
+                json[i]['nombre'] = json[i]['nombreDocente']+" "+json[i]['appaterno']+" "+json[i]['apmaterno']
+                json[i]['nombreMaterias'] = json[i]['nombreMateria']+" "+json[i]['grupo']+" - "+json[i]['grado']+"° Grado"
                 json[i]['botonEditar'] = `<button class="btn btn-info" onclick="ui_modalEditarMateria(${json[i].id})">Editar</button>
                 <button class="btn btn-danger" onclick="ui_modalEliminarMateria(${json[i].id})">Eliminar</button>` 
             }
@@ -226,8 +228,8 @@ function llenarTabla(response) {
     let rowNode;
     //Agregamos la fila a la tabla
     rowNode = table.row.add({
-       "nombreDocente": data.datosJoin[0].nombreDocente,
-       "nombreMateria":data.datosJoin[0].nombreMateria,
+       "nombre": data.datosJoin[0].nombreDocente + " "+data.datosJoin[0].appaterno+" "+data.datosJoin[0].apmaterno,
+       "nombreMaterias":data.datosJoin[0].nombreMateria+" "+data.datosJoin[0].grupo+" - "+data.datosJoin[0].grado+"° Grado",
        "botonEditar":boton_editar
     }).draw();
 }

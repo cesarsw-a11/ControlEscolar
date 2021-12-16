@@ -18,15 +18,15 @@
                     <div class="row">
                         <div class="col">
                             <input type="number" id="iddocente" name="iddocente" hidden>
-                            <input type="text" class="form-control" id="nombre" placeholder="Nombre" name="nombre" onkeyup="mayus(this);" onkeypress="return /[a-z]/i.test(event.key)"  required>
+                            <input type="text" class="form-control" id="nombre" placeholder="Nombre" name="nombre" onkeyup="mayus(this);" onkeypress="return /[a-z]/i.test(event.key)" required>
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="Apellido paterno" name="appaterno" id="appaterno" onkeyup="mayus(this);" onkeypress="return /[a-z]/i.test(event.key)"  required>
+                            <input type="text" class="form-control" placeholder="Apellido paterno" name="appaterno" id="appaterno" onkeyup="mayus(this);" onkeypress="return /[a-z]/i.test(event.key)" required>
                         </div>
                     </div><br>
                     <div class="row">
                         <div class="col">
-                            <input type="text" class="form-control" id="apmaterno" placeholder="Apellido materno" name="apmaterno" onkeyup="mayus(this);" onkeypress="return /[a-z]/i.test(event.key)"  required>
+                            <input type="text" class="form-control" id="apmaterno" placeholder="Apellido materno" name="apmaterno" onkeyup="mayus(this);" onkeypress="return /[a-z]/i.test(event.key)" required>
                         </div>
                         <div class="col">
                             <select name="genero" name="genero" id="genero" class="form-control">
@@ -63,7 +63,37 @@
                     <div class="modal-footer">
                     </div>
                 </form>
+                <div class="changePass"></div>
             </div>
+        </div>
+    </div>
+</div>
+<!-- The Modal -->
+<div class="modal fade" id="modalCambiarContraseña">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title-contraseña"></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form action="#" id="formcambiarContraseña">
+
+                    <div class="row">
+                        <div class="col">
+                            <input type="password" class="form-control" id="cambiarContraseña" placeholder="Contraseña" name="contraseña" required>
+                        </div>
+                    </div><br>
+
+            </div class="row">
+            <!-- Modal footer -->
+            <div class="modal-footer">
+            </div>
+            </form>
         </div>
     </div>
 </div>
@@ -73,6 +103,9 @@
 
     <div class="d-flex flex-row-reverse">
         <div class="p-2">
+            <button type="button" class="btn btn-warning" onclick="sincronizarMateriasAlumnos()">
+                Sincronizar Materias
+            </button>
             <button type="button" class="btn btn-primary" onclick="ui_modalNuevoDocente()">
                 + Agregar Docente
             </button>
@@ -95,3 +128,30 @@
 </div>
 <?php $this->load->view("footer"); ?>
 <script src="<?= base_url('assets/scripts/adminDocentes.js') ?>"></script>
+<script>
+
+    function sincronizarMateriasAlumnos() {
+        $.ajax({
+            url: 'cronActualizarMaterias',
+            type: 'POST',
+            success: function(data) {
+
+
+                swal(
+                    "Exito",
+                    "Se han sincronizado correctamente las materias.",
+                    "success"
+                );
+
+            },
+            error: function(error, xhr, status) {
+
+                swal(
+                    "Error",
+                    "Error durante la sincronizacíon , intente nuevamente",
+                    "error"
+                );
+            }
+        });
+    }
+</script>

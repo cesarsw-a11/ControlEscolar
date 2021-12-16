@@ -334,6 +334,7 @@ function listarAlumnos() {
     columnas.push({ "data": "email" });
     columnas.push({ "data": "genero" });
     columnas.push({ "data": "curp" });
+    columnas.push({ "data": "cursando" });
     columnas.push({ "data": "estado" });
     columnas.push({ "data": "acciones" });
 
@@ -343,7 +344,7 @@ function listarAlumnos() {
         'scrollY': "400px",
         'paging': true,
         'ajax': {
-            "url": "obtenerAlumnos",
+            "url": base_url+"administrador/obtenerAlumnos",
             "type": "POST",
             "dataSrc": function (json) {
                 for (var i = 0, ien = json.length; i < ien; i++) {
@@ -375,6 +376,7 @@ function llenarTabla(response, tipoFormulario) {
         "email" : data.email,
         "genero": data.genero,
         "curp": data.curp,
+        "cursando" : data.cursando,
         "estado": estatusAlumno,
         "acciones": boton_editar
     }).draw()

@@ -38,7 +38,7 @@
                         docente</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="<?= base_url("administrador/tomarInasistencias") ?>">Inasistencias</a>
+                    <a class="nav-link active" aria-current="page" href="<?= base_url("administrador/tomarInasistencias") ?>">Inasistencias y Conducta</a>
                 </li>
             </ul>
             <!-- <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -53,11 +53,11 @@
             <ul class="navbar-nav ms-auto">
                 <?php if ($this->session->userdata("rol") == 3) { ?>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/alumno">Home</a>
+                        <a class="nav-link active" aria-current="page" href="/alumno">Inicio</a>
                     </li>
                 <?php } elseif ($this->session->userdata("rol") == 2) { ?>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/docente">Home</a>
+                        <a class="nav-link active" aria-current="page" href="/docente">Inicio</a>
                     </li>
                 <?php } ?>
                 <?php if ($this->session->userdata("rol") == 3) { ?>

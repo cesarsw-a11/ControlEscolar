@@ -11,6 +11,7 @@
         <thead>
             <tr>
                 <th>Grupo</th>
+                <th>Grado</th>
                 <th>Asignatura</th>
                 <th>Plan</th>
                 <th>Programa</th>

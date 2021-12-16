@@ -75,10 +75,62 @@ function ui_modalNuevoDocente() {
 
 function ui_modalEditarDocente(id_docente) {
     $(".modal-footer").html(botonGuardarCambios + botonCerrarModal)
+    $(".changePass").html(`<button class="btn btn-warning" onclick=ui_mostrarCambiarContraseña(${id_docente})>Cambiar Contraseña</div>`)
     $(".modal-title").html("Editar Docente")
     $("#iddocente").val(id_docente)
     $("#modalAgregarDocente").modal()
     ui_obtenerMateria(id_docente)
+
+}
+
+function ui_mostrarCambiarContraseña(id_docente){
+    $(".modal-title-contraseña").html("Editar Contraseña")
+    $(".modal-footer").html(`<button class="btn btn-success" onclick="guardarNuevaContraseña(${id_docente})">Guardar</button>`+botonCerrarModal)
+    $("#modalCambiarContraseña").modal()
+    $.ajax({
+        url: 'obtenerDocentePorId',
+        type: 'POST',
+        data: { "id": id_docente },
+        success: function (response) {
+            var data = JSON.parse(response)
+            data = data.datos
+            $("#cambiarContraseña").val(data.password)
+
+        },
+        error: function (error, xhr, status) {
+
+            swal(
+                "Error",
+                "No fue posible guardar sus datos, revise su conexión.",
+                "error"
+            );
+        }
+    });
+}
+
+function guardarNuevaContraseña(id_alumno){
+    $.ajax({
+        url: 'cambiarContrasenaDocente',
+        type: 'POST',
+        data: { "id": id_alumno,"contraseña" : $("#cambiarContraseña").val() },
+        success: function (response) {
+            swal(
+                "Éxito",
+                "La contraseña se ha cambiado con éxito..",
+                "success"
+            );
+            $("#modalCambiarContraseña").modal("hide")
+
+        },
+        error: function (error, xhr, status) {
+
+            swal(
+                "Error",
+                "No fue posible guardar sus datos, revise su conexión.",
+                "error"
+            );
+        }
+    });
 
 }
 
@@ -97,6 +149,7 @@ function ui_obtenerMateria(id_docente) {
             $("#email").val(data.email)
             $("#password").val(data.password)
             $("#estado").val(data.estado)
+            $("#password").hide()
 
         },
         error: function (error, xhr, status) {
@@ -210,7 +263,7 @@ function guardarCambiosEditar() {
 
 function listarDocentes() {
     var columnas = [];
-    columnas.push({ "data": "nombre" });
+    columnas.push({ "data": "nombreDocente" });
     columnas.push({ "data": "email" });
     columnas.push({ "data": "estado" });
     columnas.push({ "data": "acciones" });
@@ -225,6 +278,7 @@ function listarDocentes() {
             "type": "POST",
             "dataSrc": function (json) {
                 for (var i = 0, ien = json.length; i < ien; i++) {
+                    json[i]['nombreDocente'] = json[i]['nombre']+" "+json[i]['appaterno']+" "+json[i]['apmaterno']
                     json[i]['estado'] = json[i].estado == 1 ? 'Activo' : 'Inactivo'
                     json[i]['acciones'] = `<button class="btn btn-info" onclick="ui_modalEditarDocente(${json[i].iddocente})">Editar</button>
                 <button class="btn btn-danger" onclick="ui_modalEliminarDocente(${json[i].iddocente})">Eliminar</button>`
@@ -247,7 +301,7 @@ function llenarTabla(response, tipoFormulario) {
         rowNode;
     //Agregamos la fila a la tabla
     rowNode = table.row.add({
-        "nombre": data.nombre,
+        "nombreDocente": data.nombre+" "+data.appaterno+" "+data.apmaterno,
         "email": data.email,
         "estado": estatusDocente,
         "acciones": boton_editar

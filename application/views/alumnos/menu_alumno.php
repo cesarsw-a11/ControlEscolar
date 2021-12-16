@@ -77,6 +77,16 @@
                     </div>
                 </div>
                 <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="firstName">Inasistencias:</label>
+                        <input type="text" class="form-control" id="firstName" placeholder="" value="<?= $alumno->inasistencias ?>" disabled>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="lastName">Conducta:</label>
+                        <input type="text" class="form-control" id="lastName" placeholder="" value="<?= $alumno->conducta ?>" disabled>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-md-12 mb-3">
                         <label for="firstName">Estado:</label>
                         <?php if ($alumno->estado == 1) { ?>

@@ -22,7 +22,7 @@
                                 <?php
                                 if ($docentes) {
                                     foreach ($docentes as $docente) { ?>
-                                        <option value="<?= $docente['iddocente'] ?>"><?= $docente['nombre'] ?></option>
+                                        <option value="<?= $docente['iddocente'] ?>"><?= $docente['nombre']." ".$docente['appaterno']." ".$docente['apmaterno'] ?></option>
                                     <?php }
                                 } else { ?>
                                     <option value="-1">Aun no hay docentes creados</option>
@@ -37,7 +37,7 @@
                                 <?php
                                 if ($materias) {
                                     foreach ($materias as $materia) { ?>
-                                        <option value="<?= $materia['idmateria'] ?>"><?= $materia['nombre'] ?></option>
+                                        <option value="<?= $materia['idmateria'] ?>"><?= $materia['nombre']."-".$materia['grupo'] ?></option>
                                     <?php }
                                 } else { ?>
                                     <option value="-1">Aun no hay materias creadas</option>
@@ -62,6 +62,9 @@
 
     <div class="d-flex flex-row-reverse">
         <div class="p-2">
+        <button type="button" class="btn btn-warning" onclick="sincronizarMateriasAlumnos()">
+                Sincronizar Materias
+            </button>
             <button type="button" class="btn btn-primary" onclick="ui_modalAsignarMateria()">
                 + Agregar materia
             </button>
@@ -83,3 +86,29 @@
 </div>
 <?php $this->load->view("footer"); ?>
 <script src="<?= base_url('assets/scripts/adminMateriasDocentes.js') ?>"></script>
+<script>
+    function sincronizarMateriasAlumnos() {
+        $.ajax({
+            url: 'cronActualizarMaterias',
+            type: 'POST',
+            success: function(data) {
+
+
+                swal(
+                    "Exito",
+                    "Se han sincronizado correctamente las materias.",
+                    "success"
+                );
+
+            },
+            error: function(error, xhr, status) {
+
+                swal(
+                    "Error",
+                    "Error durante la sincronizacíon , intente nuevamente",
+                    "error"
+                );
+            }
+        });
+    }
+</script>

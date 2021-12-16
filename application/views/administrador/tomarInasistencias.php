@@ -1,7 +1,7 @@
 <?php $this->load->view("head"); ?>
 <?php $this->load->view("header"); ?>
 <div class="container mt-4">
-    <h2>Inasistencias</h2>
+    <h2>Inasistencias y Conducta</h2>
     <!-- Button to Open the Modal -->
 
 
@@ -13,6 +13,7 @@
                 <th>Correo</th>
                 <th>Adeudos</th>
                 <th>Inasistencias</th>
+                <th>Conducta</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -53,6 +54,9 @@
             "data": "inasistenciasInput"
         });
         columnas.push({
+            "data": "conductaInput"
+        });
+        columnas.push({
             "data": "botonEditar"
         });
 
@@ -67,6 +71,7 @@
                 "dataSrc": function(json) {
                     for (var i = 0, ien = json.length; i < ien; i++) {
                         json[i]['inasistenciasInput'] = `<input type ="text" data-idalumno="${json[i].idalumno}" value="${json[i].inasistencias}" name="inasistencias" id="inasistencias${i}"/>`
+                        json[i]['conductaInput'] = `<input type ="text" data-idalumno="${json[i].idalumno}" value="${json[i].conducta}" name="conducta" id="conducta${i}"/>`
                         json[i]['nombreCompleto'] = json[i].nombre + " " + json[i].appaterno + " " + json[i].apmaterno
                         json[i]['botonEditar'] = `<button class="btn btn-success" onclick="actualizarAsistencia(${i})">Guardar</button>`
                     }
@@ -81,19 +86,21 @@
     function actualizarAsistencia(row) {
         var inputInasistencia = $("#inasistencias" + row).val();
         var idalumno = $("#inasistencias" + row).attr("data-idalumno");
+        var conducta = $("#conducta" + row).val();
         $.ajax({
             url: 'actualizarInasistencias',
             type: 'POST',
             data: {
                 "inasistencia": inputInasistencia,
-                "idalumno": idalumno
+                "idalumno": idalumno,
+                "conducta" : conducta
             },
             success: function(response) {
                 var data = JSON.parse(response)
                 if (data.error == false) {
                     swal(
                         "Exito",
-                        "Inasistencia guardada.",
+                        "Inasistencia y conducta guardadas.",
                         "success"
                     );
                 } else {
@@ -115,5 +122,29 @@
             }
         });
 
+    }
+    function sincronizarMateriasAlumnos() {
+        $.ajax({
+            url: 'cronActualizarMaterias',
+            type: 'POST',
+            success: function(data) {
+
+
+                swal(
+                    "Exito",
+                    "Se han sincronizado correctamente las materias.",
+                    "success"
+                );
+
+            },
+            error: function(error, xhr, status) {
+
+                swal(
+                    "Error",
+                    "Error durante la sincronizacíon , intente nuevamente",
+                    "error"
+                );
+            }
+        });
     }
 </script>

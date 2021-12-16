@@ -61,6 +61,7 @@ $(document).ready(() => {
 
  function listarMaterias(){
     var columnas = [];
+    columnas.push({"data" : "grupo"});
     columnas.push({"data" : "grado"});
     columnas.push({"data" : "nombreMateria"});
     columnas.push({"data" : "Plan"});

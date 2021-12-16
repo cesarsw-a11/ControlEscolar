@@ -35,11 +35,11 @@
     <table id="tabla_materias" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
+                <th>No.</th>
                 <th>Clave</th>
                 <th>Asignatura</th>
                 <th>Calificación</th>
-                <th>OPC</th>
-                <th>Inasistencias</th>
+                <th>Observaciones</th>
             </tr>
         </thead>
         <tbody>
@@ -56,6 +56,9 @@
     function listarMaterias() {
         var columnas = [];
         columnas.push({
+            "data": "No"
+        });
+        columnas.push({
             "data": "clave"
         });
         columnas.push({
@@ -66,9 +69,6 @@
         });
         columnas.push({
             "data": "opc"
-        });
-        columnas.push({
-            "data": "inasistencias"
         });
 
         var table = $('#tabla_materias').DataTable({
@@ -85,6 +85,7 @@
                 "dataSrc": function(json) {
                     console.log(json.length)
                     for (var i = 0, ien = json.length; i < ien; i++) {
+                        json[i]["No"] = i +1;
                         /*  json[i]['inasistencias'] = `0` */
                     }
                     return json;
