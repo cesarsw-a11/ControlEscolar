@@ -78,6 +78,16 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6 mb-3">
+                        <label for="firstName">Número de emergencias:</label>
+                        <input type="text" class="form-control" id="firstName" placeholder="" value="<?= $alumno->emergencia ?>" disabled>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="lastName">Tecnologías:</label>
+                        <input type="text" class="form-control" id="lastName" placeholder="" value="<?= $alumno->tecnologias ?>" disabled>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
                         <label for="firstName">Inasistencias:</label>
                         <input type="text" class="form-control" id="firstName" placeholder="" value="<?= $alumno->inasistencias ?>" disabled>
                     </div>
