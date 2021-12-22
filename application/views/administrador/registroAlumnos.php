@@ -19,7 +19,7 @@
                     <div class="row">
                         <div class="col">
                             <input type="number" id="idalumno" name="idalumno" hidden>
-                            <input type="number" class="form-control" id="num_control" placeholder="Numero de control" name="numcontrol" required>
+                            <input class="form-control" id="num_control" placeholder="Numero de control" name="numcontrol" required>
                         </div>
                         <div class="col">
                             <input pattern="[A-Za-z0-9].{1,}" type="text" class="form-control" placeholder="Nombre" name="nombre" id="nombre" onkeypress="return /[a-z]/i.test(event.key)"  onkeyup="mayus(this);" required>
@@ -59,6 +59,14 @@
                         </div>
                         <div class="col">
                             <input type="text" class="form-control" id="localidad" placeholder="Localidad" name="localidad" onkeyup="mayus(this);" onkeypress="return /[a-z]/i.test(event.key)"  required>
+                        </div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" class="form-control" id="tecnologias" placeholder="Tecnologias" name="tecnologias" onkeypress="return /[a-z]/i.test(event.key)" required>
+                        </div>
+                        <div class="col">
+                            <input class="form-control" id="emergencia" placeholder="Número de Emergencia" name="emergencia" required>
                         </div>
                     </div><br>
                     <div class="row">
@@ -166,6 +174,8 @@
 <script>
     $(() => {
         $("#cel").inputmask("999-999-9999");
+        $("#emergencia").inputmask("999-999-9999");
+        $("#num_control").inputmask("9999999999");
     })
 
     function sincronizarMateriasAlumnos() {

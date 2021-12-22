@@ -142,6 +142,13 @@ class Administrador extends CI_Controller
         $query = $this->db->query($query)->row();
         echo json_encode(['datos' => $query]);
     }
+    public function obtenerMateriaPorId2()
+    {
+        $id = $this->input->post("id");
+        $query = "select * from materias where idmateria = '".$id."' ";
+        $query = $this->db->query($query)->row();
+        echo json_encode(['datos' => $query]);
+    }
 
     public function obtenerMateriaDocentePorId()
     {
@@ -522,7 +529,9 @@ class Administrador extends CI_Controller
                     "foto" => "",
                     "estado" => $data['estado'],
                     "cursando" => $data['cursando'],
-                    "adeudos" => $data['adeudos']
+                    "adeudos" => $data['adeudos'],
+                    "emergencia" => $data['emergencia'],
+                    "tecnologias" => $data['tecnologias']
                 );
                 break;
             case 'docentes':

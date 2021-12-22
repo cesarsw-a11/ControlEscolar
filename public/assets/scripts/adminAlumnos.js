@@ -73,6 +73,10 @@ function mandarFormularioConFoto(formData) {
         swal("Error", "Número de célular incorrecta", "error")
         return false
     }
+    if (!validarTelefono($("#emergencia").val())) {
+        swal("Error", "Número de emergencia incorrecto", "error")
+        return false
+    }
     //En caso de que los datos sean llenados y esten correctos del lado del cliente se mandaran al backend para validarlos
     if (files.length > 0) {
         formData.append('file', files[0]);
@@ -122,6 +126,8 @@ function ui_modalNuevoAlumno() {
     limpiarCampos(nombreFormulario);
     $(".modal-title").html("Agregar nuevo alumno")
     $(".modal-footer").html(botonGuardarNuevaMateria + botonCerrarModal)
+    $(".changePass").hide()
+    $("#password").show()
     $("#modalAgregarAlumno").modal()
 
 }
@@ -130,6 +136,7 @@ function ui_modalEditarAlumno(id_alumno) {
     $(".modal-footer").html(botonGuardarCambios + botonCerrarModal)
     $(".changePass").html(`<button class="btn btn-warning" onclick=ui_mostrarCambiarContraseña(${id_alumno})>Cambiar Contraseña</div>`)
     $(".modal-title").html("Editar alumno")
+    $(".changePass").show()
     $("#idalumno").val(id_alumno)
     $("#modalAgregarAlumno").modal()
     ui_obtenerMateria(id_alumno)
@@ -138,7 +145,7 @@ function ui_modalEditarAlumno(id_alumno) {
 
 function ui_obtenerMateria(id_alumno) {
     $.ajax({
-        url: 'obtenerAlumnoPorId',
+        url: base_url+'administrador/obtenerAlumnoPorId',
         type: 'POST',
         data: { "id": id_alumno },
         success: function (response) {
@@ -151,6 +158,8 @@ function ui_obtenerMateria(id_alumno) {
             $("#genero").val(data.genero)
             $("#curp").val(data.curp)
             $('#cel').inputmask('999-999-9999').val(data.numcel)
+            $('#emergencia').inputmask('999-999-9999').val(data.emergencia)
+            $('#tecnologias').val(data.tecnologias)
             $("#email").val(data.email)
             $("#localidad").val(data.localidad)
             $("#password").hide()
@@ -175,7 +184,7 @@ function ui_mostrarCambiarContraseña(id_alumno){
     $(".modal-footer").html(`<button class="btn btn-success" onclick="guardarNuevaContraseña(${id_alumno})">Guardar</button>`+botonCerrarModal)
     $("#modalCambiarContraseña").modal()
     $.ajax({
-        url: 'obtenerAlumnoPorId',
+        url: base_url+'administrador/obtenerAlumnoPorId',
         type: 'POST',
         data: { "id": id_alumno },
         success: function (response) {
@@ -207,6 +216,7 @@ function guardarNuevaContraseña(id_alumno){
                 "success"
             );
             $("#modalCambiarContraseña").modal("hide")
+            $("#modalAgregarAlumno").modal("hide");
 
         },
         error: function (error, xhr, status) {
@@ -288,7 +298,7 @@ function guardarCambiosEditar() {
     //En caso de que los datos sean llenados y esten correctos del lado del cliente se mandaran al backend para validarlos
     formData.append('file', files[0]);
     $.ajax({
-        url: 'editarAlumno',
+        url: base_url+'editarAlumno',
         type: 'POST',
         data: formData,
         success: function (response) {

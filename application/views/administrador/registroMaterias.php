@@ -26,13 +26,13 @@
                     </div><br>
                     <select class="form-control" id="grado" placeholder="Grado" name="grado">
                         <option value="-1">GRADO</option>
-                        <?php for ($i = 1; $i <= 3; $i++) {  ?>
-                            <option value="<?= $i ?>"><?= $i ?></option>
-                        <?php } ?>
+                        <option value="1" selected>1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
                     </select>
                     <label for="grupo">Grupo:</label>
                     <select class="form-control" id="grupo" placeholder="Grupo" name="grupo">
-                        <option value="1A">1A</option>
+                        <option value="1A" selected>1A</option>
                         <option value="2A">2A</option>
                         <option value="3A">3A</option>
                         <option value="1B">1B</option>

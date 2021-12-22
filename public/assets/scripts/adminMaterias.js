@@ -99,6 +99,8 @@ var table = $('#tabla_materias').DataTable({
 function ui_modalNuevaMateria() {
     limpiarCampos(nombreFormulario);
     $(".modal-title").html("Agregar nueva materia")
+    $("#grado").val("1")
+    $("#grupo").val("1A")
     $(".modal-footer").html(botonGuardarNuevaMateria + botonCerrarModal)
     $("#modalAgregarMateria").modal()
 
@@ -114,14 +116,14 @@ function ui_modalEditarMateria(id_materia) {
 
 function ui_obtenerMateria(id_materia) {
     $.ajax({
-        url: 'obtenerMateriaPorId',
+        url: 'obtenerMateriaPorId2',
         type: 'POST',
         data: { "id": id_materia },
         success: function (response) {
             var data = JSON.parse(response)
             data = data.datos
             $("#clave").val(data.clave)
-            $("#nombre").val(data.nombreMateria)
+            $("#nombre").val(data.nombre)
             $("#grado").val(data.grado)
             $("#estado").val(data.estado)
         },

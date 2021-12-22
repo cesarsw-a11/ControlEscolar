@@ -68,6 +68,8 @@ function mandarFormularioConFoto(formData) {
 function ui_modalNuevoDocente() {
     limpiarCampos(nombreFormulario);
     $(".modal-title").html("Agregar nuevo docente")
+    $(".changePass").hide()
+    $("#password").show()
     $(".modal-footer").html(botonGuardarNuevaMateria + botonCerrarModal)
     $("#modalAgregarDocente").modal()
 
@@ -78,6 +80,8 @@ function ui_modalEditarDocente(id_docente) {
     $(".changePass").html(`<button class="btn btn-warning" onclick=ui_mostrarCambiarContraseña(${id_docente})>Cambiar Contraseña</div>`)
     $(".modal-title").html("Editar Docente")
     $("#iddocente").val(id_docente)
+    $(".changePass").show()
+    $("#password").hide()
     $("#modalAgregarDocente").modal()
     ui_obtenerMateria(id_docente)
 
@@ -119,6 +123,7 @@ function guardarNuevaContraseña(id_alumno){
                 "La contraseña se ha cambiado con éxito..",
                 "success"
             );
+            $("#modalAgregarDocente").modal("hide");
             $("#modalCambiarContraseña").modal("hide")
 
         },
