@@ -20,6 +20,10 @@ $(document).ready(() => {
 
 function mandarFormularioConFoto(formData) {
     var files = $('#file')[0].files;
+    if(!isEmail($("#email").val())){
+        swal("Error", "Fomato de correo incorrecto", "error")
+        return false
+    }
     //En caso de que los datos sean llenados y esten correctos del lado del cliente se mandaran al backend para validarlos
     if (files.length > 0) {
         formData.append('file', files[0]);
@@ -227,6 +231,10 @@ function guardarCambiosEditar() {
     var files = $('#file')[0].files;
     //En caso de que los datos sean llenados y esten correctos del lado del cliente se mandaran al backend para validarlos
     formData.append('file', files[0]);
+    if(!isEmail($("#email").val())){
+        swal("Error", "Fomato de correo incorrecto", "error")
+        return false
+    }
     $.ajax({
         url: base_url+'administrador/editarDocente',
         type: 'POST',

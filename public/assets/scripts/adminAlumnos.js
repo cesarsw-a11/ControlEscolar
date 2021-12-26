@@ -77,6 +77,10 @@ function mandarFormularioConFoto(formData) {
         swal("Error", "Número de emergencia incorrecto", "error")
         return false
     }
+    if(!isEmail($("#email").val())){
+        swal("Error", "Fomato de correo incorrecto", "error")
+        return false
+    }
     //En caso de que los datos sean llenados y esten correctos del lado del cliente se mandaran al backend para validarlos
     if (files.length > 0) {
         formData.append('file', files[0]);
@@ -281,7 +285,10 @@ function ui_modalEliminarAlumno(id_alumno) {
             }
         });
 }
-
+function isEmail(email) {
+    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    return regex.test(email);
+}
 function guardarCambiosEditar() {
     var table = $('#tabla_alumnos').DataTable();
     var formData = new FormData($("#" + nombreFormulario)[0])
@@ -293,6 +300,10 @@ function guardarCambiosEditar() {
     }
     if (!validarTelefono($("#cel").val())) {
         swal("Error", "Número de célular incorrecta", "error")
+        return false
+    }
+    if(!isEmail($("#email").val())){
+        swal("Error", "Fomato de correo incorrecto", "error")
         return false
     }
     //En caso de que los datos sean llenados y esten correctos del lado del cliente se mandaran al backend para validarlos
