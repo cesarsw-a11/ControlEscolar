@@ -18,7 +18,7 @@
                     <div class="row">
                         <div class="col">
                             <input type="number" id="iddocente" name="iddocente" hidden>
-                            <input type="text" class="form-control" id="nombre" placeholder="Nombre" name="nombre" onkeyup="mayus(this);" onkeypress="return /[a-z]/i.test(event.key)" required>
+                            <input type="text" class="form-control" id="nombre" placeholder="Nombre" name="nombre" onkeyup="mayus(this);" onkeypress="return /^[A-Za-z ]+$/.test(event.key)" required>
                         </div>
                         <div class="col">
                             <input type="text" class="form-control" placeholder="Apellido paterno" name="appaterno" id="appaterno" onkeyup="mayus(this);" onkeypress="return /[a-z]/i.test(event.key)" required>

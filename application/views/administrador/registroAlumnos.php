@@ -22,7 +22,7 @@
                             <input class="form-control" id="num_control" placeholder="Numero de control" name="numcontrol" required>
                         </div>
                         <div class="col">
-                            <input pattern="[A-Za-z0-9].{1,}" type="text" class="form-control" placeholder="Nombre" name="nombre" id="nombre" onkeypress="return /[a-z]/i.test(event.key)"  onkeyup="mayus(this);" required>
+                            <input pattern="[A-Za-z0-9].{1,}" type="text" class="form-control" placeholder="Nombre" name="nombre" id="nombre" onkeypress="return /^[A-Za-z ]+$/.test(event.key)"  onkeyup="mayus(this);" required>
                         </div>
                     </div><br>
                     <div class="row">
