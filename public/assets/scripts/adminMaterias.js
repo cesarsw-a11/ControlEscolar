@@ -27,7 +27,7 @@ $(document).ready(() => {
             return false
         }
         $.ajax({
-            url: 'administrador/guardar',
+            url: base_url+'administrador/guardar',
             type: 'POST',
             data: formData,
             success: function (data) {
@@ -116,7 +116,7 @@ function ui_modalEditarMateria(id_materia) {
 
 function ui_obtenerMateria(id_materia) {
     $.ajax({
-        url: 'administrador/obtenerMateriaPorId2',
+        url: base_url+'administrador/obtenerMateriaPorId2',
         type: 'POST',
         data: { "id": id_materia },
         success: function (response) {
@@ -143,7 +143,7 @@ function guardarCambiosEditar() {
     var table = $('#tabla_materias').DataTable();
     var formData = $("#" + nombreFormulario).serialize();
     $.ajax({
-        url: 'administrador/editarMateria',
+        url: base_url+'administrador/editarMateria',
         type: 'POST',
         data: formData,
         success: function (response) {
@@ -192,7 +192,7 @@ function ui_modalEliminarMateria(id_materia){
       function(isConfirm){
         if (isConfirm) {
             $.ajax({
-                url: 'administrador/eliminarMateria',
+                url: base_url+'administrador/eliminarMateria',
                 type: 'POST',
                 data: {"idmateria":id_materia},
                 success: function (response) {
