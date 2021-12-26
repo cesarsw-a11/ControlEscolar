@@ -296,6 +296,9 @@ class Administrador extends CI_Controller
             "localidad" => $datos['localidad'],
             "cursando" => $datos['cursando'],
             "estado" => $datos['estado'],
+            "tecnologias" => $datos['tecnologias'],
+            "adeudos" => $datos['adeudos'],
+            "emergencia" => $datos['emergencia']
             /* "password" => $contraseñaEncriptada */
         );
 

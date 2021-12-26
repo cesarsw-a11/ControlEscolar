@@ -23,7 +23,7 @@ $(document).ready(() => {
 
     function mandarFormularioSinFoto(formData) {
         $.ajax({
-            url: 'guardar',
+            url: base_url+'administrador/guardar',
             type: 'POST',
             data: formData,
             success: function (data) {
@@ -111,7 +111,7 @@ function ui_modalEditarMateria(id_materia) {
 
 function ui_obtenerMateria(id_materia) {
     $.ajax({
-        url: 'obtenerMateriaPorId',
+        url: base_url+'administrador/obtenerMateriaPorId',
         type: 'POST',
         data: { "id": id_materia },
         success: function (response) {
@@ -138,7 +138,7 @@ function guardarCambiosEditar() {
     var table = $('#tabla_materias').DataTable();
     var formData = $("#" + nombreFormulario).serialize();
     $.ajax({
-        url: 'editarMateriaDocente',
+        url: base_url+'administrador/editarMateriaDocente',
         type: 'POST',
         data: formData,
         success: function (response) {
@@ -187,7 +187,7 @@ function ui_modalEliminarMateria(id_materia){
       function(isConfirm){
         if (isConfirm) {
             $.ajax({
-                url: 'eliminarRelacionMateriaDocente',
+                url: base_url+'administrador/eliminarRelacionMateriaDocente',
                 type: 'POST',
                 data: {"idmateria":id_materia},
                 success: function (response) {

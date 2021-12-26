@@ -88,7 +88,7 @@
             function(isConfirm) {
                 if (isConfirm) {
                     $.ajax({
-                        url: 'darAltaMateria',
+                        url: base_url+'alumno/darAltaMateria',
                         type: 'POST',
                         data: {
                             "id_materia": id_materia

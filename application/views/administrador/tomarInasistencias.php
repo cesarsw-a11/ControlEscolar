@@ -88,7 +88,7 @@
         var idalumno = $("#inasistencias" + row).attr("data-idalumno");
         var conducta = $("#conducta" + row).val();
         $.ajax({
-            url: 'actualizarInasistencias',
+            url: base_url+'administrador/actualizarInasistencias',
             type: 'POST',
             data: {
                 "inasistencia": inputInasistencia,
@@ -125,7 +125,7 @@
     }
     function sincronizarMateriasAlumnos() {
         $.ajax({
-            url: 'cronActualizarMaterias',
+            url: base_url+'administrador/cronActualizarMaterias',
             type: 'POST',
             success: function(data) {
 

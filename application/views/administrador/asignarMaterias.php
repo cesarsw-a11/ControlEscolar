@@ -89,7 +89,7 @@
 <script>
     function sincronizarMateriasAlumnos() {
         $.ajax({
-            url: 'cronActualizarMaterias',
+            url: base_url+'administrador/cronActualizarMaterias',
             type: 'POST',
             success: function(data) {
 

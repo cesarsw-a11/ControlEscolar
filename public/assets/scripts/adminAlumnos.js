@@ -81,7 +81,7 @@ function mandarFormularioConFoto(formData) {
     if (files.length > 0) {
         formData.append('file', files[0]);
         $.ajax({
-            url: 'guardar',
+            url: base_url+'administrador/guardar',
             type: 'POST',
             data: formData,
             success: function (data) {
@@ -206,7 +206,7 @@ function ui_mostrarCambiarContraseña(id_alumno){
 
 function guardarNuevaContraseña(id_alumno){
     $.ajax({
-        url: 'cambiarContrasena',
+        url: base_url+'administrador/cambiarContrasena',
         type: 'POST',
         data: { "id": id_alumno,"contraseña" : $("#cambiarContraseña").val() },
         success: function (response) {
@@ -246,7 +246,7 @@ function ui_modalEliminarAlumno(id_alumno) {
         function (isConfirm) {
             if (isConfirm) {
                 $.ajax({
-                    url: 'eliminarAlumno',
+                    url: base_url+'administrador/eliminarAlumno',
                     type: 'POST',
                     data: { "idalumno": id_alumno },
                     success: function (response) {
@@ -298,7 +298,7 @@ function guardarCambiosEditar() {
     //En caso de que los datos sean llenados y esten correctos del lado del cliente se mandaran al backend para validarlos
     formData.append('file', files[0]);
     $.ajax({
-        url: base_url+'editarAlumno',
+        url: base_url+'administrador/editarAlumno',
         type: 'POST',
         data: formData,
         success: function (response) {

@@ -22,7 +22,7 @@ $(document).ready(function () {
                 return false;
             }
             $.ajax({
-                url: "login/acceder",
+                url: base_url+"login/acceder",
                 data: { 'nombre': usuario, 'password': password, 'rol': rol },
                 type: "POST",
                 success: function (response) {

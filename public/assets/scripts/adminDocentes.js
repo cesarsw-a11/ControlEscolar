@@ -24,7 +24,7 @@ function mandarFormularioConFoto(formData) {
     if (files.length > 0) {
         formData.append('file', files[0]);
         $.ajax({
-            url: 'guardar',
+            url: base_url+'administrador/guardar',
             type: 'POST',
             data: formData,
             success: function (data) {
@@ -92,7 +92,7 @@ function ui_mostrarCambiarContraseña(id_docente){
     $(".modal-footer").html(`<button class="btn btn-success" onclick="guardarNuevaContraseña(${id_docente})">Guardar</button>`+botonCerrarModal)
     $("#modalCambiarContraseña").modal()
     $.ajax({
-        url: 'obtenerDocentePorId',
+        url: base_url+'administrador/obtenerDocentePorId',
         type: 'POST',
         data: { "id": id_docente },
         success: function (response) {
@@ -114,7 +114,7 @@ function ui_mostrarCambiarContraseña(id_docente){
 
 function guardarNuevaContraseña(id_alumno){
     $.ajax({
-        url: 'cambiarContrasenaDocente',
+        url: base_url+'administrador/cambiarContrasenaDocente',
         type: 'POST',
         data: { "id": id_alumno,"contraseña" : $("#cambiarContraseña").val() },
         success: function (response) {
@@ -141,7 +141,7 @@ function guardarNuevaContraseña(id_alumno){
 
 function ui_obtenerMateria(id_docente) {
     $.ajax({
-        url: 'obtenerDocentePorId',
+        url: base_url+'administrador/obtenerDocentePorId',
         type: 'POST',
         data: { "id": id_docente },
         success: function (response) {
@@ -185,7 +185,7 @@ function ui_modalEliminarDocente(id_docente) {
         function (isConfirm) {
             if (isConfirm) {
                 $.ajax({
-                    url: 'eliminarDocente',
+                    url: base_url+'administrador/eliminarDocente',
                     type: 'POST',
                     data: { "iddocente": id_docente },
                     success: function (response) {
@@ -228,7 +228,7 @@ function guardarCambiosEditar() {
     //En caso de que los datos sean llenados y esten correctos del lado del cliente se mandaran al backend para validarlos
     formData.append('file', files[0]);
     $.ajax({
-        url: 'editarDocente',
+        url: base_url+'administrador/editarDocente',
         type: 'POST',
         data: formData,
         success: function (response) {
