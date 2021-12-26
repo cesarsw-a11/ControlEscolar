@@ -21,7 +21,7 @@
                             <input type="text" class="form-control" id="clave" placeholder="Clave" name="clave" required>
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="Nombre materia" name="nombre" id="nombre" onkeypress="return /[a-z]/i.test(event.key)" required>
+                            <input type="text" class="form-control" placeholder="Nombre materia" name="nombre" id="nombre" onkeypress="return /^[A-Za-z ]+$/.test(event.key)" required>
                         </div>
                     </div><br>
                     <select class="form-control" id="grado" placeholder="Grado" name="grado">
