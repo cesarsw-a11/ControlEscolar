@@ -66,7 +66,7 @@
                 Sincronizar Materias
             </button>
             <button type="button" class="btn btn-primary" onclick="ui_modalAsignarMateria()">
-                + Agregar materia
+                + Asignar materia a Docente
             </button>
         </div>
     </div>
