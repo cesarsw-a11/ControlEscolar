@@ -13,14 +13,14 @@ $(document).ready(function () {
             let password = $("#pass").val()
             let rol = $("#rol").val()
             //Si el rol no tiene ninguna opcion selecionada se retornara false
-            if (rol === "-1") {
+           /*  if (rol === "-1") {
                 swal(
                     "Error",
                     "Es necesario elegir un rol",
                     "error"
                 );
                 return false;
-            }
+            } */
             $.ajax({
                 url: base_url+"login/acceder",
                 data: { 'nombre': usuario, 'password': password, 'rol': rol },

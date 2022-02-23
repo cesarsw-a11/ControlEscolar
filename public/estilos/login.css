@@ -41,9 +41,9 @@ html {
     border-radius: 3px;
 }
 .form-button {
-    background-color: rgba(255, 235, 59, 0.24);
-    border-color: rgba(255, 235, 59, 0.24);
-    color: #e6e6e6;
+    background-color: lightgray;
+    border-color: lightgray;
+    color: black;
 }
 .form-button:hover,
 .form-button:focus,
@@ -53,9 +53,9 @@ html {
 .form-button:active:hover,
 .form-button.active:hover,
 .form-button.active:focus {
-    background-color: rgba(255, 235, 59, 0.473);
-    border-color: rgba(255, 235, 59, 0.473);
-    color: #e6e6e6;
+    background-color: lightgrey;
+    border-color: lightgray;
+    color: black;
 }
 .button-l {
     width: 100% !important;
@@ -171,7 +171,7 @@ html {
 .main-bg {
 
     background: #424242;
-    background: linear-gradient( #424242, #212121);
+    background: linear-gradient( grey, white);
 }
 
 /* Login & Register Pages*/

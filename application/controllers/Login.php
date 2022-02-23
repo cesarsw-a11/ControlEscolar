@@ -25,10 +25,34 @@ class Login extends CI_Controller
 		$datos = $this->input->post();
 		$nombre = $datos['nombre'];
 		$pass = $datos['password'];
-		$rol = $datos['rol'];
+		$rol = null;
 
 		if (!empty($nombre) && !empty($pass)) {
 			$contraseñaEncriptada = hash("sha256", $pass);
+			$admin = "select * from usuarios where email = '".$nombre."' ";
+			$seAignoRol = false;
+			if($this->db->query($admin)->result()){
+				$admin = $this->db->query($admin)->result();
+				$rol = $admin[0]->id_rol;
+				$seAignoRol = true;
+			}
+			if(!$seAignoRol){
+			$alumno = "select * from alumnos where email = '".$nombre."' ";
+			if($this->db->query($alumno)->result()){
+				$alumno = $this->db->query($alumno)->result();
+				$rol = $alumno[0]->id_rol;
+				$seAignoRol = true;
+			}
+		}
+		if(!$seAignoRol){
+
+			$docente = "select * from docentes where email = '".$nombre."' ";
+			if($this->db->query($docente)->result()){
+				$docente = $this->db->query($docente)->result();
+				$rol = $docente[0]->id_rol;
+				$seAignoRol = true;
+			}
+		}
 			switch ($rol) {
 				case 1:
 					$tabla = "usuarios";

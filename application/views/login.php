@@ -17,7 +17,7 @@
                     <input id="pass" name="password" type="password" class="form-control" placeholder="*****"
                         required />
                 </div>
-                <div class="form-group">
+               <!--  <div class="form-group">
                     <select class="form-control" id="rol">
                         <option value="-1">Rol</option>
                         <?php if(isset($roles)){ ?>
@@ -26,7 +26,7 @@
                         <?php } ?>
                         <?php } ?>
                     </select>
-                </div>
+                </div> -->
                 <button type="submit" class="form-button button-l margin-b" id="btn-login">Iniciar Sesión</button>
 
             </form>
