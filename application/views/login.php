@@ -10,11 +10,11 @@
         <div class="container-content">
             <form class="margin-t" id="login-form">
                 <div class="form-group">
-                    <input id="usuario" name="usuario" type="email" class="form-control" placeholder="Usuario"
+                    <input id="usuario" name="usuario" type="email" class="form-control" placeholder="Usuario" autocomplete="off"
                         required />
                 </div>
                 <div class="form-group">
-                    <input id="pass" name="password" type="password" class="form-control" placeholder="*****"
+                    <input id="pass" name="password" type="password" class="form-control" placeholder="*****" autocomplete="off"
                         required />
                 </div>
                <!--  <div class="form-group">
