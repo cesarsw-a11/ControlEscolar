@@ -31,8 +31,8 @@
                         <div class="col">
                             <select name="genero" name="genero" id="genero" class="form-control">
                                 <option value="-1">Elija genero</option>
-                                <option value="Masculino">Masculino</option>
-                                <option value="Femenino">Femenino</option>
+                                <option value="Masculino">MASCULINO</option>
+                                <option value="Femenino">FEMENINO</option>
                             </select>
                         </div>
                     </div><br>

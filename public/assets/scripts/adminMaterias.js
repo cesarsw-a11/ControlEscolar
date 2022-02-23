@@ -85,8 +85,8 @@ var table = $('#tabla_materias').DataTable({
         "dataSrc": function (json) {
             for (var i = 0, ien = json.length; i < ien; i++) {
                 json[i]['estado'] = json[i].estado == 1 ? 'Activo' : 'Inactivo'
-                json[i]['botonEditar'] = `<button class="btn btn-info" onclick="ui_modalEditarMateria(${json[i].idmateria})">Editar</button>
-                <button class="btn btn-danger" onclick="ui_modalEliminarMateria(${json[i].idmateria})">Eliminar</button>` 
+                json[i]['botonEditar'] = `<button class="btn btn-info" data-toggle="tooltip" title="Editar" onclick="ui_modalEditarMateria(${json[i].idmateria})"><i class="fa fa-pencil" ></i></button>
+                <button class="btn btn-danger" data-toggle="tooltip" title="Eliminar"  onclick="ui_modalEliminarMateria(${json[i].idmateria})"><i class="fa fa-trash" aria-hidden="true"></i></button>` 
             }
            return json;
         }
@@ -232,8 +232,8 @@ function llenarTabla(response) {
     let table = $('#tabla_materias').DataTable();
     let data = response.data
     let estatusMateria = data.estado == 1 ? 'Activo' : 'Inactivo'
-    let boton_editar = `<button class="btn btn-info" onclick="ui_modalEditarMateria(${data.idmateria})">Editar</button>
-    <button class="btn btn-danger" onclick="ui_modalEliminarMateria(${data.idmateria})">Eliminar</button>`;
+    let boton_editar = `<button class="btn btn-info" data-toggle="tooltip" title="Editar" onclick="ui_modalEditarMateria(${data.idmateria})"><i class="fa fa-pencil" ></i></button>
+    <button class="btn btn-danger" data-toggle="tooltip" title="Eliminar"  onclick="ui_modalEliminarMateria(${data.idmateria})"><i class="fa fa-trash" aria-hidden="true"></i></button>`;
     let rowNode;
     //Agregamos la fila a la tabla
     rowNode = table.row.add({

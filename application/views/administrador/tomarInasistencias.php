@@ -73,7 +73,7 @@
                         json[i]['inasistenciasInput'] = `<input type ="text" data-idalumno="${json[i].idalumno}" value="${json[i].inasistencias}" name="inasistencias" id="inasistencias${i}"/>`
                         json[i]['conductaInput'] = `<input type ="text" data-idalumno="${json[i].idalumno}" value="${json[i].conducta}" name="conducta" id="conducta${i}"/>`
                         json[i]['nombreCompleto'] = json[i].nombre + " " + json[i].appaterno + " " + json[i].apmaterno
-                        json[i]['botonEditar'] = `<button class="btn btn-success" onclick="actualizarAsistencia(${i})">Guardar</button>`
+                        json[i]['botonEditar'] = `<button class="btn btn-success" data-toggle="tooltip" title="Guardar" onclick="actualizarAsistencia(${i})"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>`
                     }
                     return json;
                 }

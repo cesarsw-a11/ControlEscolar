@@ -296,8 +296,8 @@ function listarDocentes() {
                 for (var i = 0, ien = json.length; i < ien; i++) {
                     json[i]['nombreDocente'] = json[i]['nombre']+" "+json[i]['appaterno']+" "+json[i]['apmaterno']
                     json[i]['estado'] = json[i].estado == 1 ? 'Activo' : 'Inactivo'
-                    json[i]['acciones'] = `<button class="btn btn-info" onclick="ui_modalEditarDocente(${json[i].iddocente})">Editar</button>
-                <button class="btn btn-danger" onclick="ui_modalEliminarDocente(${json[i].iddocente})">Eliminar</button>`
+                    json[i]['acciones'] = `<button class="btn btn-info" data-toggle="tooltip" title="Editar" onclick="ui_modalEditarDocente(${json[i].iddocente})"><i class="fa fa-pencil" ></i></button>
+                <button class="btn btn-danger" data-toggle="tooltip" title="Eliminar" onclick="ui_modalEliminarDocente(${json[i].iddocente})"><i class="fa fa-trash" aria-hidden="true"></i></button>`
                 }
                 return json;
             }
@@ -312,8 +312,8 @@ function llenarTabla(response, tipoFormulario) {
     let data = response.data,
         estatusDocente = data.estado == 1 ? 'Activo' : 'Inactivo',
         table = $('#tabla_docentes').DataTable(),
-        boton_editar = `<button class="btn btn-info" onclick="ui_modalEditarDocente(${data.iddocente})">Editar</button>
-        <button class="btn btn-danger" onclick="ui_modalEliminarDocente(${data.iddocente})">Eliminar</button>`,
+        boton_editar = `<button class="btn btn-info" data-toggle="tooltip" title="Editar" onclick="ui_modalEditarDocente(${data.iddocente})"><i class="fa fa-pencil" ></i></button>
+        <button class="btn btn-danger" data-toggle="tooltip" title="Eliminar" onclick="ui_modalEliminarDocente(${data.iddocente})"><i class="fa fa-trash" aria-hidden="true"></i></button>`,
         rowNode;
     //Agregamos la fila a la tabla
     rowNode = table.row.add({

@@ -370,8 +370,8 @@ function listarAlumnos() {
             "dataSrc": function (json) {
                 for (var i = 0, ien = json.length; i < ien; i++) {
                     json[i]['estado'] = json[i].estado == 1 ? 'Activo' : 'Inactivo'
-                    json[i]['acciones'] = `<button class="btn btn-info" onclick="ui_modalEditarAlumno(${json[i].idalumno})">Editar</button>
-                <button class="btn btn-danger" onclick="ui_modalEliminarAlumno(${json[i].idalumno})">Eliminar</button>`
+                    json[i]['acciones'] = `<button class="btn btn-info" data-toggle="tooltip" title="Editar" onclick="ui_modalEditarAlumno(${json[i].idalumno})"><i class="fa fa-pencil" ></i></button>
+                <button class="btn btn-danger" data-toggle="tooltip" title="Eliminar" onclick="ui_modalEliminarAlumno(${json[i].idalumno})"><i class="fa fa-trash" aria-hidden="true"></i></button>`
                 }
                 return json;
             }
@@ -386,8 +386,8 @@ function llenarTabla(response, tipoFormulario) {
     let data = response.data,
         estatusAlumno = data.estado == 1 ? 'Activo' : 'Inactivo',
         table = $('#tabla_alumnos').DataTable(),
-        boton_editar = `<button class="btn btn-info" onclick="ui_modalEditarAlumno(${data.idalumno})">Editar</button>
-        <button class="btn btn-danger" onclick="ui_modalEliminarAlumno(${data.idalumno})">Eliminar</button>`,
+        boton_editar = `<button class="btn btn-info" data-toggle="tooltip" title="Editar" onclick="ui_modalEditarAlumno(${data.idalumno})"><i class="fa fa-pencil" ></i></button>
+        <button class="btn btn-danger" data-toggle="tooltip" title="Eliminar" onclick="ui_modalEliminarAlumno(${data.idalumno})"><i class="fa fa-trash" aria-hidden="true"></i></button>`,
         rowNode;
     //Agregamos la fila a la tabla
     rowNode = table.row.add({

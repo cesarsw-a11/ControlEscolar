@@ -37,12 +37,12 @@
                         <div class="col">
                             <select name="genero" name="genero" id="genero" class="form-control">
                                 <option value="-1">Elija genero</option>
-                                <option value="Masculino">Masculino</option>
-                                <option value="Femenino">Femenino</option>
+                                <option value="Masculino">MASCULINO</option>
+                                <option value="Femenino">FEMENINO</option>
                             </select>
                         </div>
                         <div class="col">
-                            <input class="form-control" id="adeudos" placeholder="Adeudos" name="adeudos" required>
+                            <input class="form-control" id="adeudos" placeholder="Adeudos" name="adeudos" onkeyup="mayus(this);" required>
                         </div>
                     </div><br>
                     <div class="row">
@@ -63,7 +63,7 @@
                     </div><br>
                     <div class="row">
                         <div class="col">
-                            <input type="text" class="form-control" id="tecnologias" placeholder="Tecnologias" name="tecnologias" onkeypress="return /[a-z]/i.test(event.key)" required>
+                            <input type="text" onkeyup="mayus(this);" class="form-control" id="tecnologias" placeholder="Tecnologias" name="tecnologias" onkeypress="return /[a-z]/i.test(event.key)" required>
                         </div>
                         <div class="col">
                             <input class="form-control" id="emergencia" placeholder="Número de Emergencia" name="emergencia" required>
