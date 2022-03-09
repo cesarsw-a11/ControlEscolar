@@ -40,6 +40,9 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="<?= base_url("administrador/tomarInasistencias") ?>">Inasistencias y Conducta</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="https://docs.google.com/document/d/11V85zkEIod6h0L-HwGqtfZvoVuVuEEwk/edit" target="_blank">Ayuda</a>
+                </li>
             </ul>
             <!-- <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="<?= base_url("administrador/alumnos") ?>">Alumnos</a>
@@ -59,6 +62,9 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/docente">Inicio</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="https://docs.google.com/document/d/1N5CakV1TKrbh6BsMqYDbyoW24_WVq3FV/edit" target="_blank">Ayuda</a>
+                    </li>
                 <?php } ?>
                 <?php if ($this->session->userdata("rol") == 3) { ?>
                     <li class="nav-item">
@@ -66,6 +72,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/alumno/kardex">Kardex</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="https://docs.google.com/document/d/1_FXbppK-98nfoDbod9BSDN20CxYSqe7_/edit" target="_blank">Ayuda</a>
                     </li>
                     <!-- <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/alumno/altaMateria">+Alta Materia</a>

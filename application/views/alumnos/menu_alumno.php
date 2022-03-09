@@ -1,6 +1,10 @@
 <?php $this->load->view("head"); ?>
 <?php $this->load->view("header"); ?>
-
+<style>
+label{
+    text-transform: uppercase;
+}
+</style>
 <div class="container">
     <div class="py-5 text-center">
         <img class="d-block mx-auto mb-4 rounded-circle" src="<?= base_url() . $alumno->foto; ?>" alt="" width="150"
@@ -29,8 +33,8 @@
                 Eventos deportivos, really, cinetec 22, posada navideña, semana cultural, desfiles cívicos etc</p>
         </div>
         <div class="col-md-8 order-md-1">
-            <h4 class="mb-3">Datos</h4>
-            <form>
+<!--             <h4 class="mb-3">Datos</h4>
+ -->            <form>
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="firstName">Num. Control:</label>
