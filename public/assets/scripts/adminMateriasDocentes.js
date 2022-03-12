@@ -87,7 +87,8 @@ function listarMaterias() {
                     json[i]['nombre'] = json[i]['nombreDocente'] + " " + json[i]['appaterno'] + " " + json[i]['apmaterno']
                     json[i]['nombreMaterias'] = json[i]['nombreMateria'] + " " + json[i]['grupo'] + " - " + json[i]['grado'] + "° Grado"
                     json[i]['botonEditar'] = `<button class="btn btn-info" data-toggle="tooltip" title="Editar"  onclick="ui_modalEditarMateria(${json[i].id})"><i class="fa fa-pencil" ></i></button>
-                <button class="btn btn-danger"  data-toggle="tooltip" title="Eliminar" onclick="ui_modalEliminarMateria(${json[i].id})"><i class="fa fa-trash" aria-hidden="true"></i></button>`
+                <button class="btn btn-danger"  data-toggle="tooltip" title="Eliminar" onclick="ui_modalEliminarMateria(${json[i].id})"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                <button class="btn btn-danger"  data-toggle="tooltip" title="Cerrar Materia" onclick="ui_modalCerrarMateria(${json[i].id})"><i class="fa fa-minus" aria-hidden="true"></i></button>`
                 }
                 return json;
             }
@@ -228,11 +229,64 @@ function ui_modalEliminarMateria(id_materia) {
         });
 }
 
+function ui_modalCerrarMateria(id_materia) {
+    var table = $('#tabla_materias').DataTable();
+    swal({
+        title: "Estas seguro?",
+        text: "Aun puedes eliminar esta acción.",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Si, estoy seguro",
+        cancelButtonText: "No, cancelar",
+        closeOnConfirm: false,
+        closeOnCancel: false
+    },
+        function (isConfirm) {
+            if (isConfirm) {
+                $.ajax({
+                    url: base_url + 'administrador/cambiarEstadoMateria',
+                    type: 'POST',
+                    data: { "idmateria": id_materia },
+                    success: function (response) {
+                        var data = JSON.parse(response)
+                        if (data.error == false) {
+                            swal(
+                                "Exito",
+                                data.mensaje,
+                                "success"
+                            );
+                            table.ajax.reload();
+                        } else {
+                            swal(
+                                "Error",
+                                data.mensaje,
+                                "error"
+                            );
+                        }
+
+                    },
+                    error: function (error, xhr, status) {
+
+                        swal(
+                            "Error",
+                            "No fue posible guardar sus datos, revise su conexión.",
+                            "error"
+                        );
+                    }
+                });
+            } else {
+                swal("Cancelado", "Acción cancelada :)", "error");
+            }
+        });
+}
+
 function llenarTabla(response) {
     let table = $('#tabla_materias').DataTable();
     let data = response.data
     let boton_editar = `<button class="btn btn-info" data-toggle="tooltip" title="Editar"  onclick="ui_modalEditarMateria(${data.idAsignacionMateria})"><i class="fa fa-pencil" ></i></button>
-    <button class="btn btn-danger"  data-toggle="tooltip" title="Eliminar" onclick="ui_modalEliminarMateria(${data.idAsignacionMateria})"><i class="fa fa-trash" aria-hidden="true"></i></button>`;
+    <button class="btn btn-danger"  data-toggle="tooltip" title="Eliminar" onclick="ui_modalEliminarMateria(${data.idAsignacionMateria})"><i class="fa fa-trash" aria-hidden="true"></i></button>
+    <button class="btn btn-danger"  data-toggle="tooltip" title="Cerrar Materia" onclick="ui_modalCerrarMateria(${data.idAsignacionMateria})"><i class="fa fa-minus" aria-hidden="true"></i></button>`;
     let rowNode;
     //Agregamos la fila a la tabla
     rowNode = table.row.add({

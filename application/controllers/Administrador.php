@@ -51,10 +51,33 @@ class Administrador extends CI_Controller
             $docentes = $this->db->query($docentes)->result_array();
             $materias = "select * from materias where estado = 1";
             $materias = $this->db->query($materias)->result_array();
+            $abrirCiclo = "select estado from abrirCiclo";
+            $abrirCiclo = $this->db->query($abrirCiclo)->row();
             $data['docentes'] = $docentes;
             $data['materias'] = $materias;
+            $data['abrirCiclo'] = $abrirCiclo->estado;
             $this->load->view('administrador/asignarMaterias', $data);
         }
+    }
+
+    public function cerrarCiclo(){
+        $data = $this->input->post("status");
+        $dataInsertar = [
+            "estado" => $data
+        ];
+        $this->db->where('id', "1");
+        $this->db->update('abrirCiclo', $dataInsertar);
+        echo json_encode($dataInsertar);
+    }
+
+    public function abrirCiclo(){
+        $data = $this->input->post("status");
+        $dataInsertar = [
+            "estado" => $data
+        ];
+        $this->db->where('id', "1");
+        $this->db->update('abrirCiclo', $dataInsertar);
+        echo json_encode($dataInsertar);
     }
 
     public function tomarInasistencias()
@@ -101,9 +124,64 @@ class Administrador extends CI_Controller
     {
         $query = "select *,materias.nombre as nombreMateria,docentes.nombre as nombreDocente from materiasDocentes
         left join materias on materiasDocentes.id_materia = materias.idmateria
-        left join docentes on materiasDocentes.id_docente = docentes.iddocente";
+        left join docentes on materiasDocentes.id_docente = docentes.iddocente
+        where materiasDocentes.estado = 1 ";
         $query = $this->db->query($query)->result_array();
         echo json_encode($query);
+    }
+
+    function cambiarEstadoMateria(){
+        $id_materia = $this->input->post("idmateria");
+        $query = "select * from materiasDocentes
+        left join capturaCalificaciones on materiasDocentes.id_materia = capturaCalificaciones.idMateria
+        where materiasDocentes.id = '".$id_materia."' ";
+        $query = $this->db->query($query)->result_array();
+
+        $idDeLaMateria = $query[0]['id_materia'];
+        $materia ="select grado from materias where idmateria = '".$idDeLaMateria."' ";
+        $materia = $this->db->query($materia)->row();
+        $query2 = "select * from materiasDocentes
+        left join capturaCalificaciones on materiasDocentes.id_materia = capturaCalificaciones.idMateria
+        where materiasDocentes.id = '".$id_materia."' ";
+
+                $query2 .= " and (capturaCalificaciones.unidad1 = 'NC' ";
+           
+                $query2 .= " OR capturaCalificaciones.unidad2 = 'NC' ";
+            
+                $query2 .= " OR capturaCalificaciones.unidad3 = 'NC') ";
+
+        $query2 = $this->db->query($query2)->result_array();
+       
+        $conteoMaterias = count($query2);
+
+         if ($conteoMaterias == 0){   
+        $dataActualizar = [
+            "estado" => 0 
+        ];
+        $this->db->where('id', $id_materia);
+        $this->db->update('materiasDocentes', $dataActualizar);
+        if ($this->db->trans_status() === false) {
+            $return = array(
+                'error' => true,
+                'mensaje' => 'No se pudo cerrar esta materia.',
+            );
+        } else {
+            $return = array(
+                'error' => false,
+                'mensaje' => 'Materia cerrada correctamente',
+            );
+        }
+        echo json_encode($return);
+    }else{
+        $return = array(
+            'error' => true,
+            'mensaje' => 'Aún existen materias sin capturar.',
+        );
+        echo json_encode($return);
+
+    }
+        
+        
     }
 
     /**

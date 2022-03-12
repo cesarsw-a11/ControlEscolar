@@ -22,7 +22,7 @@
                                 <?php
                                 if ($docentes) {
                                     foreach ($docentes as $docente) { ?>
-                                        <option value="<?= $docente['iddocente'] ?>"><?= $docente['nombre']." ".$docente['appaterno']." ".$docente['apmaterno'] ?></option>
+                                        <option value="<?= $docente['iddocente'] ?>"><?= $docente['nombre'] . " " . $docente['appaterno'] . " " . $docente['apmaterno'] ?></option>
                                     <?php }
                                 } else { ?>
                                     <option value="-1">Aun no hay docentes creados</option>
@@ -37,7 +37,7 @@
                                 <?php
                                 if ($materias) {
                                     foreach ($materias as $materia) { ?>
-                                        <option value="<?= $materia['idmateria'] ?>"><?= $materia['nombre']."-".$materia['grupo'] ?></option>
+                                        <option value="<?= $materia['idmateria'] ?>"><?= $materia['nombre'] . "-" . $materia['grupo'] ?></option>
                                     <?php }
                                 } else { ?>
                                     <option value="-1">Aun no hay materias creadas</option>
@@ -61,12 +61,18 @@
     <!-- Button to Open the Modal -->
 
     <div class="d-flex flex-row-reverse">
-        <div class="p-2">
-        <button type="button" class="btn btn-warning" onclick="sincronizarMateriasAlumnos()">
+        <div class="p-2" id="botonera">
+            <button <?php echo ($abrirCiclo == 1) ? 'style = "display:none";' : '' ?> id="btnAbrirCiclo" type="button" class="btn btn-warning">
+                Abrir Ciclo
+            </button>
+            <button type="button" class="btn btn-warning" onclick="sincronizarMateriasAlumnos()">
                 Sincronizar Materias
             </button>
-            <button type="button" class="btn btn-primary" onclick="ui_modalAsignarMateria()">
+            <button <?php echo ($abrirCiclo == 1) ? 'style = "display:none";' : 'disabled ' ?> id="btnAsignar" type="button" class="btn btn-primary" onclick="ui_modalAsignarMateria()">
                 + Asignar materia a Docente
+            </button>
+            <button <?php echo ($abrirCiclo == 1) ? '' : 'style = "display:none";' ?> id="btnAbrirNuevoCiclo" type="button" class="btn btn-warning">
+                Abrir Nuevo Ciclo
             </button>
         </div>
     </div>
@@ -89,7 +95,7 @@
 <script>
     function sincronizarMateriasAlumnos() {
         $.ajax({
-            url: base_url+'administrador/cronActualizarMaterias',
+            url: base_url + 'administrador/cronActualizarMaterias',
             type: 'POST',
             success: function(data) {
 
@@ -111,4 +117,91 @@
             }
         });
     }
+    $("#btnAbrirCiclo").click(() => {
+        $("#btnAsignar").prop("disabled", false)
+        $("#btnAbrirCiclo").css('display', 'none')
+        $("#botonera").append(`<button id="btnCerraCiclo" type="button" onclick="cerrarCiclo()" class="btn btn-warning">
+                Cerrar Ciclo
+            </button>`)
+    })
+
+    function cerrarCiclo() {
+
+        swal({
+                title: "Estas seguro de cerrar el ciclo, no se puede revertir?",
+                text: "Aun puedes eliminar esta acción.",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Si, estoy seguro",
+                cancelButtonText: "No, cancelar",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+            function(isConfirm) {
+                if (isConfirm) {
+                    $.ajax({
+                        method: 'POST',
+                        data: {
+                            status: 1
+                        },
+                        url: base_url + "administrador/cerrarCiclo",
+                        success: function(response) {
+                            $("#btnAbrirCiclo").css('display', 'none')
+                            $("#btnAsignar").css('display', 'none')
+                            $("#btnCerraCiclo").css('display', 'none')
+                            $("#btnAbrirNuevoCiclo").css('display', 'inline')
+                            swal(
+                                "Exito",
+                                "Ciclo cerrado correctamente.",
+                                "success"
+                            );
+
+                        }
+                    })
+                } else {
+                    swal("Cancelado", "Acción cancelada :)", "error");
+                }
+            });
+    }
+
+    $("#btnAbrirNuevoCiclo").click(() => {
+        var table = $('#tabla_materias').DataTable();
+        var longitud_tabla = table.data().count()
+
+        if (longitud_tabla > 0) {
+            swal("Advertencia", "Solo puede abrir nuevo ciclo ya que todas las materias sean " +
+                "capturadas :)", "warning");
+        } else {
+            swal({
+                    title: "Estas seguro de abrir un nuevo ciclo.",
+                    text: "Aun puedes eliminar esta acción.",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Si, estoy seguro",
+                    cancelButtonText: "No, cancelar",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                },
+                function(isConfirm) {
+                    if (isConfirm) {
+                        $.ajax({
+                            method: 'POST',
+                            data: {
+                                status: 0
+                            },
+                            url: base_url + "administrador/abrirCiclo",
+                            success: function(response) {
+
+                                window.location.reload()
+
+                            }
+                        })
+                    } else {
+                        swal("Cancelado", "Acción cancelada :)", "error");
+                    }
+                });
+        }
+    })
 </script>

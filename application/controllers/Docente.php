@@ -31,7 +31,7 @@ class Docente extends CI_Controller
     {
         $query = "select *,materias.nombre as nombreMateria,docentes.nombre as nombreDocente from materiasDocentes
                     left join materias on materiasDocentes.id_materia = materias.idmateria
-                    left join docentes on materiasDocentes.id_docente = docentes.iddocente where iddocente = " . $this->session->userdata("id") . " ";
+                    left join docentes on materiasDocentes.id_docente = docentes.iddocente where iddocente = " . $this->session->userdata("id") . " and materiasDocentes.estado = 1 ";
         $query = $this->db->query($query)->result_array();
         echo json_encode($query);
     }
