@@ -19,18 +19,18 @@
                     <div class="row">
                         <div class="col">
                             <input type="number" id="idalumno" name="idalumno" hidden>
-                            <input class="form-control" id="num_control" placeholder="Numero de control" name="numcontrol" required>
+                            <input autocomplete="off" class="form-control" id="num_control" placeholder="Numero de control" name="numcontrol" required>
                         </div>
                         <div class="col">
-                            <input pattern="[A-Za-z0-9].{1,}" type="text" class="form-control" placeholder="Nombre" name="nombre" id="nombre" onkeypress="return /^[A-Za-z ]+$/.test(event.key)"  onkeyup="mayus(this);" required>
+                            <input autocomplete="off" pattern="[A-Za-z0-9].{1,}" type="text" class="form-control" placeholder="Nombre" name="nombre" id="nombre" onkeypress="return /^[A-Za-zñÑ ]+$/.test(event.key)" onkeyup="mayus(this);" required>
                         </div>
                     </div><br>
                     <div class="row">
                         <div class="col">
-                            <input pattern="[a-zA-Z]+" type="text" class="form-control" id="app_paterno" placeholder="Apellido paterno" name="appaterno" onkeyup="mayus(this);" onkeypress="return /[a-z]/i.test(event.key)"  required>
+                            <input autocomplete="off" pattern="[A-Za-z0-9].{1,}" type="text" class="form-control" id="app_paterno" placeholder="Apellido paterno" name="appaterno" onkeyup="mayus(this);" onkeypress="return /^[A-Za-zñÑ ]+$/.test(event.key)" required>
                         </div>
                         <div class="col">
-                            <input pattern="[a-zA-Z]+" type="text" class="form-control" placeholder="Apellido materno" id="apmaterno" name="apmaterno" onkeyup="mayus(this);" onkeypress="return /[a-z]/i.test(event.key)"  required>
+                            <input autocomplete="off" pattern="[A-Za-z0-9].{1,}" type="text" class="form-control" placeholder="Apellido materno" id="apmaterno" name="apmaterno" onkeyup="mayus(this);" onkeypress="return /^[A-Za-zñÑ ]+$/.test(event.key)" required>
                         </div>
                     </div><br>
                     <div class="row">
@@ -42,36 +42,42 @@
                             </select>
                         </div>
                         <div class="col">
-                            <input class="form-control" id="adeudos" placeholder="Adeudos" name="adeudos" onkeyup="mayus(this);" required>
+                            <input autocomplete="off" class="form-control" id="adeudos" placeholder="Adeudos" name="adeudos" onkeyup="mayus(this);" required>
                         </div>
                     </div><br>
                     <div class="row">
                         <div class="col">
-                            <input type="text" class="form-control" id="curp" placeholder="CURP" name="curp" onkeyup="mayus(this);" required>
+                            <input type="text" autocomplete="off" class="form-control" id="curp" placeholder="CURP" name="curp" onkeyup="mayus(this);" required>
                         </div>
                         <div class="col">
-                            <input class="form-control" id="cel" placeholder="Número celular" name="numcel" required>
-                        </div>
-                    </div><br>
-                    <div class="row">
-                        <div class="col">
-                            <input type="email" class="form-control" id="email" placeholder="Email" name="correo" required>
-                        </div>
-                        <div class="col">
-                            <input type="text" class="form-control" id="localidad" placeholder="Localidad" name="localidad" onkeyup="mayus(this);" onkeypress="return /[a-z]/i.test(event.key)"  required>
+                            <input class="form-control" autocomplete="off" id="cel" placeholder="Número celular" name="numcel" required>
                         </div>
                     </div><br>
                     <div class="row">
                         <div class="col">
-                            <input type="text" onkeyup="mayus(this);" class="form-control" id="tecnologias" placeholder="Tecnologias" name="tecnologias" onkeypress="return /[a-z]/i.test(event.key)" required>
+                            <input type="email" autocomplete="off" class="form-control" id="email" placeholder="Email" name="correo" required>
                         </div>
                         <div class="col">
-                            <input class="form-control" id="emergencia" placeholder="Número de Emergencia" name="emergencia" required>
+                            <input type="text" autocomplete="off" class="form-control" id="localidad" placeholder="Localidad" name="localidad" onkeyup="mayus(this);" onkeypress="return /^[A-Za-zñÑ ]+$/.test(event.key)" required>
                         </div>
                     </div><br>
                     <div class="row">
                         <div class="col">
-                            <input type="password" class="form-control" id="password" placeholder="Contraseña" name="contraseña" required>
+<!--                             <input type="text" autocomplete="off" onkeyup="mayus(this);" class="form-control" id="tecnologias" placeholder="Tecnologias" name="tecnologias" onkeypress="return /^[A-Za-zñÑ ]+$/.test(event.key)" required>
+ -->                            <label for="tecnologias">Tecnologias:</label>
+                            <select id="tecnologias" name="tecnologias" class="form-control">
+                                <option value="INFORMATICA">INFORMATICA</option>
+                                <option value="GANADERIA">GANADERIA</option>
+                                <option value="AGRICULTURA">AGRICULTURA</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <input class="form-control" autocomplete="off" id="emergencia" placeholder="Número de Emergencia" name="emergencia" required>
+                        </div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col">
+                            <input type="password" autocomplete="off" class="form-control" id="password" placeholder="Contraseña" name="contraseña" required>
                         </div>
                         <div class="col">
                             <input type="file" id="file" name="file" />
@@ -83,7 +89,11 @@
                             <select class="form-control" id="cursando" placeholder="Cursando" name="cursando">
                                 <option value="-1">CURSANDO</option>
                                 <?php for ($i = 1; $i <= 3; $i++) {  ?>
-                                    <option value="<?= $i ?>"><?= $i ?></option>
+                                    <?php if($i == 1){ ?>
+                                    <option value="<?= $i ?>" selected><?= $i ?></option>
+                                    <?php }else{ ?>
+                                        <option value="<?= $i ?>"><?= $i ?></option>
+                                    <?php } ?>
                                 <?php } ?>
                             </select>
                         </div>
@@ -96,6 +106,17 @@
                             <input type="text" class="form-control" id="formulario" name="formulario" value="alumnos" hidden>
                         </div>
                     </div class="row">
+                    <div class="row">
+                        <div class="col">
+                            <label for="cursando">Grupo cursando:</label>
+                            <select class="form-control" id="grupo" placeholder="grupo" name="grupo">
+                                <option value="-1">GRUPO</option>
+                                <option value="A" selected>A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                            </select>
+                        </div>
+                    </div>
                     <!-- Modal footer -->
                     <div class="modal-footer">
                     </div>
@@ -161,6 +182,7 @@
                 <th>Genero</th>
                 <th>Curp</th>
                 <th>Grado</th>
+                <th>Grupo</th>
                 <th>Estado</th>
                 <th>Acciones</th>
             </tr>
@@ -180,7 +202,7 @@
 
     function sincronizarMateriasAlumnos() {
         $.ajax({
-            url: base_url+'administrador/cronActualizarMaterias',
+            url: base_url + 'administrador/cronActualizarMaterias',
             type: 'POST',
             success: function(data) {
 

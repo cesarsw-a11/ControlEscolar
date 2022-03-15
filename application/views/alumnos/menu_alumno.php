@@ -9,11 +9,11 @@ label{
     <div class="py-5 text-center">
         <img class="d-block mx-auto mb-4 rounded-circle" src="<?= base_url() . $alumno->foto; ?>" alt="" width="150"
             height="150">
-        <h2>Alumno : <?= $alumno->nombre . " " . $alumno->appaterno . " " . $alumno->apmaterno ?></h2>
+        <h2>ALUMNO : <?= $alumno->nombre . " " . $alumno->appaterno . " " . $alumno->apmaterno ?></h2>
     </div>
 
     <div class="row">
-        <div class="col-md-4 order-md-2 mb-4">
+       <!--  <div class="col-md-4 order-md-2 mb-4">
             <h4 class="d-flex justify-content-between align-items-center mb-3">
                 <span class="text-muted">Video informativo</span>
             </h4>
@@ -31,8 +31,8 @@ label{
                 Patio cívico techado.
                 Promoción musical: canto, batucada, flauta guitarra
                 Eventos deportivos, really, cinetec 22, posada navideña, semana cultural, desfiles cívicos etc</p>
-        </div>
-        <div class="col-md-8 order-md-1">
+        </div> -->
+        <div class="col-md-12 order-md-1">
 <!--             <h4 class="mb-3">Datos</h4>
  -->            <form>
                 <div class="row">

@@ -63,7 +63,7 @@
     <div class="d-flex flex-row-reverse">
         <div class="p-2" id="botonera">
             <button <?php echo ($abrirCiclo == 1) ? 'style = "display:none";' : '' ?> id="btnAbrirCiclo" type="button" class="btn btn-warning">
-                Abrir Ciclo
+                Abrir Altas Materias
             </button>
             <button type="button" class="btn btn-warning" onclick="sincronizarMateriasAlumnos()">
                 Sincronizar Materias
@@ -121,7 +121,7 @@
         $("#btnAsignar").prop("disabled", false)
         $("#btnAbrirCiclo").css('display', 'none')
         $("#botonera").append(`<button id="btnCerraCiclo" type="button" onclick="cerrarCiclo()" class="btn btn-warning">
-                Cerrar Ciclo
+                Cerrar Altas Materias
             </button>`)
     })
 

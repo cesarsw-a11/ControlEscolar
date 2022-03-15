@@ -65,6 +65,10 @@ function mandarFormularioConFoto(formData) {
         swal("Error", "Debe seleccionar un genero", "error")
         return false
     }
+    if($("#grupo").val() === "-1"){
+        swal("Error", "Debe seleccionar un grado", "error")
+        return false
+    }
     if (!curpValida($("#curp").val())) {
         swal("Error", "La CURP tiene formato incorrecto", "error")
         return false
@@ -168,6 +172,7 @@ function ui_obtenerMateria(id_alumno) {
             $("#localidad").val(data.localidad)
             $("#password").hide()
             $("#cursando").val(data.cursando)
+            $("#grupo").val(data.grupo)
             $("#adeudos").val(data.adeudos)
             $("#estado").val(data.estado)
 
@@ -356,6 +361,7 @@ function listarAlumnos() {
     columnas.push({ "data": "genero" });
     columnas.push({ "data": "curp" });
     columnas.push({ "data": "cursando" });
+    columnas.push({ "data": "grupo" });
     columnas.push({ "data": "estado" });
     columnas.push({ "data": "acciones" });
 
@@ -398,6 +404,7 @@ function llenarTabla(response, tipoFormulario) {
         "genero": data.genero,
         "curp": data.curp,
         "cursando" : data.cursando,
+        "grupo" : data.grupo,
         "estado": estatusAlumno,
         "acciones": boton_editar
     }).draw()

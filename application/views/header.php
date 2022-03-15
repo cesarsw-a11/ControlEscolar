@@ -23,25 +23,25 @@
             <!--   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Menú de registro
                 </button> -->
-            <ul class="navbar-nav ms-auto">
+            <ul class="nav navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="<?= base_url("administrador/alumnos") ?>">Alumnos</a>
+                    <a class="nav-link" aria-current="page" href="<?= base_url("administrador/alumnos") ?>">Alumnos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="<?= base_url("administrador/docentes") ?>">Docentes</a>
+                    <a class="nav-link" aria-current="page" href="<?= base_url("administrador/docentes") ?>">Docentes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="<?= base_url("administrador/materias") ?>">Materias</a>
+                    <a class="nav-link" aria-current="page" href="<?= base_url("administrador/materias") ?>">Materias</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="<?= base_url("administrador/asignarMaterias") ?>">Asignar materia al
-                        docente</a>
+                    <a class="nav-link" aria-current="page" href="<?= base_url("administrador/asignarMaterias") ?>">Asignar Materias
+            </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="<?= base_url("administrador/tomarInasistencias") ?>">Inasistencias y Conducta</a>
+                    <a class="nav-link" aria-current="page" href="<?= base_url("administrador/tomarInasistencias") ?>">Inasistencias y Conducta</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="https://docs.google.com/document/d/11V85zkEIod6h0L-HwGqtfZvoVuVuEEwk/edit" target="_blank">Ayuda</a>
+                    <a class="nav-link" aria-current="page" href="https://docs.google.com/document/d/11V85zkEIod6h0L-HwGqtfZvoVuVuEEwk/edit" target="_blank">Ayuda</a>
                 </li>
             </ul>
             <!-- <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">

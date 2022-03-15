@@ -1,7 +1,7 @@
   <!-- Site footer -->
   <link rel="stylesheet" href="<?= base_url() ?>estilos/footer.css">
   <footer class="site-footer">
-      <div class="container">
+      <!-- <div class="container">
           <div class="row">
               <div class="col-sm-12 col-md-4">
                   <h6>Acerca de nosotros</h6>
@@ -39,7 +39,7 @@
               </div>
           </div>
           <hr>
-      </div>
+      </div> -->
       <div class="container">
           <div class="row">
               <div class="col-md-8 col-sm-6 col-xs-12">

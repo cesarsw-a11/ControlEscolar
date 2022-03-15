@@ -5,7 +5,7 @@
     <div class="py-5">
         <h2>Administracion de Grupos</h2>
         <img class=" mb-4 rounded-circle" src="<?= base_url().$docente->foto; ;?>" alt="" width="150" height="150">
-        <h4>Mstro: <?= $docente->nombre." ".$docente->appaterno." ".$docente->apmaterno ?></h4>
+        <h4>Maestro: <?= $docente->nombre." ".$docente->appaterno." ".$docente->apmaterno ?></h4>
     </div>
     <table id="tabla_materias" class="table table-striped table-bordered" style="width:100%">
         <thead>

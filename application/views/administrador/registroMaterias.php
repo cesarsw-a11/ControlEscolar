@@ -18,10 +18,10 @@
                     <div class="row">
                         <div class="col">
                             <input type="number" id="idmateria" name="idmateria" hidden>
-                            <input type="text" class="form-control" id="clave" placeholder="Clave" name="clave" required>
+                            <input type="text"  autocomplete="off" class="form-control" id="clave" placeholder="Clave" name="clave" required>
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="Nombre materia" name="nombre" id="nombre" onkeypress="return /^[A-Za-z ]+$/.test(event.key)" required>
+                            <input  autocomplete="off" type="text" class="form-control" placeholder="Nombre materia" name="nombre" id="nombre" onkeypress="return /^[A-Za-zñÑ ]+$/.test(event.key)" required>
                         </div>
                     </div><br>
                     <select class="form-control" id="grado" placeholder="Grado" name="grado">

@@ -65,6 +65,19 @@ class Administrador extends CI_Controller
         $dataInsertar = [
             "estado" => $data
         ];
+        $alumnos = "select idalumno, cursando from alumnos";
+        $alumnos = $this->db->query($alumnos)->result_array();
+        
+        foreach($alumnos as $key => $value){
+            $nuevoGrado = (int)$value['cursando'] +1;
+            if($nuevoGrado > 3){
+                $nuevoGrado = "TERMINADO";
+            }
+           $this->db->where('idalumno', $value['idalumno']);
+           $this->db->update('alumnos', ['cursando' => $nuevoGrado]);
+           
+           
+        }
         $this->db->where('id', "1");
         $this->db->update('abrirCiclo', $dataInsertar);
         echo json_encode($dataInsertar);
@@ -376,7 +389,8 @@ class Administrador extends CI_Controller
             "estado" => $datos['estado'],
             "tecnologias" => $datos['tecnologias'],
             "adeudos" => $datos['adeudos'],
-            "emergencia" => $datos['emergencia']
+            "emergencia" => $datos['emergencia'],
+            "grupo" => $datos['grupo']
             /* "password" => $contraseñaEncriptada */
         );
 
@@ -612,7 +626,8 @@ class Administrador extends CI_Controller
                     "cursando" => $data['cursando'],
                     "adeudos" => $data['adeudos'],
                     "emergencia" => $data['emergencia'],
-                    "tecnologias" => $data['tecnologias']
+                    "tecnologias" => $data['tecnologias'],
+                    "grupo" => $data['grupo']
                 );
                 break;
             case 'docentes':
@@ -727,11 +742,13 @@ class Administrador extends CI_Controller
     public function cronActualizarMaterias()
     {
         $dadaDeAlta = 1;
-        $alumnos = "select idalumno,cursando from alumnos";
+        $alumnos = "select idalumno,cursando,grupo from alumnos";
         $alumnos = $this->db->query($alumnos)->result_array();
         $contador = 0;
         foreach ($alumnos as $alumno) {
-            $queryMaterias = "select * from materias where grado = '" . $alumno['cursando'] . "' ";
+            $grado = $alumno['cursando'].$alumno['grupo'];
+
+            $queryMaterias = "select * from materias where grado = '" . $alumno['cursando'] . "' and grupo = '".$grado."' ";
             $queryMaterias = $this->db->query($queryMaterias)->result_array();
 
             foreach ($queryMaterias as $materia) {

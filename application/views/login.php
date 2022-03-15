@@ -7,7 +7,6 @@
                 alt=""> </div>
         <h3 class="text-whitesmoke">Control Escolar</h3>
         <p class="text-whitesmoke"></p>
-        <div class="container-content">
             <form class="margin-t" id="login-form">
                 <div class="form-group">
                     <input id="usuario" name="usuario" type="email" class="form-control" placeholder="Usuario" autocomplete="off"
@@ -31,7 +30,6 @@
 
             </form>
             <p class="margin-t text-whitesmoke"><small>&copy; 2021</small> </p>
-        </div>
     </div>
 </div>
 <script src="<?= base_url('assets/scripts/login.js') ?>"></script>
