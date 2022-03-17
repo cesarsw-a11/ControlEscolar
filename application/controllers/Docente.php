@@ -52,7 +52,9 @@ class Docente extends CI_Controller
     {
         $id_materia = $this->session->userdata("id_materia");
         $query = "select *,idCalificacion as calificacion from capturaCalificaciones 
-        left join alumnos on capturaCalificaciones.idAlumno = alumnos.idalumno where idMateria = " . $id_materia . " and dadaDeAlta = 1 ";
+        left join alumnos on capturaCalificaciones.idAlumno = alumnos.idalumno 
+        left join materias on capturaCalificaciones.idMateria = materias.idmateria 
+        where capturaCalificaciones.idMateria = " . $id_materia . " and dadaDeAlta = 1 and materias.grupo = concat(alumnos.cursando, alumnos.grupo) ";
         //$query = "select * from alumnos where cursando = '".$this->session->userdata("grado")."' ";
         $query  = $this->db->query($query)->result_array();
         echo json_encode($query);

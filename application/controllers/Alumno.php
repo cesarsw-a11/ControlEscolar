@@ -44,9 +44,13 @@ class Alumno extends CI_Controller
         if ($this->session->userdata("rol") == "3") {
             $data['alumno'] = $this->obtenerAlumno();
             $alumno = $this->input->post("alumno");
+            $gradoAlumno = "select cursando, grupo from alumnos where idalumno = '".$this->session->userdata('id')."' ";
+            $gradoAlumno = $this->db->query($gradoAlumno)->row();
+            $gradoDelAlumno = $gradoAlumno->cursando.$gradoAlumno->grupo;
             $query = "select *,materias.nombre as nombreMateria from capturaCalificaciones 
             left join materias on capturaCalificaciones.idMateria = materias.idmateria 
-            left join alumnos on capturaCalificaciones.idAlumno = alumnos.idalumno where capturaCalificaciones.idAlumno = '" . $this->session->userdata('id') . "'";
+            left join alumnos on capturaCalificaciones.idAlumno = alumnos.idalumno where capturaCalificaciones.idAlumno = '" . $this->session->userdata('id') . "'
+            and materias.grupo = '".$gradoDelAlumno."' ";
             $query = $this->db->query($query)->result_array();
             foreach ($query as $key => $value) {
                 $promedio = 0;
@@ -136,9 +140,13 @@ class Alumno extends CI_Controller
     public function obtenerDataKardex()
     {
         $alumno = $this->input->post("alumno");
+        $gradoAlumno = "select cursando, grupo from alumnos where idalumno = '".$alumno."' ";
+        $gradoAlumno = $this->db->query($gradoAlumno)->row();
+        $gradoDelAlumno = $gradoAlumno->cursando.$gradoAlumno->grupo;
         $query = "select *,materias.nombre as nombreMateria from capturaCalificaciones 
         left join materias on capturaCalificaciones.idMateria = materias.idmateria 
-        left join alumnos on capturaCalificaciones.idAlumno = alumnos.idalumno where capturaCalificaciones.idAlumno = '" . $alumno . "'";
+        left join alumnos on capturaCalificaciones.idAlumno = alumnos.idalumno where capturaCalificaciones.idAlumno = '" . $alumno . "'
+        and materias.grupo = '".$gradoDelAlumno."' ";
         $query = $this->db->query($query)->result_array();
         foreach ($query as $key => $value) {
             $promedio = 0;

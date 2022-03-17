@@ -5,7 +5,7 @@
         <div>
             <img src="<?= base_url("imagenes/Logo.jpg")?>" width="200" height="200" class="d-inline-block align-top"
                 alt=""> </div>
-        <h3 class="text-whitesmoke">Control Escolar</h3>
+        <h3 class="text-whitesmoke" style="color:red;">Control Escolar</h3>
         <p class="text-whitesmoke"></p>
             <form class="margin-t" id="login-form">
                 <div class="form-group">

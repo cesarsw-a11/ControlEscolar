@@ -88,7 +88,7 @@ function listarMaterias() {
                     json[i]['nombreMaterias'] = json[i]['nombreMateria'] + " " + json[i]['grupo'] + " - " + json[i]['grado'] + "° Grado"
                     json[i]['botonEditar'] = `<button class="btn btn-info" data-toggle="tooltip" title="Editar"  onclick="ui_modalEditarMateria(${json[i].id})"><i class="fa fa-pencil" ></i></button>
                 <button class="btn btn-danger"  data-toggle="tooltip" title="Eliminar" onclick="ui_modalEliminarMateria(${json[i].id})"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                <button class="btn btn-danger"  data-toggle="tooltip" title="Cerrar Materia" onclick="ui_modalCerrarMateria(${json[i].id})"><i class="fa fa-minus" aria-hidden="true"></i></button>`
+                <button class="btn btn-success"  data-toggle="tooltip" title="Cerrar Materia" onclick="ui_modalCerrarMateria(${json[i].id})"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></button>`
                 }
                 return json;
             }
@@ -286,7 +286,7 @@ function llenarTabla(response) {
     let data = response.data
     let boton_editar = `<button class="btn btn-info" data-toggle="tooltip" title="Editar"  onclick="ui_modalEditarMateria(${data.idAsignacionMateria})"><i class="fa fa-pencil" ></i></button>
     <button class="btn btn-danger"  data-toggle="tooltip" title="Eliminar" onclick="ui_modalEliminarMateria(${data.idAsignacionMateria})"><i class="fa fa-trash" aria-hidden="true"></i></button>
-    <button class="btn btn-danger"  data-toggle="tooltip" title="Cerrar Materia" onclick="ui_modalCerrarMateria(${data.idAsignacionMateria})"><i class="fa fa-minus" aria-hidden="true"></i></button>`;
+    <button class="btn btn-success"  data-toggle="tooltip" title="Cerrar Materia" onclick="ui_modalCerrarMateria(${data.idAsignacionMateria})"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></button>`;
     let rowNode;
     //Agregamos la fila a la tabla
     rowNode = table.row.add({

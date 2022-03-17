@@ -65,7 +65,7 @@
             <button <?php echo ($abrirCiclo == 1) ? 'style = "display:none";' : '' ?> id="btnAbrirCiclo" type="button" class="btn btn-warning">
                 Abrir Altas Materias
             </button>
-            <button type="button" class="btn btn-warning" onclick="sincronizarMateriasAlumnos()">
+            <button id="btnSincronizar" type="button" class="btn btn-warning" onclick="sincronizarMateriasAlumnos()">
                 Sincronizar Materias
             </button>
             <button <?php echo ($abrirCiclo == 1) ? 'style = "display:none";' : 'disabled ' ?> id="btnAsignar" type="button" class="btn btn-primary" onclick="ui_modalAsignarMateria()">
@@ -93,6 +93,9 @@
 <?php $this->load->view("footer"); ?>
 <script src="<?= base_url('assets/scripts/adminMateriasDocentes.js') ?>"></script>
 <script>
+$(()=>{
+    $("#btnSincronizar").css("display","none")
+})
     function sincronizarMateriasAlumnos() {
         $.ajax({
             url: base_url + 'administrador/cronActualizarMaterias',
@@ -151,6 +154,7 @@
                             $("#btnAsignar").css('display', 'none')
                             $("#btnCerraCiclo").css('display', 'none')
                             $("#btnAbrirNuevoCiclo").css('display', 'inline')
+                            $("#btnSincronizar").css("display","inline")
                             swal(
                                 "Exito",
                                 "Ciclo cerrado correctamente.",
