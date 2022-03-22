@@ -95,6 +95,10 @@
         <tbody>
         </tbody>
     </table>
+    <button <?php echo ($abrirCiclo == 1) ? '' : 'style = "display:none";' ?> id="btnAbrir"
+                type="button" class="btn btn-warning">
+                Cerrar Ciclo de Año
+            </button>
 </div>
 <?php $this->load->view("footer"); ?>
 <script src="<?= base_url('assets/scripts/adminMateriasDocentes.js') ?>"></script>
@@ -135,6 +139,49 @@ $("#btnAbrirCiclo").click(() => {
             </button>`)
 })
 
+$("#btnAbrir").click(()=>{
+    swal({
+            title: "Estas seguro de cerrar el ciclo, no se puede revertir?",
+            text: "Aun puedes eliminar esta acción.",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Si, estoy seguro",
+            cancelButtonText: "No, cancelar",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+        function(isConfirm) {
+            if (isConfirm) {
+                $.ajax({
+                    method: 'POST',
+                    data: {
+                        status: 1
+                    },
+                    url: base_url + "administrador/cerrarCicloAno",
+                    success: function(response) {
+                        $("#btnAbrirCiclo").css('display', 'none')
+                        $("#btnAsignar").css('display', 'none')
+                        $("#btnCerraCiclo").css('display', 'none')
+                        $("#btnAbrirNuevoCiclo").css('display', 'inline')
+                        $("#btnSincronizar").css("display", "inline")
+                        $("#btnAbrir").css("display","inline")
+                        $("#btnAbrir").css('display', 'none')
+                        swal(
+                            "Exito",
+                            "Ciclo cerrado correctamente.",
+                            "success"
+                        );
+
+                    }
+                })
+            } else {
+                swal("Cancelado", "Acción cancelada :)", "error");
+            }
+        });
+
+})
+
 function cerrarCiclo() {
 
     swal({
@@ -162,6 +209,7 @@ function cerrarCiclo() {
                         $("#btnCerraCiclo").css('display', 'none')
                         $("#btnAbrirNuevoCiclo").css('display', 'inline')
                         $("#btnSincronizar").css("display", "inline")
+                        $("#btnAbrir").css("display","inline")
                         swal(
                             "Exito",
                             "Ciclo cerrado correctamente.",

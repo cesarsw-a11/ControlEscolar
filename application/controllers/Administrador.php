@@ -65,6 +65,28 @@ class Administrador extends CI_Controller
         $dataInsertar = [
             "estado" => $data
         ];
+        /* $alumnos = "select idalumno, cursando from alumnos";
+        $alumnos = $this->db->query($alumnos)->result_array();
+        
+        foreach($alumnos as $key => $value){
+            $nuevoGrado = (int)$value['cursando'] +1;
+            if($nuevoGrado > 3){
+                $nuevoGrado = "TERMINADO";
+            }
+           $this->db->where('idalumno', $value['idalumno']);
+           $this->db->update('alumnos', ['cursando' => $nuevoGrado]);
+           
+           
+        } */
+        $this->db->where('id', "1");
+        $this->db->update('abrirCiclo', $dataInsertar);
+        echo json_encode($dataInsertar);
+    }
+    public function cerrarCicloAno(){
+        $data = $this->input->post("status");
+        $dataInsertar = [
+            "estado" => $data
+        ];
         $alumnos = "select idalumno, cursando from alumnos";
         $alumnos = $this->db->query($alumnos)->result_array();
         
