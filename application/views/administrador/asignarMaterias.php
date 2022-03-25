@@ -76,12 +76,17 @@
                 type="button" class="btn btn-primary" onclick="ui_modalAsignarMateria()">
                 + Asignar materia a Docente
             </button>
-            <button <?php echo ($abrirCiclo == 1) ? '' : 'style = "display:none";' ?> id="btnAbrirNuevoCiclo"
+            <button <?php echo ($estadoAno == 1 && $abrirCiclo == 1) ? '' : 'style = "display:none";' ?> id="btnAbrirNuevoCiclo"
                 type="button" class="btn btn-warning">
                 Abrir Nuevo Ciclo
             </button>
+            <button <?php echo ($estadoAno == 1) ? 'style = "display:none";' : '' ?> id="btnAbrir"
+                type="button" class="btn btn-warning">
+                Cerrar Ciclo de Año
+            </button>
         </div>
     </div>
+    <?= $estadoAno ?>
 
 
     <table id="tabla_materias" class="table table-striped table-bordered" style="width:100%">
@@ -95,16 +100,17 @@
         <tbody>
         </tbody>
     </table>
-    <button <?php echo ($abrirCiclo == 1) ? '' : 'style = "display:none";' ?> id="btnAbrir"
-                type="button" class="btn btn-warning">
-                Cerrar Ciclo de Año
-            </button>
 </div>
 <?php $this->load->view("footer"); ?>
 <script src="<?= base_url('assets/scripts/adminMateriasDocentes.js') ?>"></script>
 <script>
 $(() => {
     $("#btnSincronizar").css("display", "none")
+    var btnAbrir = localStorage.getItem("btnAbrir")
+    /* if(btnAbrir){
+        $("#btnAbrir").css('display', 'inli')
+        $("#btnAbrirNuevoCiclo").css('display', 'none')
+    } */
 })
 
 function sincronizarMateriasAlumnos() {
@@ -140,6 +146,13 @@ $("#btnAbrirCiclo").click(() => {
 })
 
 $("#btnAbrir").click(()=>{
+    var table = $('#tabla_materias').DataTable();
+    var longitud_tabla = table.data().count()
+
+    if (longitud_tabla > 0) {
+        swal("Advertencia", "Solo puede cerrar el ciclo del año ya que todas las materias sean " +
+            "capturadas :)", "warning");
+    } else {
     swal({
             title: "Estas seguro de cerrar el ciclo, no se puede revertir?",
             text: "Aun puedes eliminar esta acción.",
@@ -167,6 +180,7 @@ $("#btnAbrir").click(()=>{
                         $("#btnSincronizar").css("display", "inline")
                         $("#btnAbrir").css("display","inline")
                         $("#btnAbrir").css('display', 'none')
+                        localStorage.setItem("btnAbrir",0)
                         swal(
                             "Exito",
                             "Ciclo cerrado correctamente.",
@@ -179,6 +193,7 @@ $("#btnAbrir").click(()=>{
                 swal("Cancelado", "Acción cancelada :)", "error");
             }
         });
+    }
 
 })
 
@@ -207,9 +222,10 @@ function cerrarCiclo() {
                         $("#btnAbrirCiclo").css('display', 'none')
                         $("#btnAsignar").css('display', 'none')
                         $("#btnCerraCiclo").css('display', 'none')
-                        $("#btnAbrirNuevoCiclo").css('display', 'inline')
+                        $("#btnAbrir").css('display', 'inline')
                         $("#btnSincronizar").css("display", "inline")
                         $("#btnAbrir").css("display","inline")
+                        localStorage.setItem("btnAbrir",1)
                         swal(
                             "Exito",
                             "Ciclo cerrado correctamente.",
@@ -252,7 +268,7 @@ $("#btnAbrirNuevoCiclo").click(() => {
                         },
                         url: base_url + "administrador/abrirCiclo",
                         success: function(response) {
-
+                            localStorage.removeItem("btnAbrir")
                             window.location.reload()
 
                         }

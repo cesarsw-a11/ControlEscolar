@@ -88,7 +88,7 @@
                         <div class="row">
                             <div class="col">
                                 <label for="estado">Observaciones :</label>
-                            <input class="form-control" type="text" name="observaciones" id="observaciones">
+                            <input autocomplete="off" class="form-control" type="text" name="observaciones" id="observaciones">
                             </div>
                         </div>
                         <!-- Modal footer -->

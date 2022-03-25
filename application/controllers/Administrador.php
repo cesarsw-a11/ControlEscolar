@@ -51,11 +51,12 @@ class Administrador extends CI_Controller
             $docentes = $this->db->query($docentes)->result_array();
             $materias = "select * from materias where estado = 1";
             $materias = $this->db->query($materias)->result_array();
-            $abrirCiclo = "select estado from abrirCiclo";
+            $abrirCiclo = "select estado,estadoCerrarAno from abrirCiclo";
             $abrirCiclo = $this->db->query($abrirCiclo)->row();
             $data['docentes'] = $docentes;
             $data['materias'] = $materias;
             $data['abrirCiclo'] = $abrirCiclo->estado;
+            $data['estadoAno'] = $abrirCiclo->estadoCerrarAno;
             $this->load->view('administrador/asignarMaterias', $data);
         }
     }
@@ -63,7 +64,8 @@ class Administrador extends CI_Controller
     public function cerrarCiclo(){
         $data = $this->input->post("status");
         $dataInsertar = [
-            "estado" => $data
+            "estado" => $data,
+            "estadoCerrarAno" => 0
         ];
         /* $alumnos = "select idalumno, cursando from alumnos";
         $alumnos = $this->db->query($alumnos)->result_array();
@@ -85,7 +87,8 @@ class Administrador extends CI_Controller
     public function cerrarCicloAno(){
         $data = $this->input->post("status");
         $dataInsertar = [
-            "estado" => $data
+            "estado" => $data,
+            "estadoCerrarAno" => $data
         ];
         $alumnos = "select idalumno, cursando from alumnos";
         $alumnos = $this->db->query($alumnos)->result_array();
