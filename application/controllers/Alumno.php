@@ -49,8 +49,8 @@ class Alumno extends CI_Controller
             $gradoDelAlumno = $gradoAlumno->cursando.$gradoAlumno->grupo;
             $query = "select *,materias.nombre as nombreMateria from capturaCalificaciones 
             left join materias on capturaCalificaciones.idMateria = materias.idmateria 
-            left join alumnos on capturaCalificaciones.idAlumno = alumnos.idalumno where capturaCalificaciones.idAlumno = '" . $this->session->userdata('id') . "'
-            and materias.grupo = '".$gradoDelAlumno."' ";
+            left join alumnos on capturaCalificaciones.idAlumno = alumnos.idalumno where capturaCalificaciones.idAlumno = '" . $this->session->userdata('id') . "' ";
+           /*  and materias.grupo = '".$gradoDelAlumno."' "; */
             $query = $this->db->query($query)->result_array();
             foreach ($query as $key => $value) {
                 $promedio = 0;
@@ -145,9 +145,9 @@ class Alumno extends CI_Controller
         $gradoDelAlumno = $gradoAlumno->cursando.$gradoAlumno->grupo;
         $query = "select *,materias.nombre as nombreMateria from capturaCalificaciones 
         left join materias on capturaCalificaciones.idMateria = materias.idmateria 
-        left join alumnos on capturaCalificaciones.idAlumno = alumnos.idalumno where capturaCalificaciones.idAlumno = '" . $alumno . "'
-        and materias.grupo = '".$gradoDelAlumno."' ";
-        $query = $this->db->query($query)->result_array();
+        left join alumnos on capturaCalificaciones.idAlumno = alumnos.idalumno where capturaCalificaciones.idAlumno = '" . $alumno . "' ";
+/*         and materias.grupo = '".$gradoDelAlumno."' ";
+ */        $query = $this->db->query($query)->result_array();
         foreach ($query as $key => $value) {
             $promedio = 0;
             if ($value['unidad1'] == "NC") {
